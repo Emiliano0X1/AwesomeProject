@@ -9,18 +9,17 @@ import React from 'react';
 
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+
 
 
 // Screens
-import Welcome from './Screens/welcome';
 import home from "./Screens/home";
 import menu from "./Screens/menu";
 import pedidoEs from "./Screens/pedidoES";
 import VerEstatus from "./Screens/VerEstatus";
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+
 
 function NewTab() {
     return (

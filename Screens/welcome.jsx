@@ -28,7 +28,7 @@ const Welcome = () => {
 
           <Image
           style={styles.logo}
-          source={require('./Image-Source/Loho.png')}
+          source={require( './Image-Source/Loho.png')}
       />
 
                 <Text style = {styles.title}> CAFFETO </Text>
