@@ -5,6 +5,7 @@ import { View, Text,TouchableOpacity, StyleSheet, Image, ScrollView,Alert,Button
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card } from 'react-native-paper';
 import Icons from 'react-native-vector-icons/AntDesign'
+import Icons2 from 'react-native-vector-icons/Entypo'
 
 const Home = () => {
 
@@ -115,13 +116,26 @@ const Home = () => {
 
         <Text style = {styles.text}> This is a new experience that has never exist in Puebla, even in the whole Country. Cafetto has a great atmosphere, good drinks and most important an excellent service </Text>
 
+      <View>
         <Icons
-          name = 'gitlab'
-          size = {50}
-          color = 'black'
-          
-        
+          style = {styles.Icons}
+          name = 'clockcircle'
+          size = {35}
+          color = 'black'            
   />
+
+        <Text style= {styles.subtext1}> Horarios : 6- 10 pm todos los dias</Text>
+
+        <Icons2
+          style = {styles.Icons2}
+          name = 'location-pin'
+          size = {45}
+          color = 'black' 
+      />
+
+      <Text style= {styles.subtext2}> Ubicacion : Yehualtepec, Puebla, Mexico</Text>
+
+      </View>
 
       </View>
 
@@ -219,7 +233,35 @@ const styles = StyleSheet.create({
     paddingLeft : 18,
     fontSize : 18,
     paddingBottom : 18,
-  }
+  },
+
+  Icons : {
+      flex: 1,
+      paddingLeft: 60,
+      paddingTop : 25,
+  },
+
+  Icons2 : {
+    flex: 1,
+    paddingLeft: 55,
+    paddingTop : 25,
+  },
+
+  subtext1 : {
+      position: 'absolute',
+      fontSize : 13,
+      marginTop : 35,
+      marginLeft : 100,
+      color: 'black',
+  },
+
+  subtext2 : {
+    position: 'absolute',
+    fontSize : 13,
+    marginTop : 100,
+    marginLeft : 100,
+    color: 'black',
+}
 
 
 });
