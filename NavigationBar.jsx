@@ -9,6 +9,8 @@ import React from 'react';
 
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 
@@ -31,10 +33,46 @@ function NewTab() {
           tabBarActiveTintColor: 'black',
         }}
       >
-        <Tab.Screen name="Home" component={home} />
-        <Tab.Screen name="Menú" component={menu} />
-        <Tab.Screen name="Ordenar" component={pedidoEs} />
-        <Tab.Screen name="Ver Mi Pedido" component={VerEstatus} />
+        <Tab.Screen 
+          name="Home" 
+          component={home} 
+          options={{
+            tabBarLabel :'Cafetto',
+            tabBarIcon : ({color,size}) => (
+                <Entypo name ='home' color = {color} size={size} />
+            ),
+          }}
+          />
+        <Tab.Screen 
+          name="Menu" 
+          component={menu} 
+          options={{
+            tabBarLabel :'Menú',
+            tabBarIcon : ({color,size}) => (
+                <MaterialCommunityIcons name ='coffee-to-go-outline' color = {color} size={size} />
+            ),
+          }}
+          />
+        <Tab.Screen 
+          name="Mi-Pedido" 
+          component={pedidoEs} 
+          options={{
+            tabBarLabel :'Mi Pedido',
+            tabBarIcon : ({color,size}) => (
+                <Entypo name ='shopping-cart' color = {color} size={size} />
+            ),
+          }}
+          />
+        <Tab.Screen 
+          name="Estatus" 
+          component={VerEstatus} 
+          options={{
+            tabBarLabel :'Ver Estatus',
+            tabBarIcon : ({color,size}) => (
+                <Entypo name ='hour-glass' color = {color} size={size} />
+            ),
+          }}
+          />
 
       </Tab.Navigator>
     );
