@@ -37,7 +37,7 @@ function NewTab() {
           name="Home" 
           component={home} 
           options={{
-            tabBarLabel :'Cafetto',
+            tabBarLabel :'Inicio',
             tabBarIcon : ({color,size}) => (
                 <Entypo name ='home' color = {color} size={size} />
             ),
