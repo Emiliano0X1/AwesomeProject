@@ -6,25 +6,36 @@ import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 
-const componentes = {
-  name : 'Caffeto',
-}
+const [order,setOrder] = useState([ // useState es un hook de react que sive para mostrar y actualizar el estado de un componente
+   {name: 'expresso', precio : 20 , size : 'regular',id : 1, checked : ''},
+   {name: 'americano', precio : 26 , size : 'regular',id : 2, checked : ''},
+   {name: 'chocolate', precio : 30 , size : 'regular',id : 3, checked : ''},
+   {name: 'capuchino', precio : 36 , size : 'regular', id : 4, checked : ''},
+   {name: 'vainilla', precio : 39, size : 'regular', id : 5, checked : ''},
+   {name: 'caramelo', precio : 39 , size : 'regular', id : 6, checked : ''},
+   {name: 'amaretto', precio : 39 , size : 'regular', id : 7, checked : ''},
+   {name: 'latte', precio : 36 , size : 'regular', id : 8, checked : ''},
+   {name: 'mocca', precio : 39 , size : 'regular', id : 9, checked : ''},
+   {name: 'chocolate blanco', precio : 20 , size : 'regular', id : 10, checked : ''},
+   {name: 'crema irlandesa', precio : 20 , size : 'regular', id : 11, checked : ''},
+   {name: 'chai latte', precio : 20 , size : 'regular', id : 12, checked : ''},
+   {name: 'matcha latte', precio : 20 , size : 'regular', id : 13, checked : ''},
+   {name: 'taro', precio : 20 , size : 'regular', id : 14, checked : ''},
+   {name: 'caramelo latte', precio : 20 , size : 'regular', id : 15, checked : ''},
+   {name: 'vainilla latte', precio : 20 , size : 'regular', id : 16, checked : ''},
+]);
 
 const milks = [
-    {label : 'Entera', value : 0},
-    {label : 'Deslactosada', value : 3},
-    {label : 'Almendras', value : 6},
-    {label : 'Linaza', value : 0},
-    {label : 'Avena', value : 0},
+    {label : 'Entera', value : 'entera', price : 0},
+    {label : 'Deslactosada',value : 'deslactosada', price : 6},
+    {label : 'Almendras', value : 'almendras', price : 3},
+    {label : 'Linaza', value : 'linaza',price : 3},
+    {label : 'Avena', value : 'avena',price : 6},
 ]
 
 
 const Menu = () => {
-  const [value, setValue] = useState(null);
-
-  const [isChecked, setIsChecked] = useState(false);
-  const handleToggle = () => setIsChecked(!isChecked);
-
+  
   return (
     <SafeAreaView style = {styles.container}>
       <ScrollView>
@@ -35,40 +46,128 @@ const Menu = () => {
         
         <Card elevation={5} style = {styles.card}>
           
-            <Text style = {styles.cardTitle}>Expresso</Text>
-            <Text style = {styles.cardSubtitle}> $ 20 pesos</Text>
+            <Text style = {styles.cardTitle}>Latte</Text>
+            <Text style = {styles.cardSubtitle}> $ 36 pesos</Text>
 
-            <Text style = {styles.cardText}>Leche</Text>
+            <Text style = {styles.cardText}>Tipo Leche</Text>
 
-            <Dropdown
-              style={styles.dropdown}
-              placeholderStyle={styles.placeholderStyle}
-              selectedTextStyle={styles.selectedTextStyle}
-              inputSearchStyle={styles.inputSearchStyle}
-              iconStyle={styles.iconStyle}
-              data={milks}
-              search
-              maxHeight={300}
-              labelField="label"
-              valueField="value"
-              placeholder="Select item"
-              searchPlaceholder="Search..."
-              value={value}
-              onChange={item => {
-              setValue(item.value);
-               }}
-               renderLeftIcon={() => (
-                <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
-            )}
-          />
+            <View style = {styles.CheckboxConatiner}>
 
-          <Checkbox
-            style = {styles.CheckboxText}
-            label = 'Crema Extra'
-            title = 'Crema Extra'
-            checked={isChecked}
-            onValueChange={handleToggle}
-          />
+    
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'entera' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('entera')}
+              />
+
+              <Text style = {styles.CheckboxText}>Entera</Text>
+              
+              
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'almendras' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('almendras')}
+              />
+
+              <Text style = {styles.CheckboxText}>Almendras +$6</Text>
+              
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'deslactosada' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('deslactosada')}
+              />
+
+              <Text style = {styles.CheckboxText}>Deslactosada +$3</Text>
+              
+              
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'linaza' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('linaza')}
+              />
+
+              <Text style = {styles.CheckboxText}>Linaza</Text>
+              
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'avena' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('avena')}
+              />
+
+              <Text style = {styles.CheckboxText}>Avena</Text>
+              
+
+
+            </View>
+           
+
+            <View style = {styles.cardButton}>
+            <Button
+              title = 'Añadir al Carrito'
+              onPress= {() => Alert.alert('Cannot press this one')}
+              color = 'black'
+              >
+            </Button>
+
+            </View>
+        </Card>
+
+        <Card elevation={5} style = {styles.card}>
+          
+            <Text style = {styles.cardTitle}>Chocolate</Text>
+            <Text style = {styles.cardSubtitle}> $ 30 pesos</Text>
+
+            <Text style = {styles.cardText}>Tipo Leche</Text>
+
+            <View style = {styles.CheckboxConatiner}>
+
+    
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'entera' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('entera')}
+              />
+
+              <Text style = {styles.CheckboxText}>Entera</Text>
+              
+              
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'almendras' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('almendras')}
+              />
+
+              <Text style = {styles.CheckboxText}>Almendras +$6</Text>
+              
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'deslactosada' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('deslactosada')}
+              />
+
+              <Text style = {styles.CheckboxText}>Deslactosada +$3</Text>
+              
+              
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'linaza' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('linaza')}
+              />
+
+              <Text style = {styles.CheckboxText}>Linaza</Text>
+              
+              <Checkbox
+                  color = 'black'
+                  status={checked === 'avena' ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked('avena')}
+              />
+
+              <Text style = {styles.CheckboxText}>Avena</Text>
+              
+
+
+            </View>
+           
 
             <View style = {styles.cardButton}>
             <Button
@@ -114,7 +213,7 @@ const styles = StyleSheet.create ({
   card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: 300,
+    height: 350,
   },
 
   cardTitle : {
@@ -139,7 +238,7 @@ const styles = StyleSheet.create ({
   },
 
   cardButton : {
-    marginTop : 40,
+    marginTop : 25,
     marginHorizontal : 50,
     borderBottomWidth : 0.7,
  
@@ -169,9 +268,17 @@ const styles = StyleSheet.create ({
     fontSize: 16,
   },
 
+  CheckboxConatiner : {
+    flexDirection: 'column',
+    alignItems: 'left',
+    padding: 10,
+  },
+
   CheckboxText : {
-    fontSize : 18,
-    color: 'black',
+    fontSize : 16,
+    color: 'gray',
+    marginLeft: 40,
+    marginTop : -30,
   }
 
 

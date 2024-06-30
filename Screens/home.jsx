@@ -7,7 +7,7 @@ import { Card } from 'react-native-paper';
 import Icons from 'react-native-vector-icons/AntDesign'
 import Icons2 from 'react-native-vector-icons/Entypo'
 
-const Home = () => {
+const Home = ({navigation}) => {
 
   const componentes = {
     name : 'Caffeto',
@@ -27,7 +27,7 @@ const Home = () => {
       <View style = {styles.button}>
 
       <TouchableOpacity
-                       onPress= {() => Alert.alert('Cannot press this one')}
+                       onPress= {() => navigation.navigate('Menu')}
                     >
                     <Text style = {styles.buttonText}> Hacer mi Pedido </Text>
 
