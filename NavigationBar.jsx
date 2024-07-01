@@ -15,14 +15,43 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 
+
 // Screens
 import home from "./Screens/home";
-import menu from "./Screens/menu";
+import mainMenu from "./Screens/menu";
 import pedidoEs from "./Screens/pedidoES";
 import VerEstatus from "./Screens/VerEstatus";
 
-const Tab = createBottomTabNavigator();
 
+// subScreens
+import hotDrinks from "./Screens/productsScreen/hotDrinks";
+import frappes from "./Screens/productsScreen/frappes";
+
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+function MenuStack () {
+    return (
+        <Stack.Navigator initialRouteName = 'menu'>
+          <Stack.Screen
+            name = 'MainMenu'
+            component = {mainMenu}
+            options={{ headerShown: false }} 
+          />
+           <Stack.Screen
+            name = 'HotDrinks'
+            component = {hotDrinks}
+            options={{ headerShown: false }} 
+          />
+           <Stack.Screen
+            name = 'Frappes'
+            component = {frappes}
+            options={{ headerShown: false }} 
+          />
+
+        </Stack.Navigator>
+    );
+}
 
 function NewTab() {
     return (
@@ -47,7 +76,7 @@ function NewTab() {
           />
         <Tab.Screen 
           name="Menu" 
-          component={menu} 
+          component={MenuStack} 
           options={{
             headerShown : false,
             tabBarLabel :'Menú',
