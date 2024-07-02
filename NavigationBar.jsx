@@ -14,8 +14,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
-
-
 // Screens
 import home from "./Screens/home";
 import mainMenu from "./Screens/menu";
@@ -26,6 +24,13 @@ import VerEstatus from "./Screens/VerEstatus";
 // subScreens
 import hotDrinks from "./Screens/productsScreen/hotDrinks";
 import frappes from "./Screens/productsScreen/frappes";
+import tes from "./Screens/productsScreen/tes";
+import tisanas from "./Screens/productsScreen/tisanas";
+import smothies from "./Screens/productsScreen/Smothies";
+import sodasItalianas from "./Screens/productsScreen/sodasI";
+import refrescantes from "./Screens/productsScreen/refrescantes";
+import wafles from "./Screens/productsScreen/wafles";
+import postres from "./Screens/productsScreen/postres";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -41,14 +46,40 @@ function MenuStack () {
            <Stack.Screen
             name = 'HotDrinks'
             component = {hotDrinks}
-            options={{ headerShown: false }} 
           />
            <Stack.Screen
             name = 'Frappes'
             component = {frappes}
-            options={{ headerShown: false }} 
           />
-
+          <Stack.Screen
+            name = 'Tes'
+            component = {tes}
+          />
+          <Stack.Screen
+            name = 'Tisanas'
+            component = {tisanas}
+          />
+          <Stack.Screen
+            name = 'Smoothies'
+            component = {smothies}
+          />
+          <Stack.Screen
+            name = 'Sodas Italianas'
+            component = {sodasItalianas}
+          />
+          <Stack.Screen
+            name = 'Refrescantes'
+            component = {refrescantes}
+          />
+           <Stack.Screen
+            name = 'Wafles'
+            component = {wafles}
+          />
+           <Stack.Screen
+            name = 'Postres'
+            component = {postres}
+          />
+          
         </Stack.Navigator>
     );
 }

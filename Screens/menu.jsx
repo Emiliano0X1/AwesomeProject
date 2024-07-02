@@ -16,7 +16,7 @@ const MainMenu = ({navigation}) => {
 
             
             <TouchableOpacity
-                onPress= {() => navigation.navigate('Home')}
+                onPress= {() => navigation.navigate('HotDrinks')}
               >
                 <Card style = {styles.Card}>
                 <Card.Cover
@@ -27,7 +27,9 @@ const MainMenu = ({navigation}) => {
                 </Card>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress= {() => navigation.navigate('Frappes')}
+            >
                 <Card style = {styles.Card}>
                 <Card.Cover
                   style = {styles.cardImg}
@@ -37,57 +39,69 @@ const MainMenu = ({navigation}) => {
                 </Card>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress= {() => navigation.navigate('Tes')}
+            >
                 <Card style = {styles.Card}>
                 <Card.Cover
                   style = {styles.cardImg}
-                  source={require('./Image-Source/latteMenu.jpg')}
+                  source={require('./Image-Source/te.jpg')}
                   />
                   <Text style = {styles.cardTitle}>Tés </Text>
                 </Card>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress= {() => navigation.navigate('Tisanas')}
+            >
                 <Card style = {styles.Card}>
                 <Card.Cover
                   style = {styles.cardImg}
-                  source={require('./Image-Source/latteMenu.jpg')}
+                  source={require('./Image-Source/tisana.jpg')}
                   />
                   <Text style = {styles.cardTitle}>Tisanas</Text>
                 </Card>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress= {() => navigation.navigate('Smoothies')}
+            >
                 <Card style = {styles.Card}>
                 <Card.Cover
                   style = {styles.cardImg}
-                  source={require('./Image-Source/latteMenu.jpg')}
+                  source={require('./Image-Source/Smothies.jpg')}
                   />
                   <Text style = {styles.cardTitle}>Smoothies</Text>
                 </Card>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress= {() => navigation.navigate('SodasItalianas')}
+            >
                 <Card style = {styles.Card}>
                 <Card.Cover
                   style = {styles.cardImg}
-                  source={require('./Image-Source/latteMenu.jpg')}
+                  source={require('./Image-Source/sodasItalianas.jpg')}
                   />
                   <Text style = {styles.cardTitle}>Sodas Italianas</Text>
                 </Card>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress= {() => navigation.navigate('Refrescantes')}
+            >
                 <Card style = {styles.Card}>
                 <Card.Cover
                   style = {styles.cardImg}
-                  source={require('./Image-Source/latteMenu.jpg')}
+                  source={require('./Image-Source/te-frio.jpg')}
                   />
                   <Text style = {styles.cardTitle}>Refrescantes</Text>
                 </Card>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress= {() => navigation.navigate('Wafles')}
+            >
                 <Card style = {styles.Card}>
                 <Card.Cover
                   style = {styles.cardImg}
@@ -97,11 +111,13 @@ const MainMenu = ({navigation}) => {
                 </Card>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress= {() => navigation.navigate('Postres')}
+            >
                 <Card style = {styles.Card}>
                 <Card.Cover
                   style = {styles.cardImg}
-                  source={require('./Image-Source/latteMenu.jpg')}
+                  source={require('./Image-Source/muffin2.jpg')}
                   />
                   <Text style = {styles.cardTitle}>Postres</Text>
                 </Card>
