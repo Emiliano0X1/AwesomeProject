@@ -2,69 +2,69 @@ import React ,{useState} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const Refrescantes = () => {
+const SodasItalianas = () => {
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
 
-        <Text style = {styles.title}> Refrescantes </Text>
+        <Text style = {styles.title}> Sodas Italianas </Text>
 
         <View style = {styles.containerCards}>
 
         <TouchableOpacity
-              name = 'IceTea'
+              name = 'GreenApple'
              
             >
               <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Té Helado</Text>
-                  <Text style = {styles.cardSubtitle}>$30 pesos</Text>
+                <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
+                  <Text style = {styles.cardTitle}>Manzana Verde</Text>
+                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
               </Card>
            </TouchableOpacity>
 
            <TouchableOpacity
-              name = 'RedTea'
+              name = 'BlueBerry'
              
             >
               <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Té Rojo</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
+                <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
+                  <Text style = {styles.cardTitle}>Mora Azul</Text>
+                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
               </Card>
            </TouchableOpacity>
 
            <TouchableOpacity
-              name = 'Agua'
+              name = 'Cereza'
              
             >
               <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Botella de Agua</Text>
-                  <Text style = {styles.cardSubtitle}>$12 pesos</Text>
+                <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
+                  <Text style = {styles.cardTitle}>Cereza</Text>
+                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
               </Card>
            </TouchableOpacity>
 
            <TouchableOpacity
-              name = 'LatteRocas'
+              name = 'CuracaoAzul'
              
             >
               <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Latte En Las Rocas</Text>
-                  <Text style = {styles.cardSubtitle}>$36 pesos</Text>
+                <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
+                  <Text style = {styles.cardTitle}>Curacao Azul</Text>
+                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
               </Card>
            </TouchableOpacity>
 
            <TouchableOpacity
-              name = 'Affogato'
+              name = 'Mango'
              
             >
               <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Affogato</Text>
-                  <Text style = {styles.cardSubtitle}>$36 pesos</Text>
+                <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
+                  <Text style = {styles.cardTitle}>Mango</Text>
+                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
               </Card>
            </TouchableOpacity>
 
@@ -93,23 +93,18 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: 180,
+    height: 170,
     width : 150,
     marginHorizontal : 10,
   },
 
   cardImg : {
-    padding: 18,
-    backgroundColor : 'white',
-    height : 70,
-    width : 70,
-    alignSelf: 'center',
-    marginTop: 20,
+      padding: 18,
+      backgroundColor : 'white',
   },
 
   cardTitle : {
     fontSize : 18,
-    marginTop : 10,
     paddingBottom : 5,
     color : 'black',
     fontWeight : 'bold',
@@ -139,4 +134,4 @@ const styles = StyleSheet.create({
 
 
 })
-export default Refrescantes;
+export default SodasItalianas;

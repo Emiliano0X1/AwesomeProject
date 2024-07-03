@@ -27,7 +27,7 @@ import frappes from "./Screens/productsScreen/frappes";
 import tes from "./Screens/productsScreen/tes";
 import tisanas from "./Screens/productsScreen/tisanas";
 import smothies from "./Screens/productsScreen/Smothies";
-import sodasItalianas from "./Screens/productsScreen/sodasI";
+import sodasItalianas from "./Screens/productsScreen/sodasItalianas";
 import refrescantes from "./Screens/productsScreen/refrescantes";
 import wafles from "./Screens/productsScreen/wafles";
 import postres from "./Screens/productsScreen/postres";
@@ -64,7 +64,7 @@ function MenuStack () {
             component = {smothies}
           />
           <Stack.Screen
-            name = 'Sodas Italianas'
+            name = 'SodasItalianas'
             component = {sodasItalianas}
           />
           <Stack.Screen
