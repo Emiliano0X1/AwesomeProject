@@ -5,7 +5,7 @@ import { Card} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const Frappes = () => {
+const Frappes = ({navigation}) => {
   return (
      <SafeAreaView  style = {styles.container}>
       <ScrollView>
@@ -15,7 +15,7 @@ const Frappes = () => {
         <View style = {styles.containerCards}>
         <TouchableOpacity
               name = 'CapuchinoF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -27,7 +27,7 @@ const Frappes = () => {
 
            <TouchableOpacity
               name = 'ChaiF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -39,7 +39,7 @@ const Frappes = () => {
 
            <TouchableOpacity
               name = 'ChocolateBlancoF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -51,7 +51,7 @@ const Frappes = () => {
 
            <TouchableOpacity
               name = 'FresaF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -63,7 +63,7 @@ const Frappes = () => {
 
            <TouchableOpacity
               name = 'MatchaF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -75,7 +75,7 @@ const Frappes = () => {
 
            <TouchableOpacity
               name = 'MazapanF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -87,7 +87,7 @@ const Frappes = () => {
 
            <TouchableOpacity
               name = 'MoccaF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -99,7 +99,7 @@ const Frappes = () => {
 
            <TouchableOpacity
               name = 'NutellaF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -111,7 +111,7 @@ const Frappes = () => {
 
            <TouchableOpacity
               name = 'OreoF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -123,7 +123,7 @@ const Frappes = () => {
 
            <TouchableOpacity
               name = 'TaroF'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />

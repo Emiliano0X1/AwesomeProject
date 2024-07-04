@@ -5,7 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const HotDrinks = () => {
+const HotDrinks = ({navigation}) => {
+
   return (
 
     <SafeAreaView style = {styles.container}>
@@ -17,6 +18,7 @@ const HotDrinks = () => {
 
            <TouchableOpacity
               name = 'Expresso'
+              onPress={() => navigation.navigate('defaultExtra')}
              
             >
               <Card style = {styles.Card}>
@@ -28,7 +30,7 @@ const HotDrinks = () => {
 
            <TouchableOpacity
               name = 'Americano'
-             
+              onPress={() => navigation.navigate('defaultExtra')}
             >
               <Card style = {styles.Card}>
                 <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
@@ -39,7 +41,7 @@ const HotDrinks = () => {
 
            <TouchableOpacity
               name = 'Chocolate'
-             
+              onPress={() => navigation.navigate('withMilk')}
             >
               <Card style = {styles.Card}>
                 <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
@@ -50,7 +52,7 @@ const HotDrinks = () => {
 
            <TouchableOpacity
               name = 'Capuchino'
-             
+              onPress={() => navigation.navigate('defaultExtra')}
             >
               <Card style = {styles.Card}>
                 <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
@@ -200,7 +202,9 @@ const HotDrinks = () => {
 
     </SafeAreaView>
   );
-}
+};
+
+
 
 const styles = StyleSheet.create({
 

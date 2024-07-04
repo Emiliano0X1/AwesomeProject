@@ -32,8 +32,35 @@ import refrescantes from "./Screens/productsScreen/refrescantes";
 import wafles from "./Screens/productsScreen/wafles";
 import postres from "./Screens/productsScreen/postres";
 
+//Extra sCREENS
+
+import defaultExtra from "./Screens/extraScreen/defaultExtra";
+import milks from "./Screens/extraScreen/withMilk";
+
+
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
+function extraScreen () {
+  return (
+      <Stack.Navigator initialRouteName = 'HotDrinks'>
+        <Stack.Screen
+          name = 'Menu'
+          component = {mainMenu}
+          options={{ headerShown: false }} 
+        />
+         <Stack.Screen
+          name = 'defaultExtra'
+          component = {defaultExtra}
+        />  
+        <Stack.Screen
+          name = 'WithMilk'
+          component = {milks}
+        />  
+      </Stack.Navigator>
+  );
+};
 
 function MenuStack () {
     return (
@@ -79,6 +106,15 @@ function MenuStack () {
             name = 'Postres'
             component = {postres}
           />
+
+          <Stack.Screen
+          name = 'defaultExtra'
+          component = {defaultExtra}
+          />  
+          <Stack.Screen
+          name = 'withMilk'
+          component = {milks}
+          /> 
           
         </Stack.Navigator>
     );
