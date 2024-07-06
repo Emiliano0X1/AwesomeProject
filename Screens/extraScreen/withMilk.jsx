@@ -3,9 +3,15 @@ import { View, Text, StyleSheet, ScrollView,Button,Alert, TouchableOpacity } fro
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card ,Checkbox, TextInput} from 'react-native-paper';
 
-
-
 const Milks = () => {
+
+  const milks = [
+    {label : 'Entera', value : 'entera', price : 0},
+    {label : 'Deslactosada',value : 'deslactosada', price : 6},
+    {label : 'Almendras', value : 'almendras', price : 3},
+    {label : 'Linaza', value : 'linaza',price : 3},
+    {label : 'Avena', value : 'avena',price : 6},
+]
 
   const [cantidad, setCantidad] = useState(1);
 

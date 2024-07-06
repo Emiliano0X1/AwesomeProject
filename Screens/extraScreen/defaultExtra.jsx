@@ -1,17 +1,30 @@
-import React ,{useState}from 'react';
+import React ,{useState,useContext}from 'react';
 import { View, Text,TouchableOpacity, StyleSheet, ScrollView,Button,Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card ,Checkbox, TextInput} from 'react-native-paper';
+import { OrderContext } from '../context';
 
-const DefaultExtra = () => {
+const DefaultExtra = ({navigation,route}) => {
 
-  const [cantidad, setCantidad] = useState(1);
+  //Este es la funcion que utilizare para poder agregar el extra al total
 
-  const aumentarCant = () => {
+  const {addProduct} = useContext(OrderContext);
+  const {producto} = route.params;
+  const [cantidad, setCantidad] = useState(1); // se inicializa en 1
+
+  const agregarExtraFinal = () => {
+      addProduct(producto,cantidad);
+      navigation.navigate('Mi-Pedido');
+  }
+
+  //Lo sigueinte es la logica para poder Aumentar el contador de cantidad
+
+  const aumentarCant = () => { // este es el emtodo para aumentar
     setCantidad( prevCant => cantidad + 1)
   } ;
 
-  const disminuirCant = () => {
+
+  const disminuirCant = () => { // Y este es el para disminuir
       setCantidad(prevCant => {
 
         if(prevCant > 1){
@@ -47,24 +60,16 @@ const DefaultExtra = () => {
                   />
 
 
-              
-
-
                 </View>
 
                 
               <View style = {styles.buttonsContainer}>
 
-                <TouchableOpacity
-                 style = {styles.button}
-                  >
+                <TouchableOpacity style = {styles.button}  onPress = {agregarExtraFinal}>
                   <Text style={styles.buttonText}>Agregar al Carrito</Text>
-
                 </TouchableOpacity>
 
-
-
-</View>
+              </View>
             </ScrollView>
         </SafeAreaView>
     );
