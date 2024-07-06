@@ -36,6 +36,7 @@ import postres from "./Screens/productsScreen/postres";
 
 import defaultExtra from "./Screens/extraScreen/defaultExtra";
 import milks from "./Screens/extraScreen/withMilk";
+import frappeExtra from "./Screens/extraScreen/frappeExtra";
 
 
 
@@ -114,6 +115,10 @@ function MenuStack () {
           <Stack.Screen
           name = 'withMilk'
           component = {milks}
+          /> 
+          <Stack.Screen
+          name = 'frappeExtra'
+          component = {frappeExtra}
           /> 
           
         </Stack.Navigator>

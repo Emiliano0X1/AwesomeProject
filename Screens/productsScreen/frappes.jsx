@@ -1,11 +1,33 @@
-import React ,{useState} from 'react';
+import React ,{useContext} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { OrderContext } from '../context';
 
 const Frappes = ({navigation}) => {
+
+  const {addProduct} = useContext(OrderContext);
+  
+
+  const productos = [
+    {name: "Capuchino", precioMed : 43 ,precioGde :46 ,id : 'B17', extra : 'frappeExtra',type : 'Frappe'},
+    {name: "Chaí", precioMed : 47 ,precioGde : 50 ,id : 'B18', extra : 'frappeExtra',type : 'Frappe'},
+    {name: "Chocolate Blanco", precioMed : 46 ,precioGde :49 ,id : 'B19', extra : 'frappeExtra',type : 'Frappe'},
+    {name: "Fresa", precioMed : 47 ,precioGde : 50 ,id : 'B20', extra : 'frappeExtra',type : 'Frappe'},
+    {name: "Matcha", precioMed : 47 ,precioGde : 50,id : 'B21', extra : 'frappeExtra',type : 'Frappe'},
+    {name: "Mazapan", precioMed : 46 ,precioGde : 49 ,id : 'B22', extra : 'frappeExtra',type : 'Frappe'},
+    {name: "Mocca", precioMed : 45 ,precioGde : 48 ,id : 'B23', extra : 'frappeExtra',type : 'Frappe'},
+    {name: "Nutella", precioMed : 47 ,precioGde : 50,id : 'B24', extra : 'frappeExtra',type : 'Frappe'},
+    {name: "Oreo", precioMed : 46 ,precioGde :49 ,id : 'B25', extra : 'frappeExtra',type : 'Frappe'},
+    {name: "Taro", precioMed : 47 ,precioGde :50 ,id : 'B26', extra : 'frappeExtra',type : 'Frappe'},
+  
+  
+  ];
+
+  const agregarProductoFinal = (producto) => {
+    navigation.navigate(producto.extra,{producto});
+  };
+
   return (
      <SafeAreaView  style = {styles.container}>
       <ScrollView>
@@ -13,127 +35,22 @@ const Frappes = ({navigation}) => {
         <Text style = {styles.title}> Frappes</Text>
 
         <View style = {styles.containerCards}>
+        {productos.map((producto) => ( 
         <TouchableOpacity
-              name = 'CapuchinoF'
-              onPress={() => navigation.navigate('withMilk')}
+              key = {producto.id}
+              onPress={() => agregarProductoFinal(producto)}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Capuchino</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $43 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $46 pesos</Text>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}> Med : ${producto.precioMed} pesos</Text>
+                  <Text style = {styles.cardSubtitle}> Gde : ${producto.precioGde} pesos</Text>
               </Card>
            </TouchableOpacity>
 
-           <TouchableOpacity
-              name = 'ChaiF'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Chaí</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $47 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
+          ))}
 
-           <TouchableOpacity
-              name = 'ChocolateBlancoF'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Chocolate Blanco</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $46 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $49 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'FresaF'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Fresa</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $47 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'MatchaF'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Matcha</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $47 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'MazapanF'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Mazapan</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $46 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $49 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'MoccaF'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Mocca</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $45 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $48 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'NutellaF'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Nutella</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $47 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'OreoF'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Oreo</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $46 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $49 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'TaroF'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Taro</Text>
-                  <Text style = {styles.cardSubtitle}> Med : $47 pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : $50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-        </View>
+          </View>
 
 
       </ScrollView>
