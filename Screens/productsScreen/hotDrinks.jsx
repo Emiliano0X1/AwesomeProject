@@ -1,11 +1,38 @@
 
-import React ,{useState} from 'react';
+import React ,{useContext} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { OrderContext } from '../context';
 
 const HotDrinks = ({navigation}) => {
+
+  const {addProduct} = useContext(OrderContext);
+
+  const productos = [
+    {name: 'Expresso', precio : 20 , size : 'regular',id : 1, extra : 'defaultExtra'},
+   {name: 'Americano', precio : 26 , size : 'regular',id : 2,extra : 'defaultExtra'},
+   {name: 'Chocolate', precio : 30 , size : 'regular',id : 3,extra : 'withMilk'},
+   {name: 'Capuchino', precio : 36 , size : 'regular', id : 4, extra : 'defaultExtra'},
+   {name: 'Vainilla', precio : 39, size : 'regular', id : 5, extra : 'defaultExtra'},
+   {name: 'Caramelo', precio : 39 , size : 'regular', id : 6, extra : 'defaultExtra'},
+   {name: 'Amaretto', precio : 39 , size : 'regular', id : 7, extra : 'defaultExtra'},
+   {name: 'Latte', precio : 36 , size : 'regular', id : 8, extra : 'withMilk'},
+   {name: 'Mocca', precio : 39 , size : 'regular', id : 9, extra : 'defaultExtra'},
+   {name: "Chocolate Blanco", precio : 39 , size : 'regular', id : 10, extra : 'withMilk'},
+   {name: "Crema Irlandesa", precio :  39, size : 'regular', id : 11,extra : 'defaultExtra'},
+   {name: "Chai Latte", precio : 42 , size : 'regular', id : 12, extra : 'withMilk'},
+   {name: "Matcha Latte", precio : 45 , size : 'regular', id : 13, extra : 'withMilk'},
+   {name: "Taro", precio : 45 , size : 'regular', id : 14, extra : 'withMilk'},
+   {name: "Caramelo Latte", precio : 40 , size : 'regular', id : 15, extra : 'withMilk'},
+   {name: "Vainilla Latte", precio : 40 , size : 'regular', id : 16, extra : 'withMilk'},
+  ];
+
+  const agregarProductoFinal = (producto) => {
+      addProduct(producto);
+      navigation.navigate(producto.extra);
+  };
 
   return (
 
@@ -15,186 +42,24 @@ const HotDrinks = ({navigation}) => {
           <Text style = {styles.title}> Bebidas Calientes </Text> 
 
         <View style = {styles.containerCards}>
-
+        {productos.map((producto,index) => 
            <TouchableOpacity
-              name = 'Expresso'
-              onPress={() => navigation.navigate('defaultExtra')}
+              key = {index}
+              onPress={() => agregarProductoFinal(producto)}
              
             >
               <Card style = {styles.Card}>
                 <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Expresso</Text>
-                  <Text style = {styles.cardSubtitle}>$20 pesos</Text>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  {console.log(producto.name)}
+                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
+                  {console.log(producto.precio)}
               </Card>
            </TouchableOpacity>
 
-           <TouchableOpacity
-              name = 'Americano'
-              onPress={() => navigation.navigate('defaultExtra')}
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Americano</Text>
-                  <Text style = {styles.cardSubtitle}>$26 pesos</Text>
-              </Card>
-           </TouchableOpacity>
+          )};
 
-           <TouchableOpacity
-              name = 'Chocolate'
-              onPress={() => navigation.navigate('withMilk')}
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Chocolate</Text>
-                  <Text style = {styles.cardSubtitle}>$30 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Capuchino'
-              onPress={() => navigation.navigate('defaultExtra')}
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Capuchino</Text>
-                  <Text style = {styles.cardSubtitle}>$36 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Vainilla'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Vainilla</Text>
-                  <Text style = {styles.cardSubtitle}>$39 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Caramelo'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Caramelo</Text>
-                  <Text style = {styles.cardSubtitle}>$39 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Ameretto'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Ameretto</Text>
-                  <Text style = {styles.cardSubtitle}>$39 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Latte'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Latte</Text>
-                  <Text style = {styles.cardSubtitle}>$36 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Mocca'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Mocca</Text>
-                  <Text style = {styles.cardSubtitle}>$39 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'ChocolateBlanco'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Chocolate Blanco</Text>
-                  <Text style = {styles.cardSubtitle}>$39 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'CremaIrlandesa'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Crema Irlandesa</Text>
-                  <Text style = {styles.cardSubtitle}>$39 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'ChaiLatte'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Chai Latte</Text>
-                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'MatchaLatte'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Matcha Latte</Text>
-                  <Text style = {styles.cardSubtitle}>$45 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Taro'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Taro</Text>
-                  <Text style = {styles.cardSubtitle}>$45 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'VainillaLatte'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Vainilla Latte</Text>
-                  <Text style = {styles.cardSubtitle}>$40 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'CarameloLatte'
-             
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Caramelo Latte</Text>
-                  <Text style = {styles.cardSubtitle}>$40 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-          
-
+           
            </View>
 
 

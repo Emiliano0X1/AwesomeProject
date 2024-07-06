@@ -8,10 +8,13 @@
 import React ,{useState} from 'react';
 import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import NavigationBar from './NavigationBar';
+import { OrderProvider } from './Screens/context';
 
 const CafettoApp = () => {
   return (
-    <NavigationBar />
+    <OrderProvider>
+      <NavigationBar />
+    </OrderProvider>
   );
 }
 
