@@ -1,11 +1,26 @@
-import React ,{useState} from 'react';
+import React ,{useContext} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { OrderContext } from '../context';
 
-const Tes = () => {
+const Tes = ({navigation}) => {
+
+  const {addProduct} = useContext(OrderContext);
+
+  const productos = [
+    {name : 'Relax', precio : 25,id: 'B27' , extra : 'defaultExtra',type : 'Te'},
+    {name : 'Té Verde', precio : 25, id : 'B28', extra : 'defaultExtra',type : 'Te'},
+    {name : 'Rooibos Chocomenta', precio : 25, id : 'B29', extra : 'defaultExtra',type : 'Te'},
+    {name : 'Rooibos Mango', precio : 25, id : 'B30', extra : 'defaultExtra',type : 'Te'}
+  ];
+
+  const agregarProductoFinal = (producto) => {
+    navigation.navigate(producto.extra,{producto});
+};
+
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
@@ -14,50 +29,19 @@ const Tes = () => {
 
         <View style = {styles.containerCards}>
 
+        {productos.map((producto) => ( 
         <TouchableOpacity
-              name = 'RelaxT'
-             
+              key={producto.id}
+              onPress={() => agregarProductoFinal(producto)}
             >
               <Card style = {styles.Card}>
                 <MaterialCommunityIcons style = {styles.iconStyle} name = 'tea-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Relax</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
               </Card>
            </TouchableOpacity>
 
-           <TouchableOpacity
-              name = 'GreenTea'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'tea-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Té Verde</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'RooibosChoco'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'tea-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Rooibos Chocomenta</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'RooibosMango'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'tea-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Rooibos Mango</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
+            ))}
 
         </View>
       </ScrollView>

@@ -1,10 +1,26 @@
-import React ,{useState} from 'react';
+import React ,{useContext} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { OrderContext } from '../context';
 
-const Tisana= () => {
+const Tisana= ({navigation}) => {
+
+  const {addProduct} = useContext(OrderContext) ;
+
+  const productos = [
+    {name : 'Blue Eyes', precio : 25,id: 'B31' , extra : 'defaultExtra',type : 'Tisana'},
+    {name : 'Paraíso Exótico', precio : 25, id : 'B32', extra : 'defaultExtra',type : 'Tisana'},
+    {name : 'Amaretto', precio : 25, id : 'B33', extra : 'defaultExtra',type : 'Tisana'},
+    {name : 'Fresa-Kiwi', precio : 25, id : 'B34', extra : 'defaultExtra',type : 'Tisana'}
+  ];
+
+  const agregarProductoFinal = (producto) => {
+    navigation.navigate(producto.extra,{producto});
+  };
+
+
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
@@ -13,50 +29,21 @@ const Tisana= () => {
 
         <View style = {styles.containerCards}>
 
+        {productos.map((producto) => ( 
+
         <TouchableOpacity
-              name = 'BlueEyes'
+              key = {producto.id}
+              onPress={()=> agregarProductoFinal(producto)}
              
             >
               <Card style = {styles.Card}>
                 <MaterialCommunityIcons style = {styles.iconStyle} name = 'kettle-steam-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Blue Eyes</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
               </Card>
            </TouchableOpacity>
 
-           <TouchableOpacity
-              name = 'ParaisoExotico'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'kettle-steam-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Paraíso Exótico</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Amaretto'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'kettle-steam-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Amaretto</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'FresaKiwi'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'kettle-steam-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Fresa-Kiwi</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
+          ))}
 
         </View>
       </ScrollView>

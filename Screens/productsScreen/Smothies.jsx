@@ -4,8 +4,25 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { OrderContext } from '../context';
 
 const Smoothies = () => {
+
+  const productos = [
+    {name : 'Piña Colada', precio : 42,id: 'B35' , extra : 'defaultExtra',type : 'Smoothie'},
+    {name : 'Plátano-Café', precio : 38, id : 'B36', extra : 'withMilk',type : 'Smoothie'},
+    {name : 'Kiwi', precio : 45, id : 'B37', extra : 'withMilk',type : 'Smoothie'},
+    {name : 'Manzana', precio : 50, id : 'B38', extra : 'withMilk',type : 'Smoothie'},
+    {name : 'Frutos Rojos', precio : 50, id : 'B39', extra : 'withMilk',type : 'Smoothie'},
+    {name : 'Durazno', precio : 45, id : 'B40', extra : 'withMilk',type : 'Smoothie'},
+  ];
+
+  const agregarProductoFinal = (producto) => {
+    navigation.navigate(producto.extra,{producto});
+  };
+
+
+
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
@@ -14,17 +31,22 @@ const Smoothies = () => {
 
         <View style = {styles.containerCards}>
 
+        {productos.map((producto)=> ( 
+
         <TouchableOpacity
-              name = 'PinaColada'
+              key = {producto.id}
+              onPress={() => agregarProductoFinal(producto)}
              
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/SmothieIcon.png')} />
-                  <Text style = {styles.cardTitle}>Piña Colada</Text>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
                   <Text style = {styles.cardSubtitle}>(Piña, leche de coco y yogurt)</Text>
                   <Text style = {styles.cardSubtitle}>$42 pesos</Text>
               </Card>
            </TouchableOpacity>
+
+          ))}
 
            <TouchableOpacity
               name = 'PlatanoCafe'
