@@ -2,19 +2,17 @@ import React ,{useState} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { OrderContext } from '../context';
 
-const Smoothies = () => {
+const Smoothies = ({navigation}) => {
 
   const productos = [
-    {name : 'Piña Colada', precio : 42,id: 'B35' , extra : 'defaultExtra',type : 'Smoothie'},
-    {name : 'Plátano-Café', precio : 38, id : 'B36', extra : 'withMilk',type : 'Smoothie'},
-    {name : 'Kiwi', precio : 45, id : 'B37', extra : 'withMilk',type : 'Smoothie'},
-    {name : 'Manzana', precio : 50, id : 'B38', extra : 'withMilk',type : 'Smoothie'},
-    {name : 'Frutos Rojos', precio : 50, id : 'B39', extra : 'withMilk',type : 'Smoothie'},
-    {name : 'Durazno', precio : 45, id : 'B40', extra : 'withMilk',type : 'Smoothie'},
+    {name : 'Piña Colada', precio : 42,id: 'B35' , description : 'Piña, leche de coco y yogurt', extra : 'defaultExtra',type : 'Smoothie'},
+    {name : 'Plátano-Café', precio : 38, id : 'B36', description : 'Plátano, cacao, café y leche de almendras', extra : 'withMilk',type : 'Smoothie'},
+    {name : 'Kiwi', precio : 45, id : 'B37', description : 'Kiwi, plátano, yogurt, leche de almendras', extra : 'withMilk',type : 'Smoothie'},
+    {name : 'Manzana', precio : 50, id : 'B38',description : 'Manzana, yogurt, avena, crema de almendras, leche de almendras', extra : 'withMilk',type : 'Smoothie'},
+    {name : 'Frutos Rojos', precio : 50, id : 'B39', description : 'Fresa, moras, frambuesa y chía' ,extra : 'withMilk',type : 'Smoothie'},
+    {name : 'Durazno', precio : 45, id : 'B40', description : 'Durazno, manzana, avena y leche de almendras', extra : 'withMilk',type : 'Smoothie'},
   ];
 
   const agregarProductoFinal = (producto) => {
@@ -41,77 +39,12 @@ const Smoothies = () => {
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/SmothieIcon.png')} />
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
-                  <Text style = {styles.cardSubtitle}>(Piña, leche de coco y yogurt)</Text>
-                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
+                  <Text style = {styles.cardSubtitle}>({producto.description})</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
               </Card>
            </TouchableOpacity>
 
           ))}
-
-           <TouchableOpacity
-              name = 'PlatanoCafe'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/SmothieIcon.png')} />
-                  <Text style = {styles.cardTitle}>Plátano-Café</Text>
-                  <Text style = {styles.cardSubtitle}>(Plátano, cacao, café y leche de
-                    almendras)</Text>
-                  <Text style = {styles.cardSubtitle}>$38 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Kiwi'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/SmothieIcon.png')} />
-                  <Text style = {styles.cardTitle}>Kiwi</Text>
-                  <Text style = {styles.cardSubtitle}>(Kiwi, plátano, yogurt, leche de
-                    almendras)</Text>
-                  <Text style = {styles.cardSubtitle}>$45 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Manzana'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/SmothieIcon.png')} />
-                  <Text style = {styles.cardTitle}>Manzana</Text>
-                  <Text style = {styles.cardSubtitle}>(Manzana, yogurt, avena, crema
-                      de almendras, leche de almendras)</Text>
-                  <Text style = {styles.cardSubtitle}>$50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'FrutosRojos'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/SmothieIcon.png')} />
-                  <Text style = {styles.cardTitle}>Frutos Rojos</Text>
-                  <Text style = {styles.cardSubtitle}>(Fresa, moras, frambuesa y chía)</Text>
-                  <Text style = {styles.cardSubtitle}>$50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Durazno'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/SmothieIcon.png')} />
-                  <Text style = {styles.cardTitle}> Durazno </Text>
-                  <Text style = {styles.cardSubtitle}>(Durazno, manzana, avena y leche
-                    de almendras)</Text>
-                  <Text style = {styles.cardSubtitle}>$45 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
 
         </View>
       </ScrollView>

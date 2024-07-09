@@ -8,25 +8,40 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const [extras, setExtras] = useState ([]);
     const [total,setTotal] = useState(0);
 
-    const addProduct = (producto,cantidad) => { 
+    const addProduct = (producto,cantidad,extra) => { 
 
-        const productCant = {...producto,cantidad};
+        const productCant = {...producto,cantidad, extras: extra ? [extra] : []};
         
-         setProductos([...productos,productCant]);
+        const newProdcuts = [...productos,productCant];
+        setProductos(newProdcuts);
         
-        calculateTotal([...productos, productCant],extras);
+        if(extra){
+            const extraItem = addExtra(extra)
+            console.log(extraItem)
+            setExtras(extraItem);
+            calculateTotal(newProdcuts,extraItem)
+            console.log(producto);
+            console.log(extra);
+        }
+        else{
+            calculateTotal(newProdcuts,extras)
+        }
+
+    };
+
+    const addExtra = (extra) => {
+        console.log('Adding extra:', extra); 
+        const newExtras = [...extras,extra]
+        setExtras(newExtras);
+        return newExtras;
     };
 
     const calculateTotal = (productos,extras) => {
         const total = productos.reduce((acc,producto) => acc + (producto.precio * producto.cantidad),0);
-        const finalExtra = extras.reduce((acc,extra) => acc + extra.precio,0);
+        const finalExtra = extras.reduce((acc,extra) => acc + (extra.price || 0),0);
+        console.log(finalExtra);
         setTotal(total + finalExtra);
     };
-
-    const addExtra = (extra) => {
-        setExtras([...extras,extra]);
-        calculateTotal([productos,[...extras,extra]])
-    }
 
     return (
         <OrderContext.Provider

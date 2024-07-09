@@ -4,7 +4,20 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const SodasItalianas = () => {
+const SodasItalianas = ({navigation}) => {
+
+  const productos = [
+    {name : 'Manzana Verde', precio : 42,id: 'B41' , extra : 'defaultExtra',type : 'Soda Italiana'},
+    {name : 'Mora Azul', precio : 42, id : 'B42', extra : 'defaultExtra',type : 'Soda Italiana'},
+    {name : 'Cereza', precio : 42, id : 'B43', extra : 'defaultExtra',type : 'Soda Italiana'},
+    {name : 'Curacao Azul', precio : 42, id : 'B44', extra : 'defaultExtra',type : 'Soda Italiana'},
+    {name : 'Mango', precio : 42, id : 'B45',extra : 'defaultExtra',type : 'Soda Italiana'},
+  ];
+
+  const agregarProductoFinal = (producto) => {
+    navigation.navigate(producto.extra,{producto});
+  };
+
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
@@ -12,63 +25,20 @@ const SodasItalianas = () => {
         <Text style = {styles.title}> Sodas Italianas </Text>
 
         <View style = {styles.containerCards}>
+        {productos.map((producto) => ( 
 
         <TouchableOpacity
-              name = 'GreenApple'
-             
+              key = {producto.id}
+              onPress = {() => agregarProductoFinal(producto)}
             >
               <Card style = {styles.Card}>
                 <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Manzana Verde</Text>
-                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
               </Card>
            </TouchableOpacity>
 
-           <TouchableOpacity
-              name = 'BlueBerry'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Mora Azul</Text>
-                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Cereza'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Cereza</Text>
-                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'CuracaoAzul'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Curacao Azul</Text>
-                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Mango'
-             
-            >
-              <Card style = {styles.Card}>
-                <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}>Mango</Text>
-                  <Text style = {styles.cardSubtitle}>$42 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-
+        ))}
         </View>
       </ScrollView>
     </SafeAreaView>

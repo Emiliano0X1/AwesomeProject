@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
-import { Card, IconButton} from 'react-native-paper';
+import { Card, IconButton, TextInput} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderContext } from './context';
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -9,7 +9,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 const Pedidos = ({navigation}) => {
 
   const {productos,extras,total} = useContext(OrderContext);
-  
+
   return (
     <SafeAreaView style = {styles.container}>
       <ScrollView>
@@ -28,14 +28,24 @@ const Pedidos = ({navigation}) => {
                   size = {35}
                   />
 
-           
                    <Text style = {styles.cardTitle}>Producto # {index + 1}</Text>
+                   <Text style = {styles.cardText}>{producto.type} </Text>
                    <Text style = {styles.cardText}>{producto.name}</Text>
                    <Text style = {styles.cardText}>Total : ${(producto.precio * producto.cantidad)} pesos</Text>
                    <Text style = {styles.cardText}>Numero de Productos : {producto.cantidad}</Text>
               </Card>
           </View>
       ))}
+
+      <View style = {styles.containerCards}>
+        
+        <Card style = {styles.Card}>
+          <Text style = {styles.totalTittle}>Ingrese su nombre</Text>
+          <TextInput style = {styles.textInput}/>
+          <Text style = {styles.totalTittle}>Total</Text>
+          <Text style ={styles.cardText} > $ {total} pesos </Text>
+        </Card>
+      </View>
 
       <View style = {styles.buttonsContainer}>
 
@@ -72,7 +82,7 @@ const styles = StyleSheet.create( {
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height : 200,
+    height : 250,
     width : 300,
   },
 
@@ -137,6 +147,21 @@ buttonsContainer : {
   padding: 20,
   justifyContent : 'space-evenly',
 },
+
+  totalTittle : {
+    paddingLeft : 18,
+    marginTop: 20,
+    color: 'black',
+    fontWeight : 'bold',
+    fontSize : 24,
+  },
+
+  textInput : {
+    marginTop : 20,
+    width : 220,
+    backgroundColor: '#f5f5f5',
+    marginLeft : 18,
+  }
 });
 
 export default Pedidos;

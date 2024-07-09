@@ -1,17 +1,41 @@
-import React ,{useState}from 'react';
+import React ,{useContext, useState}from 'react';
 import { View, Text, StyleSheet, ScrollView,Button,Alert, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card ,Checkbox, TextInput} from 'react-native-paper';
+import { OrderContext } from '../context';
 
-const Milks = () => {
+const Milks = ({navigation,route}) => {
+
+  const {addProduct, addExtra} = useContext(OrderContext);
+  const {producto} = route.params;
+
 
   const milks = [
-    {label : 'Entera', value : 'entera', price : 0},
-    {label : 'Deslactosada',value : 'deslactosada', price : 6},
-    {label : 'Almendras', value : 'almendras', price : 3},
-    {label : 'Linaza', value : 'linaza',price : 3},
-    {label : 'Avena', value : 'avena',price : 6},
-]
+    {label : 'Entera', value : 'entera', price : 0,id : 'M1'},
+    {label : 'Deslactosada',value : 'deslactosada', price : 6,id : 'M2'},
+    {label : 'Almendras', value : 'almendras', price : 3, id : 'M3'},
+    {label : 'Linaza', value : 'linaza',price : 3, id : 'M4'},
+    {label : 'Avena', value : 'avena',price : 6, id : 'M5'},
+  ];
+
+  const [checked, setChecked] = useState('');
+
+  const checkCheked = (value) => {
+    setChecked(value);
+  };
+
+  const añadirExtra = () => {
+    const milkCheked = milks.find( milk => milk.value === checked);
+    return milkCheked;
+  };
+
+  
+  const agregarExtraFinal = () => {
+    const milkData = añadirExtra();
+    addProduct(producto,cantidad,milkData);
+    navigation.navigate('Mi-Pedido');
+  };
+
 
   const [cantidad, setCantidad] = useState(1);
 
@@ -30,13 +54,6 @@ const Milks = () => {
 
       });
   };
-
-  const [checked, setChecked] = useState('');
-
-  const checkCheked = (value) => {
-    setChecked(value);
-  };
-
 
     return(
         <SafeAreaView style = {styles.container}>
@@ -65,50 +82,18 @@ const Milks = () => {
 
                 <Text style = {styles.title}> Tipo de Leche </Text>
 
-            <View style = {styles.CheckboxConatiner}>
+                <View style = {styles.CheckboxConatiner}>
+                {milks.map((milk)=> (
 
-              <Checkbox
-                color = 'black'
-                status={checked === 'entera' ? 'checked' : 'unchecked'}
-                onPress={() => checkCheked('entera')}
-              />
-
-              <Text style = {styles.CheckboxText}>Entera</Text>
-              
-              
-              <Checkbox
+                  <View key = {milk.id}>
+                <Checkbox
                   color = 'black'
-                  status={checked === 'almendras' ? 'checked' : 'unchecked'}
-                  onPress={() => checkCheked('almendras')}
-              />
-
-              <Text style = {styles.CheckboxText}>Almendras +$6</Text>
-              
-              <Checkbox
-                  color = 'black'
-                  status={checked === 'deslactosada' ? 'checked' : 'unchecked'}
-                  onPress={() => checkCheked('deslactosada')}
-              />
-
-              <Text style = {styles.CheckboxText}>Deslactosada +$3</Text>
-              
-              
-              <Checkbox
-                  color = 'black'
-                  status={checked === 'linaza' ? 'checked' : 'unchecked'}
-                  onPress={() => checkCheked('linaza')}
-              />
-
-              <Text style = {styles.CheckboxText}>Linaza + $3</Text>
-              
-              <Checkbox
-                  color = 'black'
-                  status={checked === 'avena' ? 'checked' : 'unchecked'}
-                  onPress={() => checkCheked('avena')}
-              />
-
-              <Text style = {styles.CheckboxText}>Avena + $6</Text>
-              
+                  status={checked === milk.value ? 'checked' : 'unchecked'}
+                  onPress={() => checkCheked(milk.value)}
+                />
+                <Text style = {styles.CheckboxText}> {milk.label}  + ${milk.price}</Text>
+                </View>
+              ))}
 
               </View>
 
@@ -116,6 +101,7 @@ const Milks = () => {
 
                 <TouchableOpacity
                     style = {styles.button}
+                    onPress={agregarExtraFinal}
                 >
                    <Text style={styles.buttonText}>Agregar al Carrito</Text>
 

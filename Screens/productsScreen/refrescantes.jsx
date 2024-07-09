@@ -4,7 +4,20 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 
-const Refrescantes = () => {
+const Refrescantes = ({navigation}) => {
+
+  const productos = [
+    {name : 'Té Helado', precio : 30,id: 'B46' , extra : 'defaultExtra',type : 'Refrescantes'},
+    {name : 'Té Rojo', precio : 25, id : 'B47', extra : 'defaultExtra',type : 'Refrescantes'},
+    {name : 'Botella De Agua', precio : 12, id : 'B48', extra : 'defaultExtra',type : 'Refrescantes'},
+    {name : 'Latte En las Rocas', precio : 36, id : 'B49', extra : 'withMilk',type : 'Refrescantes'},
+    {name : 'Affogato', precio : 36, id : 'B50',extra : 'defaultExtra',type : 'Refrescantes'},
+  ];
+
+  const agregarProductoFinal = (producto) => {
+    navigation.navigate(producto.extra,{producto});
+  };
+
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
@@ -12,63 +25,19 @@ const Refrescantes = () => {
         <Text style = {styles.title}> Refrescantes </Text>
 
         <View style = {styles.containerCards}>
-
+        {productos.map((producto) =>( 
         <TouchableOpacity
-              name = 'IceTea'
-             
+              key = {producto.id}
+              onPress={() => agregarProductoFinal(producto)}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Té Helado</Text>
-                  <Text style = {styles.cardSubtitle}>$30 pesos</Text>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
               </Card>
            </TouchableOpacity>
 
-           <TouchableOpacity
-              name = 'RedTea'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Té Rojo</Text>
-                  <Text style = {styles.cardSubtitle}>$25 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Agua'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Botella de Agua</Text>
-                  <Text style = {styles.cardSubtitle}>$12 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'LatteRocas'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Latte En Las Rocas</Text>
-                  <Text style = {styles.cardSubtitle}>$36 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Affogato'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
-                  <Text style = {styles.cardTitle}>Affogato</Text>
-                  <Text style = {styles.cardSubtitle}>$36 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>

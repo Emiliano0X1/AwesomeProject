@@ -11,22 +11,22 @@ const HotDrinks = ({navigation}) => {
   const {addProduct} = useContext(OrderContext);
 
   const productos = [
-    {name: "Expresso", precio : 20 , size : 'regular',id : 'B1', extra : 'defaultExtra'},
-   {name: "Americano", precio : 26 , size : 'regular',id : 'B2',extra : 'defaultExtra'},
-   {name: "Chocolate", precio : 30 , size : 'regular',id : 'B3',extra : 'withMilk'},
-   {name: "Capuchino", precio : 36 , size : 'regular', id : 'B4', extra : 'defaultExtra'},
-   {name: "Vainilla", precio : 39, size : 'regular', id : 'B5', extra : 'defaultExtra'},
-   {name: "Caramelo", precio : 39 , size : 'regular', id : 'B6', extra : 'defaultExtra'},
-   {name: "Amaretto", precio : 39 , size : 'regular', id : 'B7', extra : 'defaultExtra'},
-   {name: "Latte", precio : 36 , size : 'regular', id : 'B8', extra : 'withMilk'},
-   {name: "Mocca", precio : 39 , size : 'regular', id : 'B9', extra : 'defaultExtra'},
-   {name: "Chocolate Blanco", precio : 39 , size : 'regular', id : 'B10', extra : 'withMilk'},
-   {name: "Crema Irlandesa", precio :  39, size : 'regular', id : 'B11',extra : 'defaultExtra'},
-   {name: "Chai Latte", precio : 42 , size : 'regular', id : 'B12', extra : 'withMilk'},
-   {name: "Matcha Latte", precio : 45 , size : 'regular', id : 'B13', extra : 'withMilk'},
-   {name: "Taro", precio : 45 , size : 'regular', id : 'B14', extra : 'withMilk'},
-   {name: "Caramelo Latte", precio : 40 , size : 'regular', id : 'B15', extra : 'withMilk'},
-   {name: "Vainilla Latte", precio : 40 , size : 'regular', id : 'B16', extra : 'withMilk'},
+  {name: "Expresso", precio : 20 , size : 'regular',id : 'B1', extra : 'defaultExtra',type : 'Bebida Caliente'},
+   {name: "Americano", precio : 26 , size : 'regular',id : 'B2',extra : 'defaultExtra', type : 'Bebida Caliente'},
+   {name: "Chocolate", precio : 30 , size : 'regular',id : 'B3',extra : 'withMilk', type : 'Bebida Caliente'},
+   {name: "Capuchino", precio : 36 , size : 'regular', id : 'B4', extra : 'defaultExtra', type : 'Bebida Caliente'},
+   {name: "Vainilla", precio : 39, size : 'regular', id : 'B5', extra : 'defaultExtra', type : 'Bebida Caliente'},
+   {name: "Caramelo", precio : 39 , size : 'regular', id : 'B6', extra : 'defaultExtra', type : 'Bebida Caliente'},
+   {name: "Amaretto", precio : 39 , size : 'regular', id : 'B7', extra : 'defaultExtra', type : 'Bebida Caliente'},
+   {name: "Latte", precio : 36 , size : 'regular', id : 'B8', extra : 'withMilk',type : 'Bebida Caliente'},
+   {name: "Mocca", precio : 39 , size : 'regular', id : 'B9', extra : 'defaultExtra', type : 'Bebida Caliente'},
+   {name: "Chocolate Blanco", precio : 39 , size : 'regular', id : 'B10', extra : 'withMilk', type: 'Bebida Caliente'},
+   {name: "Crema Irlandesa", precio :  39, size : 'regular', id : 'B11',extra : 'defaultExtra', type : 'Bebida Caliente'},
+   {name: "Chai Latte", precio : 42 , size : 'regular', id : 'B12', extra : 'withMilk', type : 'Bebida Caliente'},
+   {name: "Matcha Latte", precio : 45 , size : 'regular', id : 'B13', extra : 'withMilk', type : 'Bebida Caliente'},
+   {name: "Taro", precio : 45 , size : 'regular', id : 'B14', extra : 'withMilk', type: 'Bebida Caliente'},
+   {name: "Caramelo Latte", precio : 40 , size : 'regular', id : 'B15', extra : 'withMilk', type : 'Bebida Caliente'},
+   {name: "Vainilla Latte", precio : 40 , size : 'regular', id : 'B16', extra : 'withMilk', type : 'Bebida Caliente'},
   ];
 
   const agregarProductoFinal = (producto) => {
