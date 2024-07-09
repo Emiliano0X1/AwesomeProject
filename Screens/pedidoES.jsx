@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, NativeAppEventEmitter } from 'react-native';
 import { Card, IconButton, TextInput} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderContext } from './context';
@@ -9,6 +9,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 const Pedidos = ({navigation}) => {
 
   const {productos,extras,total} = useContext(OrderContext);
+
 
   return (
     <SafeAreaView style = {styles.container}>
@@ -21,18 +22,27 @@ const Pedidos = ({navigation}) => {
           <View key = {index} style = {styles.containerCards}>
               <Card style = {styles.Card}>
 
-              <IconButton 
-                  style = {styles.cardIcon}
-                  icon={() => <AntDesign name = 'delete' color = 'red' size = {35}/>}
-                  onPress = {() => Alert.alert('Se ha eliminado')}
-                  size = {35}
-                  />
+              <TouchableOpacity 
+              onPress = {() => navigation.navigate('Menu')} 
+              style = {styles.cardButton}>
+                  <AntDesign name = 'delete' color = 'red' size = {35}/>
+              </TouchableOpacity>
 
                    <Text style = {styles.cardTitle}>Producto # {index + 1}</Text>
                    <Text style = {styles.cardText}>{producto.type} </Text>
                    <Text style = {styles.cardText}>{producto.name}</Text>
                    <Text style = {styles.cardText}>Total : ${(producto.precio * producto.cantidad)} pesos</Text>
                    <Text style = {styles.cardText}>Numero de Productos : {producto.cantidad}</Text>
+
+                {producto.extras && producto.extras.length > 0 && (
+                  <>
+                  {producto.extras.map((extra, index) => ( 
+                      <Text key = {index} style = {styles.cardText}> Leche : {extra.value} (+${extra.price}) </Text>
+                  ))}
+
+                  </>
+                )} 
+
               </Card>
           </View>
       ))}
@@ -56,7 +66,7 @@ const Pedidos = ({navigation}) => {
         <TouchableOpacity style ={styles.button}>
           <Text style = {styles.buttonText}>Enviar Pedido</Text>
         </TouchableOpacity>
-        
+
       </View>
 
       
@@ -82,8 +92,9 @@ const styles = StyleSheet.create( {
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height : 250,
+    height : 270,
     width : 300,
+    position: 'relative',
   },
 
   cardImg : {
@@ -92,15 +103,16 @@ const styles = StyleSheet.create( {
   },
 
   cardButton : {
-      width : '25%',
-      position : 'absolute',
-      backgroundColor : 'black',
+    position: 'absolute',
+      width : '15%',
+      backgroundColor : 'white',
       marginLeft : '70%',
-      marginTop : '50%', 
+      marginTop : '15%', 
+      zIndex: 1,
   },
 
   cardTitle : {
-    marginTop: -60,
+    marginTop: 20,
     paddingLeft : 18,
     fontSize : 20,
     paddingBottom : 5,
@@ -161,7 +173,8 @@ buttonsContainer : {
     width : 220,
     backgroundColor: '#f5f5f5',
     marginLeft : 18,
-  }
+  },
+  
 });
 
 export default Pedidos;
