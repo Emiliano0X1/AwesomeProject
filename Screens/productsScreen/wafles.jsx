@@ -17,11 +17,12 @@ const Wafles = ({navigation}) => {
     {name : 'Tropical', precio : 72, id : 'W56', description : 'Durazno, fresa, kiwi, plátano,maple, granola y yogurt', extra : 'toppingExtra',type : 'Waffle'},
     {name : 'Premium', precio : 77, id : 'W57', description : 'Helado de fresa, cereza,fresa, moras y crema batida',extra : 'toppingExtra',type : 'Waffle'},
     {name : 'Ice', precio : 52, id : 'W58', description: 'Helado de vainilla, dulce de leche, plátano y frutillas',extra : 'toppingExtra',type : 'Waffle'},
-    {name : 'Fresa', precio : 48, id : 'W59', description: '',extra : 'toppingExtra',type : 'Waffle-Nutella'},
-    {name : 'Plátano', precio : 45, id : 'W60',description: '' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
-    {name : 'Durazno', precio : 50, id : 'W61',description: '' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
-    {name : 'Kiwi', precio : 50, id : 'W62',description: '' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
+    {name : 'Fresa', precio : 48, id : 'W59', description: 'Nutella + Fruta',extra : 'toppingExtra',type : 'Waffle-Nutella'},
+    {name : 'Plátano', precio : 45, id : 'W60',description: 'Nutella + Fruta' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
+    {name : 'Durazno', precio : 50, id : 'W61',description: 'Nutella + Fruta' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
+    {name : 'Kiwi', precio : 50, id : 'W62',description: 'Nutella + Fruta' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
   ];
+
 
   const agregarProductoFinal = (producto) => {
     navigation.navigate(producto.extra,{producto});

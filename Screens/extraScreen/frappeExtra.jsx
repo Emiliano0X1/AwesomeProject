@@ -14,6 +14,7 @@ const FrappeExtra = ({navigate,route}) => {
     {label : 'Linaza', value : 'linaza',price : 3 , id : 'M4'},
     {label : 'Avena', value : 'avena',price : 6 , id : 'M5'},
 ];
+  const crema = {label : 'CremaExtra', value : 'crema',price : 5 , id : 'M6'}
 
   //La eleccion de la leche
   const [size,setSize] = useState('');
@@ -73,10 +74,16 @@ const FrappeExtra = ({navigate,route}) => {
 
   //Checar que si se marken las checkbox
 
-  const [checked, setChecked] = useState('');
+  const [checked, setChecked] = useState(false);
 
   const checkCheked = (value) => {
     setChecked(value);
+  };
+
+  const [checked2,setCheked2] = useState(false);
+
+  const checkExtra = (value) => {
+    setCheked2(value)
   };
 
 
@@ -134,7 +141,17 @@ const FrappeExtra = ({navigate,route}) => {
                 </View>
               ))}
 
+              <Text style= {styles.title}> Extras : </Text>
+
+                <Checkbox
+                  color = 'black'
+                  status={checked2 ? 'checked' : 'unchecked'}
+                  onPress={() => checkExtra(!checked2)}
+                />
+                <Text style = {styles.CheckboxText}> {crema.label}  + {crema.price}</Text>
+
               </View>
+
             
               
 

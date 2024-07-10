@@ -58,7 +58,7 @@ const Home = ({navigation}) => {
           <View style = {styles.cardButton}>
             <Button
               title = 'Ordenar Ahora'
-              onPress= {() => Alert.alert('Cannot press this one')}
+              onPress= {() => navigation.navigate('Frappes')}
               color = 'black'
               >
             </Button>
@@ -79,7 +79,7 @@ const Home = ({navigation}) => {
             <View style = {styles.cardButton}>
             <Button
               title = 'Ordenar Ahora'
-              onPress= {() => Alert.alert('Cannot press this one')}
+              onPress= {() => navigation.navigate('HotDrinks')}
               color = 'black'
               >
             </Button>
@@ -99,7 +99,7 @@ const Home = ({navigation}) => {
             <View style = {styles.cardButton}>
             <Button
               title = 'Ordenar Ahora'
-              onPress= {() => Alert.alert('Cannot press this one')}
+              onPress= {() => navigation.navigate('Wafles')}
               color = 'black'
               >
             </Button>
