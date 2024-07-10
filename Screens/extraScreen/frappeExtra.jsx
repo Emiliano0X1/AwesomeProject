@@ -5,7 +5,7 @@ import { Card ,Checkbox, TextInput} from 'react-native-paper';
 import ButtonMultiselect, { ButtonLayout } from 'react-native-button-multiselect';
 import { OrderContext } from '../context';
 
-const Milks = ({navigate,route}) => {
+const FrappeExtra = ({navigate,route}) => {
 
   const milks = [
     {label : 'Entera', value : 'entera', price : 0, id : 'M1'},
@@ -228,4 +228,4 @@ const styles = StyleSheet.create({
   
   })
 
-export default Milks;
+export default FrappeExtra;

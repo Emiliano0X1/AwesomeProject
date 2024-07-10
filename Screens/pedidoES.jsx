@@ -37,7 +37,7 @@ const Pedidos = ({navigation}) => {
                 {producto.extras && producto.extras.length > 0 && (
                   <>
                   {producto.extras.map((extra, index) => ( 
-                      <Text key = {index} style = {styles.cardText}> Leche : {extra.value} (+${extra.price}) </Text>
+                      <Text key = {index} style = {styles.cardText}> Extras : {extra.value} (+${extra.price}) </Text>
                   ))}
 
                   </>

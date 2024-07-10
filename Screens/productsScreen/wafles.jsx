@@ -4,8 +4,29 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { OrderContext } from '../context';
 
-const Wafles = () => {
+const Wafles = ({navigation}) => {
+
+  const productos = [
+    {name : 'Banana Mix', precio : 50,id: 'W51' , description : 'Cajeta, plátano, nuez y lechera', extra : 'toppingExtra',type : 'Waffle'},
+    {name : 'Cream Chesse', precio : 50, id : 'W52', description : 'Queso philadelphia, durazno y lechera',extra : 'toppingExtra',type : 'Waffle'},
+    {name : 'Silvestre', precio : 52, id : 'W53', description : 'Queso philadelphia, mermelada,fresa y lechera', extra : 'toppingExtra',type : 'Waffle'},
+    {name : 'Napolitano', precio : 60, id : 'W54', description : 'Nutella, fresa, queso philadelphia y lechera', extra : 'toppingExtra',type : 'Waffle'},
+    {name : 'Sanísimo', precio : 55, id : 'W55', description : 'Yogurt natural, kiwi, maple y granola' ,extra : 'toppingExtra',type : 'Waffle'},
+    {name : 'Tropical', precio : 72, id : 'W56', description : 'Durazno, fresa, kiwi, plátano,maple, granola y yogurt', extra : 'toppingExtra',type : 'Waffle'},
+    {name : 'Premium', precio : 77, id : 'W57', description : 'Helado de fresa, cereza,fresa, moras y crema batida',extra : 'toppingExtra',type : 'Waffle'},
+    {name : 'Ice', precio : 52, id : 'W58', description: 'Helado de vainilla, dulce de leche, plátano y frutillas',extra : 'toppingExtra',type : 'Waffle'},
+    {name : 'Fresa', precio : 48, id : 'W59', description: '',extra : 'toppingExtra',type : 'Waffle-Nutella'},
+    {name : 'Plátano', precio : 45, id : 'W60',description: '' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
+    {name : 'Durazno', precio : 50, id : 'W61',description: '' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
+    {name : 'Kiwi', precio : 50, id : 'W62',description: '' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
+  ];
+
+  const agregarProductoFinal = (producto) => {
+    navigation.navigate(producto.extra,{producto});
+  };
+
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
@@ -13,163 +34,22 @@ const Wafles = () => {
         <Text style = {styles.title}> Waffles </Text>
 
         <View style = {styles.containerCards}>
+        {productos.map((producto) => ( 
 
         <TouchableOpacity
-              name = 'BananaMix'
-             
+              key = {producto.id}
+              onPress={() => agregarProductoFinal(producto)}  
             >
               <Card style = {styles.Card}>
                 <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Banana Mix</Text>
-                  <Text style = {styles.cardSubtitle}>Cajeta, plátano, nuez y lechera</Text>
-                  <Text style = {styles.cardSubtitle}>$50 pesos</Text>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>{producto.description}</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
               </Card>
            </TouchableOpacity>
 
-           <TouchableOpacity
-              name = 'CreamCheese'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Cream Chesse</Text>
-                  <Text style = {styles.cardSubtitle}>Queso philadelphia, durazno y
-                  lechera</Text>
-                  <Text style = {styles.cardSubtitle}>$50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-        
+          ))}
 
-        <TouchableOpacity
-              name = 'Silvestre'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Silvestre</Text>
-                  <Text style = {styles.cardSubtitle}>Queso philadelphia, mermelada,
-                  fresa y lechera</Text>
-                  <Text style = {styles.cardSubtitle}>$52 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Napolitano'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Napolitano</Text>
-                  <Text style = {styles.cardSubtitle}>Nutella, fresa, queso
-                  philadelphia y lechera</Text>
-                  <Text style = {styles.cardSubtitle}>$60 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Sanisimo'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Sanísimo</Text>
-                  <Text style = {styles.cardSubtitle}>Yogurt natural, kiwi, maple y
-                  granola</Text>
-                  <Text style = {styles.cardSubtitle}>$55 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Tropical'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Tropical</Text>
-                  <Text style = {styles.cardSubtitle}>Durazno, fresa, kiwi, plátano,
-                  maple, granola y yogurt</Text>
-                  <Text style = {styles.cardSubtitle}>$72 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Premium'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Premium</Text>
-                  <Text style = {styles.cardSubtitle}>Helado de fresa, cereza,
-                  fresa, moras y crema batida</Text>
-                  <Text style = {styles.cardSubtitle}>$77 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'Ice'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Ice</Text>
-                  <Text style = {styles.cardSubtitle}>Helado de vainilla, dulce de
-                  leche, plátano y frutillas</Text>
-                  <Text style = {styles.cardSubtitle}>$52 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-
-           
-
-        </View>
-
-        <Text style = {styles.subtitle}>Nutella + Fruta</Text>
-
-        <View style = {styles.containerCards}>
-
-          <TouchableOpacity
-              name = 'NutellaFresa'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Fresa</Text>
-                  <Text style = {styles.cardSubtitle}>$48 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'NutellaPlatano'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Plátano</Text>
-                  <Text style = {styles.cardSubtitle}>$45 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'NutellaDurazno'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Durazno</Text>
-                  <Text style = {styles.cardSubtitle}>$50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
-
-           <TouchableOpacity
-              name = 'NutellaKiwi'
-             
-            >
-              <Card style = {styles.Card}>
-              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
-                  <Text style = {styles.cardTitle}>Kiwi</Text>
-                  <Text style = {styles.cardSubtitle}>$50 pesos</Text>
-              </Card>
-           </TouchableOpacity>
         </View>
         
       </ScrollView>

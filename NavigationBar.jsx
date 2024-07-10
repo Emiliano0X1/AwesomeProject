@@ -37,6 +37,7 @@ import postres from "./Screens/productsScreen/postres";
 import defaultExtra from "./Screens/extraScreen/defaultExtra";
 import milks from "./Screens/extraScreen/withMilk";
 import frappeExtra from "./Screens/extraScreen/frappeExtra";
+import toppingExtra from "./Screens/extraScreen/topping";
 
 
 
@@ -119,6 +120,10 @@ function MenuStack () {
           <Stack.Screen
           name = 'frappeExtra'
           component = {frappeExtra}
+          /> 
+          <Stack.Screen
+          name = 'toppingExtra'
+          component = {toppingExtra}
           /> 
           
         </Stack.Navigator>
