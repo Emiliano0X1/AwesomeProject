@@ -10,6 +10,13 @@ const Pedidos = ({navigation}) => {
 
   const {productos,extras,total} = useContext(OrderContext);
 
+  const omg = (extra) => {
+
+    for(let i = 0;i<extra.length;i++){
+
+    }
+  }
+
 
   return (
     <SafeAreaView style = {styles.container}>
@@ -34,14 +41,22 @@ const Pedidos = ({navigation}) => {
                    <Text style = {styles.cardText}>Total : ${(producto.precio * producto.cantidad)} pesos</Text>
                    <Text style = {styles.cardText}>Numero de Productos : {producto.cantidad}</Text>
 
-                {producto.extras && producto.extras.length > 0 && (
-                  <>
-                  {producto.extras.map((extra, index) => ( 
-                      <Text key = {index} style = {styles.cardText}> Extras : {extra.value} (+${extra.price}) </Text>
-                  ))}
+                  {producto.extras && producto.extras.length > 0 && (
+                     <>
+                     {console.log('Extras de todo la order : ' , producto.extras)}
+                  {producto.extras.map((extra, index) => (
 
+                    <View key = {index}>
+                      <Text style={styles.cardText}> Extras : </Text>
+
+                      <Text style = {styles.cardText}> + {extra[0].label} +${extra[0].price} </Text>
+                      <Text style = {styles.cardText}> + {extra[1].label} +${extra[1].price} </Text>
+
+                      </View>
+               
+                ))}
                   </>
-                )} 
+                )}
 
               </Card>
           </View>
@@ -49,7 +64,7 @@ const Pedidos = ({navigation}) => {
 
       <View style = {styles.containerCards}>
         
-        <Card style = {styles.Card}>
+        <Card style = {styles.CardTotal}>
           <Text style = {styles.totalTittle}>Ingrese su nombre</Text>
           <TextInput style = {styles.textInput}/>
           <Text style = {styles.totalTittle}>Total</Text>
@@ -92,7 +107,15 @@ const styles = StyleSheet.create( {
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height : 270,
+    height : 320,
+    width : 300,
+    position: 'relative',
+  },
+
+  CardTotal : {
+    backgroundColor : 'white',
+    marginTop : 25,
+    height : 250,
     width : 300,
     position: 'relative',
   },
@@ -121,7 +144,7 @@ const styles = StyleSheet.create( {
   cardText : {
     paddingLeft : 18,
     fontSize : 18,
-    paddingBottom : 18,
+    paddingBottom : 10,
   },
 
   cardIcon : {

@@ -15,23 +15,22 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
         const newProdcuts = [...productos,productCant];
         setProductos(newProdcuts);
         
-        if(extra){
-            const extraItem = addExtra(extra)
-            console.log(extraItem)
-            setExtras(extraItem);
-            calculateTotal(newProdcuts,extraItem)
-            console.log(producto);
-            console.log(extra);
-        }
-        else{
-            calculateTotal(newProdcuts,extras)
-        }
+        if (extra && extra.length > 0) {
+            const extraItems = addExtra(extra);
+            calculateTotal(newProdcuts, extraItems);
+          } else {
+            calculateTotal(newProdcuts, extras);
+          }
+
+          console.log('Extras del Producto' ,producto.extra)
+            console.log(producto)
+            console.log(extra)
 
     };
 
     const addExtra = (extra) => {
         console.log('Adding extra:', extra); 
-        const newExtras = [...extras,extra]
+        const newExtras = [...extras,...extra].filter(e => e);
         setExtras(newExtras);
         return newExtras;
     };

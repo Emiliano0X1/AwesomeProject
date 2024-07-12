@@ -5,15 +5,14 @@
  * @format
  */
 
-import React ,{useState} from 'react';
-import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
-import NavigationBar from './NavigationBar';
+import React from 'react';
+import  Navigation  from './NavigationBar';
 import { OrderProvider } from './Screens/context';
 
 const CafettoApp = () => {
   return (
     <OrderProvider>
-      <NavigationBar />
+      <Navigation />
     </OrderProvider>
   );
 }

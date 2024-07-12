@@ -5,7 +5,7 @@ import { Card ,Checkbox, TextInput} from 'react-native-paper';
 import ButtonMultiselect, { ButtonLayout } from 'react-native-button-multiselect';
 import { OrderContext } from '../context';
 
-const FrappeExtra = ({navigate,route}) => {
+const FrappeExtra = ({navigation,route}) => {
 
   const milks = [
     {label : 'Entera', value : 'entera', price : 0, id : 'M1'},
@@ -14,31 +14,41 @@ const FrappeExtra = ({navigate,route}) => {
     {label : 'Linaza', value : 'linaza',price : 3 , id : 'M4'},
     {label : 'Avena', value : 'avena',price : 6 , id : 'M5'},
 ];
-  const crema = {label : 'CremaExtra', value : 'crema',price : 5 , id : 'M6'}
+
+  const cremas = [
+  { label: 'Con Crema',value: true, price: 5 ,id : 'C1'},
+  { label : 'Sin Crema',value: false, price: 0, id : 'C2' }
+  ];
 
   //La eleccion de la leche
   const [size,setSize] = useState('');
   const [selectedMilk, setSelectecMilk] = useState ('');
 
-  const elegirSize = (size) => {
-    setSize(size);
-  };
-
   const {addProduct, addExtra} = useContext(OrderContext);
   const {producto} = route.params;
 
-  const choiceExtra = (extra) => {
-      setSelectecMilk(extra);
+  const [checked, setChecked] = useState('');
+
+  const checkCheked = (value) => {
+    setChecked(value);
   };
 
   const añadirExtra = () => {
-    if(selectedMilk) {
-      addExtra ({
-        productoId : producto.id,
-        extra : selectedMilk,
-      });
-    }
+    const milkCheked = milks.find( milk => milk.value === checked);
+    return milkCheked;
   };
+
+  
+  const agregarExtraFinal = () => {
+    const precioFinal = getSize(producto);
+    const milkData = añadirExtra();
+    const cremaData = añadirCrema();
+
+    const extras = [milkData,cremaData]
+    addProduct(producto,cantidad,extras);
+    navigation.navigate('Mi-Pedido');
+  };
+
 
   //Las elecciones de tamaño
 
@@ -52,6 +62,18 @@ const FrappeExtra = ({navigate,route}) => {
   const handleButtonSelected = (selectedValues) => {
     setSelectedButtons(selectedValues);
   };
+
+  const getSize = (producto) => {
+    console.log(producto.precio);
+    
+    if(selectedButtons.includes('mediano')){
+      producto.precio = producto.precioMed;
+    }
+    else{
+      producto.precio = producto.precioGde;
+    }
+    console.log(producto.precio);
+  }
 
   //El contador 
   const [cantidad, setCantidad] = useState(1);
@@ -72,18 +94,17 @@ const FrappeExtra = ({navigate,route}) => {
       });
   };
 
-  //Checar que si se marken las checkbox
-
-  const [checked, setChecked] = useState(false);
-
-  const checkCheked = (value) => {
-    setChecked(value);
-  };
+  //Para la crema extra
 
   const [checked2,setCheked2] = useState(false);
 
   const checkExtra = (value) => {
     setCheked2(value)
+  };
+
+  const añadirCrema = () => {
+    const cream = cremas.find(creamm => creamm.value === checked2);
+    return cream;
   };
 
 
@@ -143,15 +164,20 @@ const FrappeExtra = ({navigate,route}) => {
 
               <Text style= {styles.title}> Extras : </Text>
 
+              <View style = {styles.CheckboxConatiner}>
+                {cremas.map((crema) => (
+                  
+                <View key = {crema.id}>
                 <Checkbox
                   color = 'black'
-                  status={checked2 ? 'checked' : 'unchecked'}
-                  onPress={() => checkExtra(!checked2)}
+                  status={checked2 === crema.value ? 'checked' : 'unchecked'}
+                  onPress={() => checkExtra(crema.value)}
                 />
                 <Text style = {styles.CheckboxText}> {crema.label}  + {crema.price}</Text>
-
-              </View>
-
+                  </View>
+              ))}
+        
+                </View>
             
               
 
@@ -159,12 +185,15 @@ const FrappeExtra = ({navigate,route}) => {
 
                 <TouchableOpacity
                     style = {styles.button}
+                    onPress={agregarExtraFinal}
                 >
                    <Text style={styles.buttonText}>Agregar al Carrito</Text>
 
                 </TouchableOpacity>
 
                 </View>
+
+             </View>
 
               
             
