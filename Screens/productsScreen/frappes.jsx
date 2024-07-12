@@ -33,7 +33,7 @@ const Frappes = ({navigation}) => {
      <SafeAreaView  style = {styles.container}>
       <ScrollView>
 
-        <Text style = {styles.title}> Frappes</Text>
+        <Text style = {styles.title}> Frappes </Text>
 
         <View style = {styles.containerCards}>
         {productos.map((producto) => ( 

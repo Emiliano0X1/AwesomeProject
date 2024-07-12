@@ -41,26 +41,31 @@ const Pedidos = ({navigation}) => {
                    <Text style = {styles.cardText}>Total : ${(producto.precio * producto.cantidad)} pesos</Text>
                    <Text style = {styles.cardText}>Numero de Productos : {producto.cantidad}</Text>
 
-                  {producto.extras && producto.extras.length > 0 && (
-                     <>
-                     {console.log('Extras de todo la order : ' , producto.extras)}
-                  {producto.extras.map((extra, index) => (
+              {producto.extras && producto.extras.length > 0 && (
+                <>
+                  {console.log('Extras de toda la orden:', producto.extras)}
 
-                    <View key = {index}>
-                      <Text style={styles.cardText}> Extras : </Text>
+                  {producto.extras.map((extra,Index) => (
+                    <View key={Index}>
 
-                      <Text style = {styles.cardText}> + {extra[0].label} +${extra[0].price} </Text>
-                      <Text style = {styles.cardText}> + {extra[1].label} +${extra[1].price} </Text>
+                      <Text style={styles.cardText}>Extras:</Text>
 
-                      </View>
-               
-                ))}
-                  </>
-                )}
+                      {Array.isArray(extra) ? (
 
-              </Card>
+                        extra.map((singleExtra, i) => (
+
+                          <Text key={i} style={styles.cardText}>+ {singleExtra.label} +${singleExtra.price}</Text>
+                        ))
+                      ) : (
+                        <Text style={styles.cardText}> + {extra.label} +${extra.price}</Text>
+                      )}
+                    </View>
+                  ))}
+                </>
+              )}
+            </Card>
           </View>
-      ))}
+        ))}
 
       <View style = {styles.containerCards}>
         

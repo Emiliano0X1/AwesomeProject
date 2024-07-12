@@ -10,17 +10,16 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
     const addProduct = (producto,cantidad,extra) => { 
 
-        const productCant = {...producto,cantidad, extras: extra ? [extra] : []};
+        const extrasArray = Array.isArray(extra) ? extra : [extra];
+
+        const productCant = {...producto,cantidad, extras: extrasArray};
         
         const newProdcuts = [...productos,productCant];
         setProductos(newProdcuts);
         
-        if (extra && extra.length > 0) {
-            const extraItems = addExtra(extra);
-            calculateTotal(newProdcuts, extraItems);
-          } else {
-            calculateTotal(newProdcuts, extras);
-          }
+         const extraItems = addExtra(extrasArray);
+        calculateTotal(newProdcuts, extraItems);
+        
 
           console.log('Extras del Producto' ,producto.extra)
             console.log(producto)
@@ -29,8 +28,8 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     };
 
     const addExtra = (extra) => {
-        console.log('Adding extra:', extra); 
-        const newExtras = [...extras,...extra].filter(e => e);
+        console.log('Adding extra:', extra);
+        const newExtras = [...extras,...extra].filter(e => e); 
         setExtras(newExtras);
         return newExtras;
     };
@@ -38,7 +37,8 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const calculateTotal = (productos,extras) => {
         const total = productos.reduce((acc,producto) => acc + (producto.precio * producto.cantidad),0);
         const finalExtra = extras.reduce((acc,extra) => acc + (extra.price || 0),0);
-        console.log(finalExtra);
+        console.log('Extras Acumulados:',finalExtra);
+        console.log('Total de la Orden :',total)
         setTotal(total + finalExtra);
     };
 

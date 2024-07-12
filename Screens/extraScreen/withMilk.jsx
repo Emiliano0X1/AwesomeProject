@@ -32,6 +32,7 @@ const Milks = ({navigation,route}) => {
   
   const agregarExtraFinal = () => {
     const milkData = añadirExtra();
+    console.log('Milk Data: withMilk' , milkData)
     addProduct(producto,cantidad,milkData);
     navigation.navigate('Mi-Pedido');
   };
