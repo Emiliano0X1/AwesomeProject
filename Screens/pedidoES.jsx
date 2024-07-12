@@ -41,27 +41,43 @@ const Pedidos = ({navigation}) => {
                    <Text style = {styles.cardText}>Total : ${(producto.precio * producto.cantidad)} pesos</Text>
                    <Text style = {styles.cardText}>Numero de Productos : {producto.cantidad}</Text>
 
-              {producto.extras && producto.extras.length > 0 && (
+              { producto.extras && producto.extras.length > 0 ? (
                 <>
                   {console.log('Extras de toda la orden:', producto.extras)}
 
+                  <Text style={styles.cardText}>Extras:</Text>
+
                   {producto.extras.map((extra,Index) => (
+                    
                     <View key={Index}>
 
-                      <Text style={styles.cardText}>Extras:</Text>
+                      {extra ? ( 
 
-                      {Array.isArray(extra) ? (
-
+                      Array.isArray(extra) ? (
+                        
                         extra.map((singleExtra, i) => (
-
-                          <Text key={i} style={styles.cardText}>+ {singleExtra.label} +${singleExtra.price}</Text>
+                          
+                          <Text key={i} style={styles.cardText}>
+                            {singleExtra.label !== 'undefined' ? `+ ${singleExtra.label}` : ''}
+                            {singleExtra.price !== 'undefined' ? `+ $${singleExtra.price}` : ''}
+                            </Text>
                         ))
                       ) : (
-                        <Text style={styles.cardText}> + {extra.label} +${extra.price}</Text>
+                        <Text style={styles.cardText}> 
+                        {extra.label !== 'undefined' ? `+ ${extra.label}` : ''}
+                        {extra.price !== 'undefined' ? `+ $${extra.price}` : ''}
+                        </Text>
+                      )
+                      
+                    ) : (
+                        <Text style={styles.cardText}>No hay extras disponibles</Text>
                       )}
                     </View>
                   ))}
                 </>
+              ): (
+
+                <Text style={styles.cardText}>No hay extras disponibles</Text>
               )}
             </Card>
           </View>

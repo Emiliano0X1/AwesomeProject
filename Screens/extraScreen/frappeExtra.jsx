@@ -16,8 +16,8 @@ const FrappeExtra = ({navigation,route}) => {
 ];
 
   const cremas = [
-  { label: 'Con Crema',value: true, price: 5 ,id : 'C1'},
-  { label : 'Sin Crema',value: false, price: 0, id : 'C2' }
+  { label: 'Con Crema Extra',value: true, price: 5 ,id : 'C1'},
+  { label : 'Sin Crema Extra',value: false, price: 0, id : 'C2' }
   ];
 
   //La eleccion de la leche
