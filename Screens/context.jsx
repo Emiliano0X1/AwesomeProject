@@ -17,10 +17,9 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
         const newProdcuts = [...productos,productCant];
         setProductos(newProdcuts);
         
-         const extraItems = addExtra(extrasArray);
+        const extraItems = addExtra(extrasArray);
         calculateTotal(newProdcuts, extraItems);
         
-
           console.log('Extras del Producto' ,producto.extra)
             console.log(producto)
             console.log(extra)
@@ -34,6 +33,28 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
         return newExtras;
     };
 
+    const eliminarProducto = (index) => {
+
+        console.log('Lista de Productos antes de ser eliminados',productos)
+
+        const prodcutSelect = productos[index];
+
+        let newExtras = extras;
+
+        if(prodcutSelect.extras && prodcutSelect.extras.length > 0){
+            const extrasRemove = prodcutSelect.extras.flat();
+            newExtras = extras.filter(extra => !extrasRemove.includes(extra))
+        }
+
+        const newProdcuts = productos.filter((_,i) => i != index );
+
+        console.log('Lista de Productos despues de ser eliminados',newProdcuts)
+
+        setProductos(newProdcuts);
+        setExtras(newExtras);
+        calculateTotal(newProdcuts,newExtras);
+    }
+
     const calculateTotal = (productos,extras) => {
         const total = productos.reduce((acc,producto) => acc + (producto.precio * producto.cantidad),0);
         const finalExtra = extras.reduce((acc,extra) => acc + (extra.price || 0),0);
@@ -44,7 +65,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
     return (
         <OrderContext.Provider
-            value={{productos,total,extras,addExtra,addProduct}}
+            value={{productos,total,extras,addExtra,addProduct,eliminarProducto}}
         >
         {children}
         </OrderContext.Provider>

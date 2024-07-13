@@ -9,13 +9,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 const Pedidos = ({navigation}) => {
 
   const {productos,extras,total} = useContext(OrderContext);
+  const {eliminarProducto} = useContext(OrderContext);
 
-  const omg = (extra) => {
-
-    for(let i = 0;i<extra.length;i++){
-
-    }
-  }
 
 
   return (
@@ -30,7 +25,7 @@ const Pedidos = ({navigation}) => {
               <Card style = {styles.Card}>
 
               <TouchableOpacity 
-              onPress = {() => navigation.navigate('Menu')} 
+              onPress = {() => eliminarProducto(index)} 
               style = {styles.cardButton}>
                   <AntDesign name = 'delete' color = 'red' size = {35}/>
               </TouchableOpacity>
