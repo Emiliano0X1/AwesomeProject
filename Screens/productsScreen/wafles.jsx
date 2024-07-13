@@ -23,6 +23,9 @@ const Wafles = ({navigation}) => {
     {name : 'Kiwi', precio : 50, id : 'W62',description: 'Nutella + Fruta' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
   ];
 
+    const end1 = 8;
+    const start2 = 8;
+
 
   const agregarProductoFinal = (producto) => {
     navigation.navigate(producto.extra,{producto});
@@ -35,7 +38,7 @@ const Wafles = ({navigation}) => {
         <Text style = {styles.title}> Waffles </Text>
 
         <View style = {styles.containerCards}>
-        {productos.map((producto) => ( 
+        {productos.slice(0,end1).map((producto) => ( 
 
         <TouchableOpacity
               key = {producto.id}
@@ -51,7 +54,29 @@ const Wafles = ({navigation}) => {
 
           ))}
 
-        </View>
+          </View>
+
+          <Text style = {styles.subtitle}> Nutella + fruta </Text>
+
+          <View style = {styles.containerCards}>
+
+            {productos.slice(start2).map((producto) => (
+
+          <TouchableOpacity
+            key={producto.id}
+            onPress={() => agregarProductoFinal(producto)}
+   
+            >
+            <Card style = {styles.Card}>
+            <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
+              <Text style = {styles.cardTitle}>{producto.name}</Text>
+              <Text style = {styles.cardSubtitle}>{producto.description}</Text>
+              <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
+            </Card>
+          </TouchableOpacity>
+
+            ))}
+          </View>
         
       </ScrollView>
     </SafeAreaView>

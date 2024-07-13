@@ -60,7 +60,7 @@ const Topping = ({navigation,route}) => {
         <SafeAreaView style = {styles.container}>
             <ScrollView>
 
-                <Text style = {styles.title}>Cantidad de Bebidas</Text>
+                <Text style = {styles.title}>Cantidad de Waffles</Text>
 
                 <View style = {styles.counterContainer}>
 
