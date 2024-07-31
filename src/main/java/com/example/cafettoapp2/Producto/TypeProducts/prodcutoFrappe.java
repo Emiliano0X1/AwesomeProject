@@ -1,16 +1,30 @@
 package com.example.cafettoapp2.Producto.TypeProducts;
 
+import com.example.cafettoapp2.Extra.Extra;
+
+import java.util.List;
+
 public class prodcutoFrappe extends Producto{
 
     private String size;
     private int medPrice;
     private int gdePrice;
+    private List<Extra> extras;
 
-    public prodcutoFrappe(String name, int price, String type, String size, int medPrice, int gdePrice) {
-        super(name, price, type);
+    public prodcutoFrappe(String name,int price, String type, String size, int medPrice, int gdePrice,List<Extra> extras) {
+        super(name,price, type);
         this.size = size;
         this.medPrice = medPrice;
         this.gdePrice = gdePrice;
+        this.extras = extras;
+    }
+
+    public List<Extra> getExtras() {
+        return extras;
+    }
+
+    public void setExtras(List<Extra> extras) {
+        this.extras = extras;
     }
 
     public String getSize() {

@@ -1,7 +1,14 @@
 package com.example.cafettoapp2.Producto.TypeProducts;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Producto {
 
+    @GeneratedValue
+    @Id
     protected Long id;
     protected String name;
     protected int price;
