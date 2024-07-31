@@ -1,15 +1,25 @@
 package com.example.cafettoapp2.Producto.TypeProducts;
 
 import com.example.cafettoapp2.Extra.Extra;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
 
 import java.util.List;
 
+@Entity
+@DiscriminatorValue("FRAPPE")
 public class prodcutoFrappe extends Producto{
 
     private String size;
-    private int medPrice;
-    private int gdePrice;
     private List<Extra> extras;
+
+    @Transient
+    private int medPrice;
+    @Transient
+    private int gdePrice;
+
+    public prodcutoFrappe() {}
 
     public prodcutoFrappe(String name,int price, String type, String size, int medPrice, int gdePrice,List<Extra> extras) {
         super(name,price, type);
@@ -19,6 +29,7 @@ public class prodcutoFrappe extends Producto{
         this.extras = extras;
     }
 
+    @Transient
     public List<Extra> getExtras() {
         return extras;
     }

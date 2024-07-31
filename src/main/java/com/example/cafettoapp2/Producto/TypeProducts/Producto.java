@@ -1,14 +1,16 @@
 package com.example.cafettoapp2.Producto.TypeProducts;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "product_type")
+@Table
 public class Producto {
 
-    @GeneratedValue
     @Id
+    @SequenceGenerator(name = "producto_sequence", sequenceName = "producto_sequence" , allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "producto_sequence")
     protected Long id;
     protected String name;
     protected int price;
