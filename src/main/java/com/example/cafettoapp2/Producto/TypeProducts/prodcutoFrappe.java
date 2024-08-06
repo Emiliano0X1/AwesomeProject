@@ -12,7 +12,6 @@ import java.util.List;
 public class prodcutoFrappe extends Producto{
 
     private String size;
-    private List<Extra> extras;
 
     @Transient
     private int medPrice;
@@ -21,21 +20,11 @@ public class prodcutoFrappe extends Producto{
 
     public prodcutoFrappe() {}
 
-    public prodcutoFrappe(String name,int price, String type, String size, int medPrice, int gdePrice,List<Extra> extras) {
+    public prodcutoFrappe(String name,int price, String type, String size, int medPrice, int gdePrice) {
         super(name,price, type);
         this.size = size;
         this.medPrice = medPrice;
         this.gdePrice = gdePrice;
-        this.extras = extras;
-    }
-
-    @Transient
-    public List<Extra> getExtras() {
-        return extras;
-    }
-
-    public void setExtras(List<Extra> extras) {
-        this.extras = extras;
     }
 
     public String getSize() {

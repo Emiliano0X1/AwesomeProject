@@ -11,22 +11,11 @@ import jakarta.persistence.Transient;
 public class productoSmoothie extends Producto{
 
     private String description;
-    private Extra extra;
-
     public productoSmoothie(){}
 
-    public productoSmoothie(String name, int price, String type, String description,Extra extra) {
+    public productoSmoothie(String name, int price, String type, String description) {
         super(name, price, type);
         this.description = description;
-        this.extra = extra;
-    }
-
-    public Extra getExtra() {
-        return extra;
-    }
-
-    public void setExtra(Extra extra) {
-        this.extra = extra;
     }
 
     public String getDescription() {
