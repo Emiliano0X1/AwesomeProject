@@ -1,6 +1,10 @@
 package com.example.cafettoapp2.Producto.TypeProducts;
 
+import com.example.cafettoapp2.Extra.Extra;
+import com.example.cafettoapp2.Pedido.Pedido;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -11,25 +15,38 @@ public class Producto {
     @Id
     @SequenceGenerator(name = "producto_sequence", sequenceName = "producto_sequence" , allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "producto_sequence")
-    protected Long id;
+    protected int id;
     protected String name;
     protected int price;
     protected String type;
+    protected String extraType;
+
+    @ManyToMany(mappedBy = "producto")
+    protected List<Pedido> pedidos;
 
     public Producto() {}
 
-    public Producto(String name, int price, String type) {
+    public Producto(String name, int price, String type,String extraType) {
         this.name = name;
         this.price = price;
         this.type = type;
+        this.extraType = extraType;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     public String getName() {
@@ -54,5 +71,13 @@ public class Producto {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getExtraType() {
+        return extraType;
+    }
+
+    public void setExtraType(String extraType) {
+        this.extraType = extraType;
     }
 }

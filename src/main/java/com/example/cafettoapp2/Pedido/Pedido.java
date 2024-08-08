@@ -4,6 +4,7 @@ import com.example.cafettoapp2.Cliente.Cliente;
 import com.example.cafettoapp2.Producto.TypeProducts.Producto;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
@@ -17,8 +18,14 @@ public class Pedido {
     private int id;
     private double total;
     private boolean status;
+    private LocalDate data;
 
     @ManyToMany
+    @JoinTable(
+            name="pedido_producto",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "producto_id")
+    )
     private List<Producto> producto = new ArrayList<>();
 
     @OneToOne
@@ -27,10 +34,11 @@ public class Pedido {
 
     public Pedido() {}
 
-    public Pedido(double total, boolean status, List<Producto> producto) {
+    public Pedido(double total, boolean status,LocalDate data, List<Producto> producto) {
         this.total = total;
         this.status = status;
         this.producto = producto;
+        this.data = data;
     }
 
     public int getId() {
@@ -71,5 +79,13 @@ public class Pedido {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 }

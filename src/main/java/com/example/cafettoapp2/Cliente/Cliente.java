@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
-
 @Entity
 @Table
 public class Cliente {
@@ -16,7 +15,6 @@ public class Cliente {
     private int id;
     private String name;
     private int phoneNumber;
-    private LocalDate fecha;
     private String location;
 
     @OneToOne
@@ -25,10 +23,9 @@ public class Cliente {
 
     public Cliente() {}
 
-    public Cliente(String name, int phoneNumber, LocalDate fecha, String location) {
+    public Cliente(String name, int phoneNumber, String location) {
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.fecha = fecha;
         this.location = location;
     }
 
@@ -56,19 +53,19 @@ public class Cliente {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

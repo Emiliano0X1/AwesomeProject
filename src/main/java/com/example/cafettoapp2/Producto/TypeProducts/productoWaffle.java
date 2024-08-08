@@ -6,13 +6,14 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("Smoothie")
-public class productoSmoothie extends Producto{
+@DiscriminatorValue("Waffle")
+public class productoWaffle extends Producto{
+
 
     @ManyToMany
     @JoinTable(
-            name = "smoothie_extra",
-            joinColumns = @JoinColumn(name = "smoothie_id"),
+            name = "waffle_extra",
+            joinColumns = @JoinColumn(name = "waffle_id"),
             inverseJoinColumns = @JoinColumn(name = "extra_id")
     )
     private List<Extra> extras;
@@ -20,12 +21,12 @@ public class productoSmoothie extends Producto{
 
     private String description;
 
-    public productoSmoothie(){}
+    public productoWaffle() {}
 
-    public productoSmoothie(String name, int price,String extraType, String type, String description, List<Extra> extras) {
+    public productoWaffle(String name, int price, String type, String extraType, List<Extra> extras, String description) {
         super(name, price, type, extraType);
-        this.description = description;
         this.extras = extras;
+        this.description = description;
     }
 
     public String getDescription() {

@@ -1,14 +1,13 @@
 package com.example.cafettoapp2.Producto.TypeProducts;
 
 import com.example.cafettoapp2.Extra.Extra;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("FRAPPE")
+@DiscriminatorValue("Frappe")
 public class prodcutoFrappe extends Producto{
 
     private String size;
@@ -18,13 +17,22 @@ public class prodcutoFrappe extends Producto{
     @Transient
     private int gdePrice;
 
+    @ManyToMany
+    @JoinTable(
+            name = "frappe_extra",
+            joinColumns = @JoinColumn(name = "frappe_id"),
+            inverseJoinColumns = @JoinColumn(name = "extra_id")
+    )
+    private List<Extra> extras;
+
     public prodcutoFrappe() {}
 
-    public prodcutoFrappe(String name,int price, String type, String size, int medPrice, int gdePrice) {
-        super(name,price, type);
+    public prodcutoFrappe(String name,int price, String type, String size, int medPrice, int gdePrice,String extraType,List<Extra> extras) {
+        super(name,price, type,extraType);
         this.size = size;
         this.medPrice = medPrice;
         this.gdePrice = gdePrice;
+        this.extras = extras;
     }
 
     public String getSize() {
@@ -59,5 +67,13 @@ public class prodcutoFrappe extends Producto{
         else{
             setPrice(gdePrice);
         }
+    }
+
+    public List<Extra> getExtras() {
+        return extras;
+    }
+
+    public void setExtras(List<Extra> extras) {
+        this.extras = extras;
     }
 }
