@@ -20,6 +20,7 @@ public class Extra {
     private String name;
     private int price;
     private String type;
+    private boolean selected;
 
 
     @ManyToMany(mappedBy = "extras")
@@ -35,10 +36,11 @@ public class Extra {
     public Extra() {
     }
 
-    public Extra(String name, int price, String type) {
+    public Extra(String name, int price, String type, boolean selected) {
         this.name = name;
         this.price = price;
         this.type = type;
+        this.selected = selected;
     }
 
     public Extra(String name) {
@@ -77,4 +79,35 @@ public class Extra {
         this.type = type;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public List<prodcutoFrappe> getFrappes() {
+        return frappes;
+    }
+
+    public void setFrappes(List<prodcutoFrappe> frappes) {
+        this.frappes = frappes;
+    }
+
+    public List<productoWithOneExtra> getMilks() {
+        return milks;
+    }
+
+    public void setMilks(List<productoWithOneExtra> milks) {
+        this.milks = milks;
+    }
+
+    public List<productoSmoothie> getSmoothies() {
+        return smoothies;
+    }
+
+    public void setSmoothies(List<productoSmoothie> smoothies) {
+        this.smoothies = smoothies;
+    }
 }
