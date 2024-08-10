@@ -14,7 +14,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "cliente_sequence")
     private int id;
     private String name;
-    private int phoneNumber;
+    private Long phoneNumber;
     private String location;
 
     @OneToOne
@@ -23,11 +23,11 @@ public class Cliente {
 
     public Cliente() {}
 
-    public Cliente(String name, int phoneNumber, String location, Pedido pedido) {
+    public Cliente(String name, Long phoneNumber, String location) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.location = location;
-        this.pedido = pedido;
+        this.pedido = null;
     }
 
     public int getId() {
@@ -46,11 +46,11 @@ public class Cliente {
         this.name = name;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

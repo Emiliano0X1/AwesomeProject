@@ -34,11 +34,12 @@ public class Pedido {
 
     public Pedido() {}
 
-    public Pedido(double total, boolean status,LocalDate data, List<Producto> productos) {
+    public Pedido(double total, boolean status,LocalDate data, List<Producto> productos, Cliente cliente) {
         this.total = total;
         this.status = status;
         this.producto = productos;
         this.data = data;
+        this.cliente = cliente;
     }
 
     public int getId() {

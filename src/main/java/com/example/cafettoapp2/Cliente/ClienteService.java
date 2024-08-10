@@ -48,7 +48,7 @@ public class ClienteService {
 
     // PUT
 
-    public void updateCliente(int clienteId, String name,int phoneNumber,String location) {
+    public void updateCliente(int clienteId, String name,Long phoneNumber,String location) {
 
         Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(() -> new IllegalStateException("No existe el Cliente con id " + clienteId));
 

@@ -26,4 +26,9 @@ public class ClienteController {
         System.out.println("Solicitud POST recibida : " + cliente);
         clienteService.addNewCliente(cliente);
     }
+
+    @DeleteMapping(path = "{clienteId}")
+    public void deleteCliente(@PathVariable ("clienteId") int clienteId) {
+        clienteService.deleteCliente(clienteId);
+    }
 }

@@ -1,6 +1,9 @@
 package com.example.cafettoapp2.Pedido;
 
 
+import com.example.cafettoapp2.Cliente.Cliente;
+import com.example.cafettoapp2.Cliente.ClienteRepository;
+import com.example.cafettoapp2.Cliente.ClienteService;
 import com.example.cafettoapp2.Producto.TypeProducts.Producto;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -8,14 +11,17 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
+    private final ClienteRepository clienteRepository;
 
-    public PedidoService(PedidoRepository pedidoRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, ClienteRepository clienteRepository) {
         this.pedidoRepository = pedidoRepository;
+        this.clienteRepository = clienteRepository;
     }
 
     //Getter Methods
@@ -28,11 +34,23 @@ public class PedidoService {
     }
 
     //Post Methods
-    public void addNewPedido(Pedido pedido){
-
+    public void addNewPedido(Pedido pedido, int clienteId){
         if(pedido.getProducto() == null){
             throw new IllegalStateException("El pedido no tiene productos");
         }
+
+        Optional<Cliente> cliente = clienteRepository.findById(clienteId);
+
+        if(!cliente.isPresent()){
+           throw new IllegalStateException("El cliente no existe");
+        }
+
+
+        pedido.setCliente(cliente.get());
+
+        cliente.get().setPedido(pedido);
+
+
         pedidoRepository.save(pedido);
     }
 
