@@ -34,10 +34,10 @@ public class Pedido {
 
     public Pedido() {}
 
-    public Pedido(double total, boolean status,LocalDate data, List<Producto> producto) {
+    public Pedido(double total, boolean status,LocalDate data, List<Producto> productos) {
         this.total = total;
         this.status = status;
-        this.producto = producto;
+        this.producto = productos;
         this.data = data;
     }
 

@@ -11,4 +11,5 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 
     @Query
     Optional<Pedido> findById(Integer id);
+
 }

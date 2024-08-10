@@ -23,10 +23,11 @@ public class Cliente {
 
     public Cliente() {}
 
-    public Cliente(String name, int phoneNumber, String location) {
+    public Cliente(String name, int phoneNumber, String location, Pedido pedido) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.location = location;
+        this.pedido = pedido;
     }
 
     public int getId() {
