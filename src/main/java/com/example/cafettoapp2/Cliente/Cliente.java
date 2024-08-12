@@ -17,7 +17,7 @@ public class Cliente {
     private Long phoneNumber;
     private String location;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 

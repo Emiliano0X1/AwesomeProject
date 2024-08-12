@@ -31,4 +31,10 @@ public class ClienteController {
     public void deleteCliente(@PathVariable ("clienteId") int clienteId) {
         clienteService.deleteCliente(clienteId);
     }
+
+    @PutMapping(path = "{cliente_id}")
+    public void updateCliente(@PathVariable ("cliente_id") Integer clienteId,@RequestParam (required = false) String name,@RequestParam(required = false) Long phoneNumber, @RequestParam (required = false) String location) {
+        System.out.println("Solicitud PUT recibida : " + clienteId);
+        clienteService.updateCliente(clienteId, name, phoneNumber, location);
+    }
 }
