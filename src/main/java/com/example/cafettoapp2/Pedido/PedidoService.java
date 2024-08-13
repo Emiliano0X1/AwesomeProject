@@ -45,11 +45,9 @@ public class PedidoService {
            throw new IllegalStateException("El cliente no existe");
         }
 
-
         pedido.setCliente(cliente.get());
 
         cliente.get().setPedido(pedido);
-
 
         pedidoRepository.save(pedido);
     }

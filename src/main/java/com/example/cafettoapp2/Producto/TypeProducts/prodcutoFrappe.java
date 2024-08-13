@@ -12,9 +12,8 @@ public class prodcutoFrappe extends Producto{
 
     private String size;
 
-    @Transient
     private int medPrice;
-    @Transient
+
     private int gdePrice;
 
     @ManyToMany

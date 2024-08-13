@@ -2,6 +2,7 @@ package com.example.cafettoapp2.Producto.TypeProducts;
 
 import com.example.cafettoapp2.Extra.Extra;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class productoWaffle extends Producto{
     )
     private List<Extra> extras;
 
-
+    @Transient
     private String description;
 
     public productoWaffle() {}

@@ -50,13 +50,20 @@ public class ClienteService {
 
     public void updateCliente(int clienteId, String name,Long phoneNumber,String location) {
 
+
+        System.out.println("Actualizando cliente con ID: " + clienteId);
+        System.out.println("Nombre: " + name);
+        System.out.println("Teléfono: " + phoneNumber);
+        System.out.println("Ubicación: " + location);
+
+
         Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(() -> new IllegalStateException("No existe el Cliente con id " + clienteId));
 
         if(name != null && !name.isEmpty() && !Objects.equals(cliente.getName(),name)) {
             cliente.setName(name);
         }
 
-        if(String.valueOf(phoneNumber).length() != 10 && !Objects.equals(cliente.getPhoneNumber(),phoneNumber) ){
+        if(!String.valueOf(phoneNumber).isEmpty() && !Objects.equals(cliente.getPhoneNumber(),phoneNumber) ){
 
             Optional<Cliente> clienteByPhoneNumber = clienteRepository.findByPhoneNumber(phoneNumber);
 
@@ -70,6 +77,13 @@ public class ClienteService {
         if(location != null && !location.isEmpty() && !Objects.equals(cliente.getLocation(),location)) {
             cliente.setLocation(location);
         }
+
+        clienteRepository.save(cliente);
+
+        System.out.println("Id del cliente: " + cliente.getId());
+        System.out.println("Nombre Nuevo: " + cliente.getName());
+        System.out.println("Teléfono: " + cliente.getPhoneNumber());
+        System.out.println("Ubicación: " + cliente.getLocation());
 
 
     }

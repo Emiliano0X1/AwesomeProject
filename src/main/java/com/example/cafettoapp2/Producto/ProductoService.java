@@ -1,10 +1,12 @@
 package com.example.cafettoapp2.Producto;
 
 import com.example.cafettoapp2.Extra.Extra;
+import com.example.cafettoapp2.Extra.ExtraRepository;
 import com.example.cafettoapp2.Producto.TypeProducts.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,9 +14,11 @@ import java.util.Objects;
 public class ProductoService {
 
     private final ProductoRepository productoRepository;
+    private final ExtraRepository extraRepository;
 
-    public ProductoService(ProductoRepository productoRepository) {
+    public ProductoService(ProductoRepository productoRepository, ExtraRepository extraRepository) {
         this.productoRepository = productoRepository;
+        this.extraRepository = extraRepository;
     }
 
     public List<Producto> getProducto(){
@@ -40,74 +44,37 @@ public class ProductoService {
     }
 
     @Transactional
-    public void updateProducto(int productoId,String name,int price,String type,String extraType){
-        Producto producto = productoRepository.findById(productoId).orElseThrow(()->new IllegalArgumentException("No existe ese producto"));
-
-        if(producto == null){
-            throw new IllegalArgumentException("No existe ese producto");
-        }
-
-        if(!name.isEmpty() && !Objects.equals(producto.getName(),name)){
-            producto.setName(name);
-        }
-
-        if(price > 0 && !Objects.equals(producto.getPrice(), price)){
-            producto.setPrice(price);
-        }
-
-        if(!type.isEmpty() && !Objects.equals(producto.getType(),type)){
-            producto.setType(type);
-        }
-
-        if(!extraType.isEmpty() && !Objects.equals(producto.getExtraType(),extraType)){
-            producto.setExtraType(extraType);
-        }
-    }
-
-    @Transactional
-    public void updateFrappe(int productoId,int medPrice,int gdePrice,String size){
+    public void updateFrappe(int productoId,String size,List<Extra> extras){
 
        Producto producto = productoRepository.findById(productoId).orElse(null);
 
        prodcutoFrappe productoFrappe = (prodcutoFrappe) producto;
 
-        if(medPrice > 0 && !Objects.equals(productoFrappe.getMedPrice(),medPrice)){
-            productoFrappe.setMedPrice(medPrice);
+        System.out.println(productoFrappe.getMedPrice());
+        System.out.println(productoFrappe.getGdePrice());
+
+        if(size != null && Objects.equals(size, "Mediano")){
+            producto.setPrice(productoFrappe.getMedPrice());
         }
 
-        if(gdePrice > 0 && !Objects.equals(productoFrappe.getGdePrice(),gdePrice)){
-            productoFrappe.setGdePrice(gdePrice);
+        else{
+            producto.setPrice(productoFrappe.getGdePrice());
         }
 
-        if(size != null && !Objects.equals(productoFrappe.getSize(),size)){
-            productoFrappe.setSize(size);
-        }
-    }
+        List<Extra> finalExtras = new ArrayList<>();
+        for(Extra extra : extras) {
+            if (extra != null && !extras.isEmpty()) {
 
-    @Transactional
-    public void updateSmoothieDescription(int productoId,String description){
+                Extra extra1 = extraRepository.findById(extra.getId()).orElseThrow(()->new IllegalArgumentException("No existe ese extra"));
+                finalExtras.add(extra1);
+            }
 
-        Producto producto = productoRepository.findById(productoId).orElseThrow(()->new IllegalArgumentException("No existe ese producto"));
-
-        productoSmoothie productoSmoothie = (productoSmoothie) producto;
-
-        if(description != null && !Objects.equals(productoSmoothie.getDescription(),description)){
-            productoSmoothie.setDescription(description);
         }
 
-    }
+        productoFrappe.setExtras(finalExtras);
 
-    @Transactional
-    public void updateWaffleDescription(int productoId,String description) {
-
-        Producto producto = productoRepository.findById(productoId).orElseThrow(() -> new IllegalArgumentException("No existe ese producto"));
-
-        productoWaffle productoWaffle = (productoWaffle) producto;
-
-        if(description != null && !Objects.equals(productoWaffle.getDescription(),description)){
-            productoWaffle.setDescription(description);
-        }
-
+        productoFrappe.setSize(size);
+        productoRepository.save(productoFrappe);
     }
 
     @Transactional
