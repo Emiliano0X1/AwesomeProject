@@ -17,7 +17,6 @@ public class productoSmoothie extends Producto{
     )
     private List<Extra> extras;
 
-    @Transient
     private String description;
 
     public productoSmoothie(){}

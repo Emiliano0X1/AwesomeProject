@@ -24,7 +24,7 @@ public class ProductoService {
     public List<Producto> getProducto(){
         return productoRepository.findAll();
     }
-
+    
     public void addNewProducto(Producto producto){
         if(producto == null){
             throw new IllegalArgumentException("Null producto");

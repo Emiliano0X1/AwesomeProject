@@ -4,12 +4,15 @@ import com.example.cafettoapp2.Producto.TypeProducts.Producto;
 import com.example.cafettoapp2.Producto.TypeProducts.prodcutoFrappe;
 import com.example.cafettoapp2.Producto.TypeProducts.productoSmoothie;
 import com.example.cafettoapp2.Producto.TypeProducts.productoWithOneExtra;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Extra {
 
     @Id

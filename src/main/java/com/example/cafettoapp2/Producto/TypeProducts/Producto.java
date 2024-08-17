@@ -2,6 +2,8 @@ package com.example.cafettoapp2.Producto.TypeProducts;
 
 import com.example.cafettoapp2.Extra.Extra;
 import com.example.cafettoapp2.Pedido.Pedido;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "product_type")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table
 public class Producto {
 

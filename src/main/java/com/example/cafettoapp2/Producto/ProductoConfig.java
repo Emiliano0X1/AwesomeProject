@@ -57,15 +57,15 @@ public class ProductoConfig {
 
                 Producto p27 = new Producto("Relax", 25, "Té", "defaultExtra");
                 Producto p28 = new Producto("Té Verde", 25, "Té", "defaultExtra");
-                Producto p29 = new Producto("Rooibos Chocomenta", 25, "Té", "defaultExtra");
+                Producto p29 = new Producto("Rooibos Chocoment", 25, "Té", "defaultExtra");
                 Producto p30 = new Producto("Rooibos Mango", 25, "Té", "defaultExtra");
 
                 //Tisanas
 
                 Producto p31 = new Producto("Blue Eyes", 25, "Tisana", "defaultExtra");
                 Producto p32 = new Producto("Paraíso Exótico", 25, "Tisana", "defaultExtra");
-                Producto p33 = new Producto("Rooibos Chocomenta", 25, "Tisana", "defaultExtra");
-                Producto p34 = new Producto("Rooibos Mango", 25, "Tisana", "defaultExtra");
+                Producto p33 = new Producto("Amaretto", 25, "Tisana", "defaultExtra");
+                Producto p34 = new Producto("Fresa-Kiwi", 25, "Tisana", "defaultExtra");
 
                 //Smoothies
 
@@ -95,7 +95,7 @@ public class ProductoConfig {
 
                 //Waffles
 
-                Producto p51 = new productoWaffle("Banana Mix", 50, "Waffle", "toppingExtra", null, "Cajeta, plátano, nuez y lechera");
+                Producto p51 = new productoWaffle("Banana Mix", 50, "Waffle", "toppingExtra", null,"Cajeta, plátano, nuez y lechera");
                 Producto p52 = new productoWaffle("Cream Chesse", 50, "Waffle", "toppingExtra", null, "Queso philadelphia, durazno y lechera");
                 Producto p53 = new productoWaffle("Silvestre", 52, "Waffle", "toppingExtra", null, "Queso philadelphia, mermelada,fresa y lechera");
                 Producto p54 = new productoWaffle("Napolitano", 60, "Waffle", "toppingExtra", null, "Nutella, fresa, queso philadelphia y lechera");

@@ -19,7 +19,6 @@ public class productoWaffle extends Producto{
     )
     private List<Extra> extras;
 
-    @Transient
     private String description;
 
     public productoWaffle() {}
