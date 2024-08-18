@@ -1,11 +1,14 @@
-import React ,{useState} from 'react';
+import React ,{useContext, useState} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+import { OrderContext } from '../context';
 
 const Refrescantes = ({navigation}) => {
 
+  const{productosMain} = useContext(OrderContext)
+  /*
   const productos = [
     {name : 'Té Helado', precio : 30,id: 'B46' , extra : 'defaultExtra',type : 'Refrescantes'},
     {name : 'Té Rojo', precio : 25, id : 'B47', extra : 'defaultExtra',type : 'Refrescantes'},
@@ -14,8 +17,13 @@ const Refrescantes = ({navigation}) => {
     {name : 'Affogato', precio : 36, id : 'B50',extra : 'defaultExtra',type : 'Refrescantes'},
   ];
 
+  */
+
+  const Resfrescantes = productosMain.filter(producto => producto.type === "Refrescante")
+
+
   const agregarProductoFinal = (producto) => {
-    navigation.navigate(producto.extra,{producto});
+    navigation.navigate(producto.extraType,{producto});
   };
 
   return (
@@ -25,7 +33,7 @@ const Refrescantes = ({navigation}) => {
         <Text style = {styles.title}> Refrescantes </Text>
 
         <View style = {styles.containerCards}>
-        {productos.map((producto) =>( 
+        {Resfrescantes.map((producto) =>( 
         <TouchableOpacity
               key = {producto.id}
               onPress={() => agregarProductoFinal(producto)}
@@ -33,7 +41,7 @@ const Refrescantes = ({navigation}) => {
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/refreIcon.png')} />
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
-                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
 

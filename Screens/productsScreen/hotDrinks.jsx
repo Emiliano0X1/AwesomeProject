@@ -1,5 +1,5 @@
 
-import React ,{useContext} from 'react';
+import React ,{useContext, useEffect} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
@@ -8,8 +8,9 @@ import { OrderContext } from '../context';
 
 const HotDrinks = ({navigation}) => {
 
-  const {addProduct} = useContext(OrderContext);
+  const {productosMain,addProduct} = useContext(OrderContext);
 
+  /*
   const productos = [
   {name: "Expresso", precio : 20 , size : 'regular',id : 'B1', extra : 'defaultExtra',type : 'Bebida Caliente'},
    {name: "Americano", precio : 26 , size : 'regular',id : 'B2',extra : 'defaultExtra', type : 'Bebida Caliente'},
@@ -29,8 +30,12 @@ const HotDrinks = ({navigation}) => {
    {name: "Vainilla Latte", precio : 40 , size : 'regular', id : 'B16', extra : 'withMilk', type : 'Bebida Caliente'},
   ];
 
+  */
+
+  const hotDrinks = productosMain.filter(producto => producto.type === "Bebida Caliente"); 
+
   const agregarProductoFinal = (producto) => {
-      navigation.navigate(producto.extra,{producto});
+      navigation.navigate(producto.extraType,{producto});
   };
 
   return (
@@ -41,7 +46,7 @@ const HotDrinks = ({navigation}) => {
         <Text style = {styles.title}> Bebidas Calientes </Text> 
 
         <View style = {styles.containerCards}>
-          {productos.map((producto) => (
+          {hotDrinks.map((producto) => (
             <TouchableOpacity
               key = {producto.id}
               onPress={() => agregarProductoFinal(producto)}
@@ -49,7 +54,7 @@ const HotDrinks = ({navigation}) => {
               <Card style = {styles.Card}>
                 <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
                   <Text style = {styles.cardTitle}> {producto.name} </Text>
-                  <Text style = {styles.cardSubtitle}> ${producto.precio} pesos</Text>
+                  <Text style = {styles.cardSubtitle}> ${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
 

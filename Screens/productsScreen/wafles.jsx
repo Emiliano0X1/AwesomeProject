@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React ,{useContext, useState} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
@@ -8,6 +8,8 @@ import { OrderContext } from '../context';
 
 const Wafles = ({navigation}) => {
 
+  const {productosMain} = useContext(OrderContext)
+  /*
   const productos = [
     {name : 'Banana Mix', precio : 50,id: 'W51' , description : 'Cajeta, plátano, nuez y lechera', extra : 'toppingExtra',type : 'Waffle'},
     {name : 'Cream Chesse', precio : 50, id : 'W52', description : 'Queso philadelphia, durazno y lechera',extra : 'toppingExtra',type : 'Waffle'},
@@ -23,12 +25,13 @@ const Wafles = ({navigation}) => {
     {name : 'Kiwi', precio : 50, id : 'W62',description: 'Nutella + Fruta' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
   ];
 
-    const end1 = 8;
-    const start2 = 8;
+  */
 
+   const Waffles = productosMain.filter(producto => producto.type === "Waffle")
+   const WafflesNutella = productosMain.filter(producto => producto.type === "Waffle-Nutella")
 
   const agregarProductoFinal = (producto) => {
-    navigation.navigate(producto.extra,{producto});
+    navigation.navigate(producto.extraType,{producto});
   };
 
   return (
@@ -38,7 +41,7 @@ const Wafles = ({navigation}) => {
         <Text style = {styles.title}> Waffles </Text>
 
         <View style = {styles.containerCards}>
-        {productos.slice(0,end1).map((producto) => ( 
+        {Waffles.map((producto) => ( 
 
         <TouchableOpacity
               key = {producto.id}
@@ -48,7 +51,7 @@ const Wafles = ({navigation}) => {
                 <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
                   <Text style = {styles.cardSubtitle}>{producto.description}</Text>
-                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
 
@@ -60,7 +63,7 @@ const Wafles = ({navigation}) => {
 
           <View style = {styles.containerCards}>
 
-            {productos.slice(start2).map((producto) => (
+            {WafflesNutella.map((producto) => (
 
           <TouchableOpacity
             key={producto.id}
@@ -71,7 +74,7 @@ const Wafles = ({navigation}) => {
             <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/waffleIcon.jpg')} />
               <Text style = {styles.cardTitle}>{producto.name}</Text>
               <Text style = {styles.cardSubtitle}>{producto.description}</Text>
-              <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
+              <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
             </Card>
           </TouchableOpacity>
 

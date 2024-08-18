@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React ,{useContext, useState} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
@@ -8,6 +8,8 @@ import { OrderContext } from '../context';
 
 const Postres = ({navigation}) => {
 
+  const {productosMain} = useContext(OrderContext)
+  /*
   const productos = [
     {name : 'Orden Donitas', precio : 27,id: 'P63' , extra : 'defaultExtra',type : 'Postre'},
     {name : 'Volcán de Chocolate', precio : 40, id : 'P64', extra : 'defaultExtra',type : 'Postre'},
@@ -21,16 +23,16 @@ const Postres = ({navigation}) => {
     {name : 'Elmo Gigantes', precio : 15, id : 'P72', extra : 'defaultExtra',type : 'Galletas'},
   ];
 
-  const agregarProductoFinal = (producto) => {
-    navigation.navigate(producto.extra,{producto});
-  };
+  */
 
-  const end1 = 2;
-  const start1 = 2;
-  const end2 = 5;
-  const start2 = 5;
-  const end3 = 9;
-  const start3 = productos.length-1;
+  const Postres = productosMain.filter(producto => producto.type === "Postre")
+  const Muffins = productosMain.filter(producto => producto.type === "Muffin")
+  const Minis = productosMain.filter(producto => producto.type === "Mini")
+  const Galletas = productosMain.filter(producto => producto.type === "Galletas")
+
+  const agregarProductoFinal = (producto) => {
+    navigation.navigate(producto.extraType,{producto});
+  };
 
   return (
     <SafeAreaView style = {styles.container} >
@@ -40,7 +42,7 @@ const Postres = ({navigation}) => {
 
         <View style = {styles.containerCards}>
 
-          {productos.slice(0,end1).map((producto) => ( 
+          {Postres.map((producto) => ( 
 
         <TouchableOpacity
              key = {producto.id}
@@ -50,7 +52,7 @@ const Postres = ({navigation}) => {
               <Card style = {styles.Card}>
                 <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/muffinIcon.png')} />
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
-                  <Text style = {styles.cardSubtitle}>${producto.precio}pesos</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.price}pesos</Text>
               </Card>
            </TouchableOpacity>
 
@@ -62,7 +64,7 @@ const Postres = ({navigation}) => {
 
         <View style = {styles.containerCards}>
 
-          {productos.slice(start1,end2).map((producto) => ( 
+          {Muffins.map((producto) => ( 
           <TouchableOpacity
               key = {producto.id}
               onPress={() => agregarProductoFinal(producto)}
@@ -82,7 +84,7 @@ const Postres = ({navigation}) => {
           
         <View style = {styles.containerCards}>
 
-          {productos.slice(start2,end3).map((producto) => (
+          {Minis.map((producto) => (
 
          <TouchableOpacity
               key={producto.id}
@@ -103,7 +105,7 @@ const Postres = ({navigation}) => {
 
         <View style = {styles.containerCards}>
 
-          {productos.slice(start3).map((producto) => (
+          {Galletas.map((producto) => (
 
          <TouchableOpacity
               key={producto.id}

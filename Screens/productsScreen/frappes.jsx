@@ -1,4 +1,4 @@
-import React ,{useContext} from 'react';
+import React ,{useContext,useState,useEffect} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
@@ -6,9 +6,10 @@ import { OrderContext } from '../context';
 
 const Frappes = ({navigation}) => {
 
-  const {addProduct} = useContext(OrderContext);
+  const {productosMain,addProduct} = useContext(OrderContext);
   
 
+  /*
   const productos = [
     {name: "Capuchino",precio : '', precioMed : 43 ,precioGde :46 ,id : 'B17', extra : 'frappeExtra',type : 'Frappe'},
     {name: "Chaí",precio : '', precioMed : 47 ,precioGde : 50 ,id : 'B18', extra : 'frappeExtra',type : 'Frappe'},
@@ -20,13 +21,14 @@ const Frappes = ({navigation}) => {
     {name: "Nutella",precio : '', precioMed : 47 ,precioGde : 50,id : 'B24', extra : 'frappeExtra',type : 'Frappe'},
     {name: "Oreo",precio : '', precioMed : 46 ,precioGde :49 ,id : 'B25', extra : 'frappeExtra',type : 'Frappe'},
     {name: "Taro",precio : '', precioMed : 47 ,precioGde :50 ,id : 'B26', extra : 'frappeExtra',type : 'Frappe'},
-  
-  
   ];
 
+  */
+
+  const Frappes = productosMain.filter(producto => producto.type === "Frappe")
 
   const agregarProductoFinal = (producto) => {
-    navigation.navigate(producto.extra,{producto});
+    navigation.navigate(producto.extraType,{producto});
   };
 
   return (
@@ -36,7 +38,7 @@ const Frappes = ({navigation}) => {
         <Text style = {styles.title}> Frappes </Text>
 
         <View style = {styles.containerCards}>
-        {productos.map((producto) => ( 
+        {Frappes.map((producto) => ( 
         <TouchableOpacity
               key = {producto.id}
               onPress={() => agregarProductoFinal(producto)}
@@ -44,8 +46,8 @@ const Frappes = ({navigation}) => {
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
-                  <Text style = {styles.cardSubtitle}> Med : ${producto.precioMed} pesos</Text>
-                  <Text style = {styles.cardSubtitle}> Gde : ${producto.precioGde} pesos</Text>
+                  <Text style = {styles.cardSubtitle}> Med : ${producto.medPrice} pesos</Text>
+                  <Text style = {styles.cardSubtitle}> Gde : ${producto.gdePrice} pesos</Text>
               </Card>
            </TouchableOpacity>
 

@@ -1,11 +1,15 @@
-import React ,{useState} from 'react';
+import React ,{useState,useContext} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { OrderContext } from '../context';
 
 const SodasItalianas = ({navigation}) => {
 
+  const {productosMain} = useContext(OrderContext)
+
+  /*
   const productos = [
     {name : 'Manzana Verde', precio : 42,id: 'B41' , extra : 'defaultExtra',type : 'Soda Italiana'},
     {name : 'Mora Azul', precio : 42, id : 'B42', extra : 'defaultExtra',type : 'Soda Italiana'},
@@ -14,8 +18,12 @@ const SodasItalianas = ({navigation}) => {
     {name : 'Mango', precio : 42, id : 'B45',extra : 'defaultExtra',type : 'Soda Italiana'},
   ];
 
+  */
+
+  const SodasItalianas = productosMain.filter(producto => producto.type === "Soda Italiana")
+
   const agregarProductoFinal = (producto) => {
-    navigation.navigate(producto.extra,{producto});
+    navigation.navigate(producto.extraType,{producto});
   };
 
   return (
@@ -25,7 +33,7 @@ const SodasItalianas = ({navigation}) => {
         <Text style = {styles.title}> Sodas Italianas </Text>
 
         <View style = {styles.containerCards}>
-        {productos.map((producto) => ( 
+        {SodasItalianas.map((producto) => ( 
 
         <TouchableOpacity
               key = {producto.id}
@@ -34,7 +42,7 @@ const SodasItalianas = ({navigation}) => {
               <Card style = {styles.Card}>
                 <MaterialCommunityIcons style = {styles.iconStyle} name = 'bottle-soda-classic-outline' color = 'black' size = {70}/>
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
-                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
 

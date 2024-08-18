@@ -31,10 +31,14 @@ const Pedidos = ({navigation}) => {
               </TouchableOpacity>
 
                    <Text style = {styles.cardTitle}>Producto # {index + 1}</Text>
+                   <Text style = {styles.cardTextSeparator}>-------------</Text>
                    <Text style = {styles.cardText}>{producto.type} </Text>
                    <Text style = {styles.cardText}>{producto.name}</Text>
-                   <Text style = {styles.cardText}>Total : ${(producto.precio * producto.cantidad)} pesos</Text>
+                   <Text style = {styles.cardTextSeparator}>-------------</Text>
+                   <Text style = {styles.cardText}>Total : ${(producto.price * producto.cantidad)} pesos</Text>
+                   <Text style = {styles.cardTextSeparator}>-------------</Text>
                    <Text style = {styles.cardText}>Numero de Productos : {producto.cantidad}</Text>
+                   <Text style = {styles.cardTextSeparator}>-------------</Text>
 
               { producto.extras && producto.extras.length > 0 ? (
                 <>
@@ -91,7 +95,7 @@ const Pedidos = ({navigation}) => {
       <View style = {styles.buttonsContainer}>
 
         <TouchableOpacity style = {styles.button} onPress={() => navigation.navigate('Menu')}>
-          <Text style = {styles.buttonText}>Volvel al Menu</Text>
+          <Text style = {styles.buttonText}>Volver al Menú</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style ={styles.button}>
@@ -123,7 +127,7 @@ const styles = StyleSheet.create( {
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height : 320,
+    height : 350,
     width : 300,
     position: 'relative',
   },
@@ -160,7 +164,7 @@ const styles = StyleSheet.create( {
   cardText : {
     paddingLeft : 18,
     fontSize : 18,
-    paddingBottom : 10,
+    paddingBottom : 5,
   },
 
   cardIcon : {
@@ -213,6 +217,12 @@ buttonsContainer : {
     backgroundColor: '#f5f5f5',
     marginLeft : 18,
   },
+
+  cardTextSeparator : {
+    marginLeft : 18,
+    fontSize : 16,
+    letterSpacing : 10
+  }
   
 });
 

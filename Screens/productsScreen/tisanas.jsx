@@ -7,8 +7,9 @@ import { OrderContext } from '../context';
 
 const Tisana= ({navigation}) => {
 
-  const {addProduct} = useContext(OrderContext) ;
+  const {addProduct,productosMain} = useContext(OrderContext) ;
 
+  /*
   const productos = [
     {name : 'Blue Eyes', precio : 25,id: 'B31' , extra : 'defaultExtra',type : 'Tisana'},
     {name : 'Paraíso Exótico', precio : 25, id : 'B32', extra : 'defaultExtra',type : 'Tisana'},
@@ -16,8 +17,12 @@ const Tisana= ({navigation}) => {
     {name : 'Fresa-Kiwi', precio : 25, id : 'B34', extra : 'defaultExtra',type : 'Tisana'}
   ];
 
+  */
+
+  const Tisanas = productosMain.filter(producto => producto.type === "Tisana")
+
   const agregarProductoFinal = (producto) => {
-    navigation.navigate(producto.extra,{producto});
+    navigation.navigate(producto.extraType,{producto});
   };
 
 
@@ -29,7 +34,7 @@ const Tisana= ({navigation}) => {
 
         <View style = {styles.containerCards}>
 
-        {productos.map((producto) => ( 
+        {Tisanas.map((producto) => ( 
 
         <TouchableOpacity
               key = {producto.id}
@@ -39,7 +44,7 @@ const Tisana= ({navigation}) => {
               <Card style = {styles.Card}>
                 <MaterialCommunityIcons style = {styles.iconStyle} name = 'kettle-steam-outline' color = 'black' size = {70}/>
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
-                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
 

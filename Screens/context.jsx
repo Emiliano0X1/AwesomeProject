@@ -1,19 +1,64 @@
 
-import React , {createContext,useState} from 'react';
+import React , {createContext,useState,useEffect} from 'react';
+import HotDrinks from './productsScreen/hotDrinks';
 
 const OrderContext = createContext (); // El context sirve para poder englobar todo los prop  y poder psarlos de padre a hijo para sju utilizacion
 
 const OrderProvider = ({children}) => { // Un provider sirve para poder sincronizar los cambios y los componentes este n renderizdos
     const [productos , setProductos] = useState ([]);
+    const [productosMain,setProductosMain] = useState ([]);
     const [extras, setExtras] = useState ([]);
+    const [extrasMain,setExtrasMain] = useState ([]);
     const [total,setTotal] = useState(0);
+
+    const fecthProductos = async() => {
+        try{
+            useEffect(() => {
+
+                console.log("antes de feachear")
+                fetch("http://IP:8080/api/v1/producto")
+                .then((res) => {
+                    console.log("despues de fechear")
+                    return res.json()
+                })
+                .then((data) => {
+                    console.log(data);
+                    setProductosMain(data);
+                    console.log(productosMain)
+                });
+
+            }, []);
+        } catch (error){
+            console.log("No jala")
+        }
+    }
+    
+    const fecthExtras = async () =>{
+        try{
+            useEffect(() => {
+                fetch("http://IP:8080/api/v1/extra")
+                .then((res) =>{
+                    return res.json()
+                })
+                .then((data) => {
+                    console.log(data)
+                    setExtrasMain(data)
+                });
+            },[]);
+        } catch ( error){
+            console.log("No jala")
+        }
+    }
+
+    fecthProductos();
+    fecthExtras();
 
     const addProduct = (producto,cantidad,extra) => {  // Aqui esta la logica para agregar el producto a la orden
 
         const extrasArray = Array.isArray(extra) ? extra : [extra]; //checa si es un array o no, para convertirlo a array
 
         const productCant = {...producto,cantidad, extras: extrasArray}; // Este es el constructor principal que tiene prodcuto,cantidad, y los extras
-        
+
         const newProdcuts = [...productos,productCant]; //Aqui se tiene un nuevo array de los productos con sus cantidades 
         setProductos(newProdcuts); // Se añade a la lista de productos
         
@@ -56,7 +101,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     }
 
     const calculateTotal = (productos,extras) => { //Esta es la funcion que permite calcular el total del pedido
-        const total = productos.reduce((acc,producto) => acc + (producto.precio * producto.cantidad),0); // se tiene acc que significa que es acumulativo y se pone al totoal
+        const total = productos.reduce((acc,producto) => acc + (producto.price * producto.cantidad),0); // se tiene acc que significa que es acumulativo y se pone al totoal
         const finalExtra = extras.reduce((acc,extra) => acc + (extra.price || 0),0); // lo mismo con los extras
         console.log('Extras Acumulados:',finalExtra);
         console.log('Total de la Orden :',total)
@@ -65,7 +110,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
     return (
         <OrderContext.Provider // finalmente todas las funciones se exportan para poder ser usadas en lso componentes
-            value={{productos,total,extras,addExtra,addProduct,eliminarProducto}}
+            value={{productos,total,extras,productosMain,extrasMain,addExtra,addProduct,eliminarProducto}}
         >
         {children}
         </OrderContext.Provider>

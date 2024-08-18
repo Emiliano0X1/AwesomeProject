@@ -1,10 +1,14 @@
-import React ,{useState} from 'react';
+import React ,{useState,useContext} from 'react';
 import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import { OrderContext } from '../context';
 
 const Smoothies = ({navigation}) => {
+
+  const {productosMain} = useContext(OrderContext)
+
+  /*
 
   const productos = [
     {name : 'Piña Colada', precio : 42,id: 'B35' , description : 'Piña, leche de coco y yogurt', extra : 'defaultExtra',type : 'Smoothie'},
@@ -15,10 +19,15 @@ const Smoothies = ({navigation}) => {
     {name : 'Durazno', precio : 45, id : 'B40', description : 'Durazno, manzana, avena y leche de almendras', extra : 'withMilk',type : 'Smoothie'},
   ];
 
-  const agregarProductoFinal = (producto) => {
-    navigation.navigate(producto.extra,{producto});
-  };
+  */
 
+  const Smoothies = productosMain.filter(producto => producto.type === "Smoothie")
+
+
+  console.log(Smoothies)
+  const agregarProductoFinal = (producto) => {
+    navigation.navigate(producto.extraType,{producto});
+  };
 
 
   return (
@@ -29,7 +38,7 @@ const Smoothies = ({navigation}) => {
 
         <View style = {styles.containerCards}>
 
-        {productos.map((producto)=> ( 
+        {Smoothies.map((producto)=> ( 
 
         <TouchableOpacity
               key = {producto.id}
@@ -39,8 +48,8 @@ const Smoothies = ({navigation}) => {
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/SmothieIcon.png')} />
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
-                  <Text style = {styles.cardSubtitle}>({producto.description})</Text>
-                  <Text style = {styles.cardSubtitle}>${producto.precio} pesos</Text>
+                  <Text style = {styles.cardSubtitle}>{producto.description}</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
 
