@@ -6,10 +6,13 @@ import { OrderContext } from '../context';
 
 const Milks = ({navigation,route}) => {
 
-  const {addProduct, addExtra} = useContext(OrderContext);
+  const {addProduct, extrasMain} = useContext(OrderContext);
   const {producto} = route.params;
 
 
+  const milks = extrasMain.filter(extra => extra.type === "Leche")
+
+  /*
   const milks = [
     {label : 'Entera', value : 'entera', price : 0,id : 'M1'},
     {label : 'Deslactosada',value : 'deslactosada', price : 6,id : 'M2'},
@@ -17,6 +20,8 @@ const Milks = ({navigation,route}) => {
     {label : 'Linaza', value : 'linaza',price : 3, id : 'M4'},
     {label : 'Avena', value : 'avena',price : 6, id : 'M5'},
   ];
+
+  */
 
   const [checked, setChecked] = useState('');
 
@@ -31,10 +36,21 @@ const Milks = ({navigation,route}) => {
 
   
   const agregarExtraFinal = () => {
-    const milkData = añadirExtra();
-    console.log('Milk Data: withMilk' , milkData)
-    addProduct(producto,cantidad,milkData);
-    navigation.navigate('Mi-Pedido');
+
+    try{
+      const milkData = añadirExtra();
+      console.log('Milk Data: withMilk' , milkData)
+
+      if (!milkData || milkData.length === 0) {
+        throw new Error("Por favor selecciona las casillas faltantes");
+    }
+
+      addProduct(producto,cantidad,milkData);
+      navigation.navigate('Mi-Pedido');
+
+      }catch (error) {
+        Alert.alert('Selecciona una de las casillas faltantes')
+    }
   };
 
 

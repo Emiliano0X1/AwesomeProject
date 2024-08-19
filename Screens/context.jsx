@@ -16,7 +16,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
             useEffect(() => {
 
                 console.log("antes de feachear")
-                fetch("http://IP:8080/api/v1/producto")
+                fetch("http://192.168.1.72:8080/api/v1/producto")
                 .then((res) => {
                     console.log("despues de fechear")
                     return res.json()
@@ -36,7 +36,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const fecthExtras = async () =>{
         try{
             useEffect(() => {
-                fetch("http://IP:8080/api/v1/extra")
+                fetch("http://192.168.1.72:8080/api/v1/extra")
                 .then((res) =>{
                     return res.json()
                 })
@@ -63,7 +63,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
         setProductos(newProdcuts); // Se añade a la lista de productos
         
         const extraItems = addExtra(extrasArray); // SE LLAMA a la funcion de addEtxra
-        calculateTotal(newProdcuts, extraItems); // se llama a la funcion para manteber actualizado el total
+        calculateTotal(newProdcuts); // se llama a la funcion para manteber actualizado el total
         
           console.log('Extras del Producto' ,producto.extra)
             console.log(producto)
@@ -77,36 +77,55 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
         setExtras(newExtras); // los añade al state
         return newExtras;
     };
+   
+    const eliminarProducto = (index) => {
+        console.log('Lista de Productos antes de ser eliminados', productos);
 
-    const eliminarProducto = (index) => { // Esta funcion es la que perimite al ususario eliminar un producto de la lista
+        // Filtrar la lista de productos para excluir el producto a eliminar
+        const nuevosProductos = productos.filter((_, i) => i !== index);
+    
+        setProductos(nuevosProductos);
+    
+        // Recalcular el total después de la eliminación
+        calculateTotal(nuevosProductos);
+    
+        console.log('Lista de Productos después de ser eliminados', nuevosProductos);
+    };
+    
+    
+    const calculateTotal = (productos) => { //Esta es la funcion que permite calcular el total del pedido
+            const total = productos.reduce((acc, producto) => {
+                // Sumar el precio del producto multiplicado por la cantidad
+                const productoTotal = producto.price * producto.cantidad;
+                
+                if(producto.extras.length > 0){
+                // Sumar el precio de los extras asociados a ese producto
+                const extrasTotal = producto.extras.reduce((extraAcc, extra) => {
+                    return extraAcc + (extra.price || 0);
+                }, 0);
+        
+                // Añadir el total del producto y sus extras al acumulador
+                return acc + productoTotal + extrasTotal;
 
-        console.log('Lista de Productos antes de ser eliminados',productos)
+            }
 
-        const prodcutSelect = productos[index]; //Primero se busa el producto seleccionado
+            else{
+                return acc + productoTotal;
+              }
+            }, 0);
+        
+            console.log('Total de la Orden :', total);
+            setTotal(total); // Establecer el total en el estado
+        };
 
-        let newExtras = extras;
-
-        if(prodcutSelect.extras && prodcutSelect.extras.length > 0){ //Checa si tiene extras que tambien seran eliminaods
-            const extrasRemove = prodcutSelect.extras.flat(); // Sirve para quitar los extras que estan anidados
-            newExtras = extras.filter(extra => !extrasRemove.includes(extra)) // quita los extras usando .filter y .includes para verificar
-        }
-
-        const newProdcuts = productos.filter((_,i) => i != index ); // Finalmente se hace un proceso similar con los productos
-
-        console.log('Lista de Productos despues de ser eliminados',newProdcuts)
-
-        setProductos(newProdcuts); // Se actualizan las listas
-        setExtras(newExtras);
-        calculateTotal(newProdcuts,newExtras);
-    }
-
-    const calculateTotal = (productos,extras) => { //Esta es la funcion que permite calcular el total del pedido
+        /*
         const total = productos.reduce((acc,producto) => acc + (producto.price * producto.cantidad),0); // se tiene acc que significa que es acumulativo y se pone al totoal
         const finalExtra = extras.reduce((acc,extra) => acc + (extra.price || 0),0); // lo mismo con los extras
         console.log('Extras Acumulados:',finalExtra);
         console.log('Total de la Orden :',total)
         setTotal(total + finalExtra); // al final se suman
-    };
+
+        */
 
     return (
         <OrderContext.Provider // finalmente todas las funciones se exportan para poder ser usadas en lso componentes

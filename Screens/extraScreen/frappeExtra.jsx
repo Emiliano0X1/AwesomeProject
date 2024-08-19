@@ -7,6 +7,18 @@ import { OrderContext } from '../context';
 
 const FrappeExtra = ({navigation,route}) => {
 
+
+  const {extrasMain} = useContext(OrderContext)
+
+  const milks = extrasMain.filter(extra => extra.type === "Leche")
+  const cremas = extrasMain.filter(extra => extra.type === "Crema")
+
+
+  console.log(milks);
+
+  console.log(cremas)
+
+  /*
   const milks = [
     {label : 'Entera', value : 'entera', price : 0, id : 'M1'},
     {label : 'Deslactosada',value : 'deslactosada', price : 6 , id: 'M2'},
@@ -19,6 +31,10 @@ const FrappeExtra = ({navigation,route}) => {
   { label: 'Con Crema Extra',value: true, price: 5 ,id : 'C1'},
   { label : 'Sin Crema Extra',value: false, price: 0, id : 'C2' }
   ];
+
+  */
+
+
 
   //La eleccion de la leche
   const [size,setSize] = useState('');
@@ -40,13 +56,26 @@ const FrappeExtra = ({navigation,route}) => {
 
   
   const agregarExtraFinal = () => {
+    try{
     const precioFinal = getSize(producto);
     const milkData = añadirExtra();
     const cremaData = añadirCrema();
+    
+    if(!milkData || milkData.length === 0){
+      throw new Error('No se ha seleccionado una casilla')
+    }
+
+    if(!cremaData || cremaData.length === 0){
+      throw new Error('No se ha seleccionado una casilla')
+    }
 
     const extras = [milkData,cremaData]
     addProduct(producto,cantidad,extras);
     navigation.navigate('Mi-Pedido');
+
+    } catch (error) {
+      Alert.alert('Por favor seleccione las casillas faltantes o seleccione el tamaño')
+    }
   };
 
 
@@ -64,15 +93,15 @@ const FrappeExtra = ({navigation,route}) => {
   };
 
   const getSize = (producto) => {
-    console.log(producto.precio);
+    console.log(producto.price);
     
     if(selectedButtons.includes('mediano')){
-      producto.precio = producto.precioMed;
+      producto.price = producto.medPrice;
     }
     else{
-      producto.precio = producto.precioGde;
+      producto.price = producto.gdePrice;
     }
-    console.log(producto.precio);
+    console.log(producto.price);
   }
 
   //El contador 
@@ -103,6 +132,11 @@ const FrappeExtra = ({navigation,route}) => {
   };
 
   const añadirCrema = () => {
+
+    console.log('cremas:', cremas);
+    console.log('checked2:', checked2);
+
+    
     const cream = cremas.find(creamm => creamm.value === checked2);
     return cream;
   };
