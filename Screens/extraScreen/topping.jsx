@@ -6,12 +6,10 @@ import { OrderContext } from '../context';
 
 const Topping = ({navigation,route}) => {
 
-  const {addProduct,extrasMain } = useContext(OrderContext);
+  const {addProduct, addExtra} = useContext(OrderContext);
   const {producto} = route.params;
 
-  const toppings = extrasMain.filter(extra => extra.type === "Topping")
 
-  /*
   const toppings = [
     {label : 'Oreo', value : 'oreo', price : 6,id : 'T1'},
     {label : 'Lunetas',value : 'lunetas', price : 6,id : 'T2'},
@@ -20,8 +18,6 @@ const Topping = ({navigation,route}) => {
     {label : 'Crema Batida', value : 'crema batida',price : 6, id : 'T5'},
     {label : 'Bola de Helado', value : 'bola de helado',price : 6, id : 'T6'},
   ];
-
-  */
 
   const [checked, setChecked] = useState('');
 
@@ -36,20 +32,9 @@ const Topping = ({navigation,route}) => {
 
   
   const agregarExtraFinal = () => {
-
-    try{
-      const toppinData = añadirExtra();
-
-      if(!toppinData || toppinData.length == 0){
-        throw new Error('No se ha seleccionado una casilla')
-      }
-
-      addProduct(producto,cantidad,toppinData);
-      navigation.navigate('Mi-Pedido');
-
-    } catch (error) {
-      Alert.alert('Por favor selecciona una de las casillas faltantes')
-    }
+    const toppinData = añadirExtra();
+    addProduct(producto,cantidad,toppinData);
+    navigation.navigate('Mi-Pedido');
   };
 
 
