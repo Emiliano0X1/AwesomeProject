@@ -20,10 +20,10 @@ public class Extra {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "extra_sequence")
     private int id;
 
-    private String name;
+    private String label;
+    private String value;
     private int price;
     private String type;
-    private boolean selected;
 
 
     @ManyToMany(mappedBy = "extras")
@@ -39,15 +39,11 @@ public class Extra {
     public Extra() {
     }
 
-    public Extra(String name, int price, String type, boolean selected) {
-        this.name = name;
+    public Extra(String label, String value, int price, String type) {
+        this.label = label;
+        this.value = value;
         this.price = price;
         this.type = type;
-        this.selected = selected;
-    }
-
-    public Extra(String name) {
-        this.name = name;
     }
 
     public int getId() {
@@ -58,12 +54,20 @@ public class Extra {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLabel() {
+        return label;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public int getPrice() {
@@ -80,14 +84,6 @@ public class Extra {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
     }
 
     public List<prodcutoFrappe> getFrappes() {

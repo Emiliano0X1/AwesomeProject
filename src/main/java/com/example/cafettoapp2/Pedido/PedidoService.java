@@ -34,7 +34,7 @@ public class PedidoService {
     }
 
     //Post Methods
-    public void addNewPedido(Pedido pedido, int clienteId){
+    public void addNewPedido(Pedido pedido,int clienteId){
         if(pedido.getProducto() == null){
             throw new IllegalStateException("El pedido no tiene productos");
         }
@@ -47,9 +47,8 @@ public class PedidoService {
 
         pedido.setCliente(cliente.get());
 
-        cliente.get().setPedido(pedido);
-
         pedidoRepository.save(pedido);
+
     }
 
     //Delete
@@ -92,11 +91,11 @@ public class PedidoService {
     }
 
     @Transactional
-    public void updatePedidoStatus(int pedidoId,boolean status){
+    public void updatePedidoStatus(int pedidoId,String status){
 
         Pedido pedido = pedidoRepository.findById(pedidoId).orElseThrow(() -> new IllegalStateException("El pedido no existe"));
 
-        if(!Objects.equals(pedido.isStatus(),status)){
+        if(!Objects.equals(pedido.getStatus(),status)){
             pedido.setStatus(status);
         }
     }

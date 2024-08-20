@@ -37,18 +37,21 @@ public class ExtraService {
         extraRepository.deleteById(id);
     }
 
-    public void updateExtra(int extraId,String name,int price, boolean status){
+    public void updateExtra(int extraId,String label,String value,int price){
 
         Extra extra = extraRepository.findById(extraId).orElseThrow(()->new IllegalArgumentException("No such extra"));
 
-        if(name != null && !name.isEmpty() && !Objects.equals(extra.getName(),name)){
-            extra.setName(name);
+        if(label != null && !label.isEmpty() && !Objects.equals(extra.getLabel(),label)){
+            extra.setLabel(label);
+        }
+
+        if(value != null && !value.isEmpty() && !Objects.equals(extra.getValue(),value)){
+            extra.setValue(value);
         }
 
         if(price > 0 && !Objects.equals(extra.getPrice(),price)){
             extra.setPrice(price);
         }
 
-        extra.setSelected(status);
     }
 }

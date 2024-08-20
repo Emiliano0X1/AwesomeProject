@@ -30,7 +30,7 @@ public class ExtraController {
     }
 
     @PutMapping(path = "{extra_id}")
-    public void updateExtra(@PathVariable("extra_id") Integer extra_id,@RequestParam (required = false) String name,@RequestParam (required = false) int price,@RequestParam (required = false) boolean selected) {
-        extraService.updateExtra(extra_id, name, price, selected);
+    public void updateExtra(@PathVariable("extra_id") Integer extra_id,@RequestParam (required = false) String label,@RequestParam(required = false) String value,@RequestParam (required = false) int price) {
+        extraService.updateExtra(extra_id,label,value,price);
     }
 }

@@ -14,10 +14,9 @@ import java.util.List;
 @RequestMapping("api/v1/pedido")
 public class PedidoController {
 
-    @Autowired
     private final PedidoService pedidoService;
 
-
+    @Autowired
     public PedidoController(PedidoService pedidoService) {
         this.pedidoService = pedidoService;
     }
@@ -38,7 +37,7 @@ public class PedidoController {
     }
 
     @PutMapping(path = "{pedido_id}")
-    public void updatePedido(@PathVariable ("pedido_id") Integer pedidoId, @RequestParam (required=false) double total, @RequestParam (required=false)LocalDate data,@RequestParam (required=false) boolean status) {
+    public void updatePedido(@PathVariable ("pedido_id") Integer pedidoId, @RequestParam (required=false) double total, @RequestParam (required=false)LocalDate data,@RequestParam (required=false) String status) {
        pedidoService.updatePedidoData(pedidoId, total, data);
        pedidoService.updatePedidoStatus(pedidoId,status);
     }

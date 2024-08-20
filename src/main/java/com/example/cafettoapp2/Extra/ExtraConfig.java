@@ -18,21 +18,21 @@ public class ExtraConfig {
             System.out.println("Iniciando esta madre");
 
             if(extraRepository.count() == 0) {
-                Extra e1 = new Extra("Entera", 0, "Leche", true);
-                Extra e2 = new Extra("Deslactosada", 6, "Leche", false);
-                Extra e3 = new Extra("Almendras", 3, "Leche", false);
-                Extra e4 = new Extra("Linaza", 3, "Leche", false);
-                Extra e5 = new Extra("Avena", 6, "Leche", false);
+                Extra e1 = new Extra("Entera","entera", 0, "Leche");
+                Extra e2 = new Extra("Deslactosada","deslactosada", 6, "Leche");
+                Extra e3 = new Extra("Almendras","almendras", 3, "Leche");
+                Extra e4 = new Extra("Linaza","linaza", 3, "Leche");
+                Extra e5 = new Extra("Avena","avena", 6, "Leche");
 
-                Extra e6 = new Extra("Con Crema Extra", 5, "Crema", false);
-                Extra e7 = new Extra("Sin Crema Extra", 0, "Crema", true);
+                Extra e6 = new Extra("Con Crema Extra","true", 5, "Crema");
+                Extra e7 = new Extra("Sin Crema Extra","false", 0, "Crema");
 
-                Extra e8 = new Extra("Oreo", 6, "Topping", false);
-                Extra e9 = new Extra("Lunetas", 6, "Topping", false);
-                Extra e10 = new Extra("Frutas Extras", 6, "Topping", false);
-                Extra e11 = new Extra("Almendras Fileteadas", 6, "Topping", false);
-                Extra e12 = new Extra("Crema Batida", 6, "Topping", false);
-                Extra e13 = new Extra("Bola de Helado", 6, "Topping", false);
+                Extra e8 = new Extra("Oreo","oreo", 6, "Topping");
+                Extra e9 = new Extra("Lunetas","lunetas", 6, "Topping");
+                Extra e10 = new Extra("Frutas Extras","frutas extras", 6, "Topping");
+                Extra e11 = new Extra("Almendras Fileteadas","almendras fileteadas", 6, "Topping");
+                Extra e12 = new Extra("Crema Batida","crema batida", 6, "Topping");
+                Extra e13 = new Extra("Bola de Helado","bola de helado", 6, "Topping");
 
 
                 extraRepository.saveAll(List.of(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13));

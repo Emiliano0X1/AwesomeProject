@@ -4,6 +4,7 @@ import com.example.cafettoapp2.Pedido.Pedido;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table
@@ -17,9 +18,9 @@ public class Cliente {
     private Long phoneNumber;
     private String location;
 
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+    private List <Pedido> pedidos;
 
     public Cliente() {}
 
@@ -27,7 +28,7 @@ public class Cliente {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.location = location;
-        this.pedido = null;
+        this.pedidos = null;
     }
 
     public int getId() {
@@ -62,11 +63,11 @@ public class Cliente {
         this.location = location;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

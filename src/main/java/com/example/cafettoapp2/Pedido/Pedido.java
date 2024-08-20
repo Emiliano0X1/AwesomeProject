@@ -17,7 +17,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "pedido_sequence")
     private int id;
     private double total;
-    private boolean status;
+    private String status;
     private LocalDate data;
 
     @ManyToMany
@@ -28,13 +28,13 @@ public class Pedido {
     )
     private List<Producto> producto = new ArrayList<>();
 
-    @OneToOne
+    @ManyToOne()
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     public Pedido() {}
 
-    public Pedido(double total, boolean status,LocalDate data, List<Producto> productos, Cliente cliente) {
+    public Pedido(double total, String status,LocalDate data, List<Producto> productos, Cliente cliente) {
         this.total = total;
         this.status = status;
         this.producto = productos;
@@ -58,11 +58,11 @@ public class Pedido {
         this.total = total;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
