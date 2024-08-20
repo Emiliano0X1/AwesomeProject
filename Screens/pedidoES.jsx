@@ -11,6 +11,35 @@ const Pedidos = ({navigation}) => {
   const {productos,extras,total} = useContext(OrderContext);
   const {eliminarProducto} = useContext(OrderContext);
 
+  
+    const postOrder = fetch("http://192.168.1.72:8080/api/v1/pedidos",{
+
+      method : 'POST',
+      headers : {
+        Accept : 'application/json',
+        'Content-Type' : 'application/json',
+      },
+
+      body: JSON.stringify({
+        cliente : 1,
+        productos : productos
+      }),
+
+    })
+    .then(response => response.json())
+    .then(data => console.log('SI jalo',data))
+    .catch(error => console.log("NO jalo",error))
+
+    
+    const eliminarProductoaDespuesdePostear = (productos) => {
+        productos = [];
+    }
+
+
+    const postearDefinitivamente = (productos) => {
+      postOrder();
+      eliminarProductoaDespuesdePostear(productos);
+    }
 
 
   return (
@@ -98,7 +127,7 @@ const Pedidos = ({navigation}) => {
           <Text style = {styles.buttonText}>Volver al Menú</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style ={styles.button}>
+        <TouchableOpacity style ={styles.button} onPress={postOrder}>
           <Text style = {styles.buttonText}>Enviar Pedido</Text>
         </TouchableOpacity>
 

@@ -1,14 +1,15 @@
+
 import React from 'react';
 import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { TextInput } from 'react-native-paper';
 
-
-const Welcome = () => {
+const Register = () => {
 
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('login');  // Navegar a la pantalla del tab navigator
+    navigation.navigate('Home');  // Navegar a la pantalla del tab navigator
   }
 
   return (
@@ -21,7 +22,6 @@ const Welcome = () => {
         style={styles.img}
         
        >
-        
 
         <View style = {styles.coloray}/>
 
@@ -32,18 +32,23 @@ const Welcome = () => {
           source={require( './Image-Source/Loho.png')}
       />
 
-
-          
-                <Text style = {styles.title}> CAFFETO </Text>
-                <Text style = {styles.text}> El aroma del pueblo</Text>
-                
+                <Text>Ingrese su nombre</Text>
+                <TextInput/>
+                <Text>Ingrese su numero Telefonico</Text>
+                <TextInput/>
+                <Text>Ingrese su ubicacion</Text>
+                <TextInput/>
+                <Text>Ingrese su correo electronico</Text>
+                <TextInput/>
+                <Text>Ingrese una nueva contraseña</Text>
+                <TextInput/>
 
                 <View style = {styles.button}>
 
                     <TouchableOpacity
                        onPress= {handlePress}
                     >
-                    <Text style = {styles.buttonText}> Continuar </Text>
+                    <Text style = {styles.buttonText}> Registrarse </Text>
 
                     </TouchableOpacity>
 
@@ -134,4 +139,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Welcome ;
+export default Register;

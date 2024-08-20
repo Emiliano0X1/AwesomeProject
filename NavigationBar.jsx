@@ -39,6 +39,10 @@ import milks from "./Screens/extraScreen/withMilk";
 import frappeExtra from "./Screens/extraScreen/frappeExtra";
 import toppingExtra from "./Screens/extraScreen/topping";
 
+//Loggin Screens
+
+import Welcome from './Screens/welcome';
+import Login from './Screens/Login';
 
 
 const Tab = createBottomTabNavigator();
@@ -130,62 +134,88 @@ function MenuStack () {
     );
 }
 
+function TabNavigator () {
+
+  return(
+  <Tab.Navigator
+      
+  initialRouteName="Home"
+  screenOptions={{
+    tabBarActiveTintColor: 'black',
+  }}
+>
+  <Tab.Screen 
+    name="Home" 
+    component={home} 
+    options={{
+      headerShown: false,
+      tabBarLabel :'Inicio',
+      tabBarIcon : ({color,size}) => (
+          <Entypo name ='home' color = {color} size={size} />
+      ),
+    }}
+    />
+  <Tab.Screen 
+    name="Menu" 
+    component={MenuStack} 
+    options={{
+      headerShown : false,
+      tabBarLabel :'Menú',
+      tabBarIcon : ({color,size}) => (
+          <MaterialCommunityIcons name ='coffee-to-go-outline' color = {color} size={size} />
+      ),
+    }}
+    />
+  <Tab.Screen 
+    name="Mi-Pedido" 
+    component={pedidoEs} 
+    options={{
+      headerShown : false,
+      tabBarLabel :'Mi Pedido',
+      tabBarIcon : ({color,size}) => (
+          <Entypo name ='shopping-cart' color = {color} size={size} />
+      ),
+    }}
+    />
+  <Tab.Screen 
+    name="Estatus" 
+    component={VerEstatus} 
+    options={{
+      headerShown : false,
+      tabBarLabel :'Ver Estatus',
+      tabBarIcon : ({color,size}) => (
+          <Entypo name ='hour-glass' color = {color} size={size} />
+      ),
+    }}
+    />
+
+</Tab.Navigator>
+)}
+
 function NewTab() {
     return (
+    <Stack.Navigator initialRouteName='welcome'>
 
-      <Tab.Navigator
-      
-        initialRouteName="Home"
-        screenOptions={{
-          tabBarActiveTintColor: 'black',
-        }}
-      >
-        <Tab.Screen 
-          name="Home" 
-          component={home} 
-          options={{
-            headerShown: false,
-            tabBarLabel :'Inicio',
-            tabBarIcon : ({color,size}) => (
-                <Entypo name ='home' color = {color} size={size} />
-            ),
-          }}
-          />
-        <Tab.Screen 
-          name="Menu" 
-          component={MenuStack} 
-          options={{
-            headerShown : false,
-            tabBarLabel :'Menú',
-            tabBarIcon : ({color,size}) => (
-                <MaterialCommunityIcons name ='coffee-to-go-outline' color = {color} size={size} />
-            ),
-          }}
-          />
-        <Tab.Screen 
-          name="Mi-Pedido" 
-          component={pedidoEs} 
-          options={{
-            headerShown : false,
-            tabBarLabel :'Mi Pedido',
-            tabBarIcon : ({color,size}) => (
-                <Entypo name ='shopping-cart' color = {color} size={size} />
-            ),
-          }}
-          />
-        <Tab.Screen 
-          name="Estatus" 
-          component={VerEstatus} 
-          options={{
-            headerShown : false,
-            tabBarLabel :'Ver Estatus',
-            tabBarIcon : ({color,size}) => (
-                <Entypo name ='hour-glass' color = {color} size={size} />
-            ),
-          }}
-          />
+      <Stack.Screen
+          name = 'welcome'
+          component={Welcome}
+          options= {{headerShown:false}}
+      />
 
-      </Tab.Navigator>
+      <Stack.Screen 
+          name = 'login'
+          component={Login}
+          options={{headerShown : false}}
+      />
+
+
+      <Stack.Screen
+          name = 'Main'
+          component={TabNavigator}
+          options={{headerShown : false}}
+      />
+
+      </Stack.Navigator>
     );
   }
   
