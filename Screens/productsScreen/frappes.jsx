@@ -7,7 +7,6 @@ import { OrderContext } from '../context';
 const Frappes = ({navigation}) => {
 
   const {productosMain,addProduct} = useContext(OrderContext);
-  
 
   /*
   const productos = [
