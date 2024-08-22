@@ -43,6 +43,7 @@ import toppingExtra from "./Screens/extraScreen/topping";
 
 import Welcome from './Screens/welcome';
 import Login from './Screens/Login';
+import Register from './Screens/Register';
 
 
 const Tab = createBottomTabNavigator();
@@ -207,7 +208,11 @@ function NewTab() {
           component={Login}
           options={{headerShown : false}}
       />
-
+      <Stack.Screen
+          name = 'register'
+          component={Register}
+          options={{headerShown : false}}
+      />
 
       <Stack.Screen
           name = 'Main'

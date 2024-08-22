@@ -7,8 +7,12 @@ const Welcome = () => {
 
   const navigation = useNavigation();
 
-  const handlePress = () => {
+  const handlePressLogin = () => {
     navigation.navigate('login');  // Navegar a la pantalla del tab navigator
+  }
+
+  const handlePressRegister = () => {
+    navigation.navigate('register');  // Navegar a la pantalla del tab navigator
   }
 
   return (
@@ -41,9 +45,16 @@ const Welcome = () => {
                 <View style = {styles.button}>
 
                     <TouchableOpacity
-                       onPress= {handlePress}
+                       onPress= {handlePressLogin}
                     >
-                    <Text style = {styles.buttonText}> Continuar </Text>
+                    <Text style = {styles.buttonText}> Iniciar Sesion </Text>
+
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                       onPress= {handlePressRegister}
+                    >
+                    <Text style = {styles.buttonText}> Registrarme </Text>
 
                     </TouchableOpacity>
 

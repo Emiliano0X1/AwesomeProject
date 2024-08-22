@@ -2,15 +2,21 @@
 import React from 'react';
 import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { TextInput } from 'react-native-paper';
+import { Card, TextInput } from 'react-native-paper';
 
 const Register = () => {
 
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('Home');  // Navegar a la pantalla del tab navigator
+    navigation.navigate('welcome');  // Navegar a la pantalla de inicio
   }
+
+  const [password, setPassword] = React.useState('');
+  const [shown, setShown] = React.useState(false); // Estado para mostrar/ocultar contraseña
+
+  const onChange = (text) => setPassword(text);
+
 
   return (
   
@@ -23,36 +29,40 @@ const Register = () => {
         
        >
 
+        <Text style = {styles.title}>CAFFETO</Text>
+
         <View style = {styles.coloray}/>
 
-          <View style = { styles.content}>
+              <View style = {styles.containerCards}>
 
-          <Image
-          style={styles.logo}
-          source={require( './Image-Source/Loho.png')}
-      />
+                <Card style = {styles.Card}>
 
-                <Text>Ingrese su nombre</Text>
-                <TextInput/>
-                <Text>Ingrese su numero Telefonico</Text>
-                <TextInput/>
-                <Text>Ingrese su ubicacion</Text>
-                <TextInput/>
-                <Text>Ingrese su correo electronico</Text>
-                <TextInput/>
-                <Text>Ingrese una nueva contraseña</Text>
-                <TextInput/>
+
+                <Text style={styles.text}>Nombre Completo</Text>
+                <TextInput style ={styles.textInput}/>
+                <Text style={styles.text}>Numero Telefonico (10 digitos)</Text>
+                <TextInput style ={styles.textInput}/>
+                <Text style={styles.text}>Ubicacion </Text>
+                <TextInput style ={styles.textInput}/>
+                <Text style={styles.text}>Ingrese su correo electronico</Text>
+                <TextInput style ={styles.textInput}/>
+                <Text style={styles.text}>Ingrese una nueva contraseña</Text>
+                <TextInput style ={styles.textInput} onChange={onChange} secureTextEntry={!shown} value = {password}/>
 
                 <View style = {styles.button}>
 
-                    <TouchableOpacity
+                    <TouchableOpacity 
                        onPress= {handlePress}
                     >
-                    <Text style = {styles.buttonText}> Registrarse </Text>
+                    <Text style = {styles.buttonText}> Crear Cuenta</Text>
 
                     </TouchableOpacity>
 
-                </View>
+
+                    </View>
+
+                </Card>
+
 
           </View>
 
@@ -93,14 +103,29 @@ const styles = StyleSheet.create({
     
   },
 
+  containerCards : {
+    padding: 10,
+    marginHorizontal : 30,
+  },
+
+  Card : {
+    backgroundColor : 'white',
+    marginTop : 10,
+    height: 450,
+    width : 350,
+    
+  },
+
   button : {
     padding : 5,
     borderRadius : 5,
     backgroundColor : 'black',
     borderColor : "white",
     alignItems : 'center',
+    marginTop : 60,
     width : 200,
     height : 40,
+    marginLeft : 75,
   
   },
 
@@ -115,6 +140,8 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 18,
     fontFamily : 'Roboto',
+    paddingLeft : 20,
+    marginTop : 30,
   },
 
   title : {
@@ -123,7 +150,14 @@ const styles = StyleSheet.create({
     fontSize: 46,
     fontFamily : 'Roboto',
     fontWeight : 'bold',
-    marginTop : 100,
+    marginTop : 30,
+  },
+
+  textInput : {
+    marginTop : 20,
+    width : 300,
+    backgroundColor: '#f5f5f5',
+    marginLeft : 18,
   },
 
   logo : {
