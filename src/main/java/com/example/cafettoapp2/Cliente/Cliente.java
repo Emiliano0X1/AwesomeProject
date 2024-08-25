@@ -17,18 +17,20 @@ public class Cliente {
     private String name;
     private Long phoneNumber;
     private String location;
+    private String email;
+    private String password;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "pedido_id")
     private List <Pedido> pedidos;
 
     public Cliente() {}
 
-    public Cliente(String name, Long phoneNumber, String location) {
+    public Cliente(String name, Long phoneNumber, String location,String email, String password) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.location = location;
-        this.pedidos = null;
+        this.email = email;
+        this.password = password;
     }
 
     public int getId() {
@@ -61,6 +63,22 @@ public class Cliente {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Pedido> getPedidos() {

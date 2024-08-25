@@ -14,4 +14,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     @Query
     Optional<Cliente> findById(int clienteId);
+
+    @Query
+    Optional<Cliente> findByEmail(String email);
 }

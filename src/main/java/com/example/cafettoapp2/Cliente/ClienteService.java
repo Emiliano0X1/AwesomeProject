@@ -25,10 +25,10 @@ public class ClienteService {
 
     public Cliente addNewCliente(Cliente cliente) {
 
-        Optional<Cliente> clienteByPhoneNumber = clienteRepository.findByPhoneNumber(cliente.getPhoneNumber());
+        Optional<Cliente> clienteById = clienteRepository.findByEmail(cliente.getEmail());
 
-        if (clienteByPhoneNumber.isPresent()) {
-            return clienteByPhoneNumber.get();
+        if(clienteById.isPresent()) {
+            throw new IllegalStateException("Este cliente ya existe");
         }
 
         return clienteRepository.save(cliente);
@@ -92,8 +92,8 @@ public class ClienteService {
 
         Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(() -> new IllegalStateException("No existe el Cliente con id " + clienteId));
 
-        if(pedido != null && !Objects.equals(cliente.getPedido(),pedido)) {
-            cliente.setPedido(pedido);
+        if(pedido != null && !Objects.equals(cliente.getPedidos().get(pedido.getId()),pedido)) {
+            cliente.getPedidos().get(pedido.getId());
         }
     }
 
