@@ -1,22 +1,82 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card, TextInput } from 'react-native-paper';
 
 const Register = () => {
 
+  const [name,setName] = useState('');
+  const [location,setLocation] = useState('');
+  const [phoneNumber,setPhoneNumber] = useState('');
+  const [email,setEmail] = useState('');
+
+  const [password, setPassword] = useState('');
+  const [shown, setShown] = useState(false); // Estado para mostrar/ocultar contraseña
+
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('welcome');  // Navegar a la pantalla de inicio
+
+  try{
+
+    if(name == null){
+      throw new Error('No existe el nombre');
+    }
+
+    postClienteFinal();
+
+    navigation.navigate('welcome');
+    
+  } catch (error){
+      Alert.alert("Ingrese los campos faltantes")
   }
 
-  const [password, setPassword] = React.useState('');
-  const [shown, setShown] = React.useState(false); // Estado para mostrar/ocultar contraseña
+}
+
 
   const onChange = (text) => setPassword(text);
 
+
+  const postClienteFinal = async () => {
+    console.log({ name, location, phoneNumber, email, password });
+
+    try {
+        const response = await fetch("http://192.168.1.72:8080/api/v1/cliente", {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, phoneNumber, location, email, password }),
+        });
+
+        console.log('Response Status:', response.status);
+
+        if (!response.ok) {
+            const errorText = await response.text(); 
+            throw new Error(`HTTP error! status: ${response.status}, ${errorText}`);
+        }
+
+        if (response.status === 201) {
+            console.log('Cliente creado exitosamente.');
+        } else {
+            const contentType = response.headers.get('Content-Type');
+            console.log(contentType);
+            if (contentType && contentType.includes('application/json')) {
+                const data = await response.json();
+                console.log(data);
+            } else {
+                console.error('Expected JSON, but got:', contentType);
+            }
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+  
 
   return (
   
@@ -35,19 +95,19 @@ const Register = () => {
 
               <View style = {styles.containerCards}>
 
-                <Card style = {styles.Card}>
+                <Card elevation = {4} style = {styles.Card}>
 
 
                 <Text style={styles.text}>Nombre Completo</Text>
-                <TextInput style ={styles.textInput}/>
-                <Text style={styles.text}>Numero Telefonico (10 digitos)</Text>
-                <TextInput style ={styles.textInput}/>
+                <TextInput style ={styles.textInput} placeholder='Ingresa tu nombre' onChangeText={(text) => setName(text)} />
+                <Text style={styles.text}>Numero Telefonico </Text>
+                <TextInput style ={styles.textInput} placeholder='Ingresa tu numero telefonico (10 DIGITOS)' onChangeText={(text) => setPhoneNumber(text)}/>
                 <Text style={styles.text}>Ubicacion </Text>
-                <TextInput style ={styles.textInput}/>
+                <TextInput style ={styles.textInput} placeholder='Ingresa tu Ubicacion' onChangeText={(text) => setLocation(text)}/>
                 <Text style={styles.text}>Ingrese su correo electronico</Text>
-                <TextInput style ={styles.textInput}/>
+                <TextInput style ={styles.textInput} placeholder='Ingresa tu correo' onChangeText={(text) => setEmail(text)}/>
                 <Text style={styles.text}>Ingrese una nueva contraseña</Text>
-                <TextInput style ={styles.textInput} onChange={onChange} secureTextEntry={!shown} value = {password}/>
+                <TextInput style ={styles.textInput} placeholder = 'Ingresa una contraseña de 8 digitos' onChangeText={onChange} secureTextEntry={!shown} value = {password}/>
 
                 <View style = {styles.button}>
 
@@ -111,7 +171,7 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 10,
-    height: 450,
+    height: 550,
     width : 350,
     
   },
@@ -119,7 +179,7 @@ const styles = StyleSheet.create({
   button : {
     padding : 5,
     borderRadius : 5,
-    backgroundColor : 'black',
+    backgroundColor : 'white',
     borderColor : "white",
     alignItems : 'center',
     marginTop : 60,
@@ -130,31 +190,29 @@ const styles = StyleSheet.create({
   },
 
   buttonText : {
-    color : 'white',
+    color : 'black',
     fontFamily : 'Iniria Serif-LightItalic',
     fontSize : 18,
   },
 
   text : {
-    marginVertical: 20,
+    marginVertical: 8,
     color: 'black',
     fontSize: 18,
     fontFamily : 'Roboto',
     paddingLeft : 20,
-    marginTop : 30,
+    marginTop : 10,
   },
 
   title : {
-    marginVertical: 20,
     color: 'black',
     fontSize: 46,
     fontFamily : 'Roboto',
     fontWeight : 'bold',
-    marginTop : 30,
   },
 
   textInput : {
-    marginTop : 20,
+    marginTop : 2,
     width : 300,
     backgroundColor: '#f5f5f5',
     marginLeft : 18,

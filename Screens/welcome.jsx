@@ -51,10 +51,14 @@ const Welcome = () => {
 
                     </TouchableOpacity>
 
+                    </View>
+
+                <View style = {styles.buttonWhite}>
+
                     <TouchableOpacity
                        onPress= {handlePressRegister}
                     >
-                    <Text style = {styles.buttonText}> Registrarme </Text>
+                    <Text style = {styles.buttonTextWhite}> Registrarme </Text>
 
                     </TouchableOpacity>
 
@@ -101,17 +105,30 @@ const styles = StyleSheet.create({
 
   button : {
     padding : 5,
-    borderRadius : 5,
+    marginBottom: 10,
     backgroundColor : 'black',
-    borderColor : "white",
     alignItems : 'center',
     width : 200,
     height : 40,
-  
+  },
+
+  buttonWhite : {
+    padding : 5,
+    marginBottom: 10,
+    backgroundColor : 'white',
+    alignItems : 'center',
+    width : 200,
+    height : 40,
   },
 
   buttonText : {
     color : 'white',
+    fontFamily : 'Iniria Serif-LightItalic',
+    fontSize : 18,
+  },
+
+  buttonTextWhite : {
+    color : 'black',
     fontFamily : 'Iniria Serif-LightItalic',
     fontSize : 18,
   },

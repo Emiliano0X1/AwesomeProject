@@ -16,7 +16,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
             useEffect(() => {
 
                 console.log("antes de feachear")
-                fetch("http://10.20.135.71:8080/api/v1/producto")
+                fetch("http://192.168.1.72:8080/api/v1/producto")
                 .then((res) => {
                     console.log("despues de fechear")
                     return res.json()
@@ -36,7 +36,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const fecthExtras = async () =>{
         try{
             useEffect(() => {
-                fetch("http://10.20.135.71:8080/api/v1/extra")
+                fetch("http://192.168.1.72:8080/api/v1/extra")
                 .then((res) =>{
                     return res.json()
                 })
