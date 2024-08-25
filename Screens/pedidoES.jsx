@@ -12,7 +12,7 @@ const Pedidos = ({navigation}) => {
   const {eliminarProducto} = useContext(OrderContext);
 
   
-    const postOrder = fetch("http://10.20.135.71/api/v1/pedidos",{
+    const postOrder = fetch("http://ID/api/v1/pedidos",{
 
       method : 'POST',
       headers : {

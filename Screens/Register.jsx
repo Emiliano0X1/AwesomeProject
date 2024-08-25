@@ -42,7 +42,7 @@ const Register = () => {
     console.log({ name, location, phoneNumber, email, password });
 
     try {
-        const response = await fetch("http://192.168.1.72:8080/api/v1/cliente", {
+        const response = await fetch("http://ID:8080/api/v1/cliente", {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
