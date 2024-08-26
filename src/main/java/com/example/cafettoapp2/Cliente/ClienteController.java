@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/cliente")
@@ -25,10 +26,10 @@ public class ClienteController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> addCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> addCliente(@RequestBody Cliente cliente) {
         System.out.println("Solicitud POST recibida : " + cliente);
-        clienteService.addNewCliente(cliente);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        Cliente newCliente = clienteService.addNewCliente(cliente);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newCliente);
     }
 
     @DeleteMapping(path = "{clienteId}")
