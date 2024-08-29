@@ -1,10 +1,18 @@
 
 import React from 'react';
+import {useForm,Controller} from 'react-hook-form';
 import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card, TextInput } from 'react-native-paper';
 
 const Loggin = () => {
+
+  const {control, handleSubmit , formState : {errors}} = useForm(); // Usare use form para la creacion del login
+
+  const OnSubmit = async (data) => { // Aqui estara toda la logica del login, desde hacer POST y la autenticacion
+    console.log(data);
+  }
+
 
   const navigation = useNavigation();
 
@@ -12,12 +20,12 @@ const Loggin = () => {
     navigation.navigate('Main');  // Navegar a la pantalla del tab navigator
   }
 
-  const [password, setPassword] = React.useState('');
+
   const [shown, setShown] = React.useState(false); // Estado para mostrar/ocultar contraseña
 
   const onChange = (text) => setPassword(text);
 
-
+  
   return (
   
     <View style={styles.container}>
@@ -38,15 +46,73 @@ const Loggin = () => {
                 <Card style = {styles.Card}>
 
         
-                <Text style={styles.text}>Ingrese su correo electronico</Text>
-                <TextInput style ={styles.textInput}/>
-                <Text style={styles.text}>Ingrese su contraseña</Text>
-                <TextInput style ={styles.textInput} onChange={onChange} secureTextEntry={!shown} value = {password}/>
+                  <Controller
+                      control={control}
+                      name='email'
+                      rules = {{
+                            required : 'Por favor ingrese su email',
+                            pattern : {
+                                value : /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                                message : 'Email Invalido'
+                            }
+                        }
+                      }
 
-                <View style = {styles.button}>
+                      render={({ field : {onChange, onBlur, value}}) => (
+
+                        <>
+                        <TextInput style = {styles.textInput} 
+                            placeholder='Ingrese su Email'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                           
+                        />
+
+                        {errors.email && <Text>{errors.email.message}</Text>}
+                        </>
+
+                      )
+                    }
+
+                  />
+
+                    <Controller
+                      control={control}
+                      name='password'
+                      rules = {{
+                            required : 'Por favor ingrese su contraseña',
+                            minLength :{
+                              value : 4,
+                              message : 'La contraseña debe contener mas de 4 caracteres'
+                            }
+                        }
+                      }
+
+                      render={({ field : {onChange, onBlur, value}}) => (
+
+                        <>
+                        <TextInput style = {styles.textInput} 
+                            placeholder='Ingrese su Contraseña'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                            secureTextEntry={!shown} 
+                         
+                        />
+
+                        {errors.password && <Text>{errors.password.message}</Text>}
+                        </>
+
+                      )
+                    }
+
+                  />
+
+              <View style = {styles.button}>
 
                     <TouchableOpacity 
-                       onPress= {handlePress}
+                       onPress= {handleSubmit(OnSubmit)}
                     >
                     <Text style = {styles.buttonText}> Iniciar Sesión </Text>
 
@@ -105,7 +171,7 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 10,
-    height: 450,
+    height: 300,
     width : 350,
     
   },
