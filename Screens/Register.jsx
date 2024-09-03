@@ -3,15 +3,22 @@ import React, { useState } from 'react';
 import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card, TextInput } from 'react-native-paper';
+import { Controller } from 'react-hook-form';
 
 const Register = () => {
 
+  const {control, handleSubmit , formState : {errors}} = useForm();
+
+  /*
   const [name,setName] = useState('');
   const [location,setLocation] = useState('');
   const [phoneNumber,setPhoneNumber] = useState('');
   const [email,setEmail] = useState('');
 
   const [password, setPassword] = useState('');
+
+  */
+
   const [shown, setShown] = useState(false); // Estado para mostrar/ocultar contraseña
 
   const navigation = useNavigation();
@@ -119,22 +126,144 @@ const Register = () => {
 
                 <Card elevation = {4} style = {styles.Card}>
 
+                  <Controller 
+                    control={control}
+                    name = 'name'
+                    rules = {{
+                      required : 'Ingrese su Nombre Completo',
+                      minLength : {
+                        value : 1,
+                        message : 'Por favor ingrese su nombre'
+                      }
+                    }}
+                    
 
-                <Text style={styles.text}>Nombre Completo</Text>
-                <TextInput style ={styles.textInput} placeholder='Ingresa tu nombre' onChangeText={(text) => setName(text)} />
-                <Text style={styles.text}>Numero Telefonico </Text>
-                <TextInput style ={styles.textInput} placeholder='Ingresa tu numero telefonico (10 DIGITOS)' onChangeText={(text) => setPhoneNumber(text)}/>
-                <Text style={styles.text}>Ubicacion </Text>
-                <TextInput style ={styles.textInput} placeholder='Ingresa tu Ubicacion' onChangeText={(text) => setLocation(text)}/>
-                <Text style={styles.text}>Ingrese su correo electronico</Text>
-                <TextInput style ={styles.textInput} placeholder='Ingresa tu correo' onChangeText={(text) => setEmail(text)}/>
-                <Text style={styles.text}>Ingrese una nueva contraseña</Text>
-                <TextInput style ={styles.textInput} placeholder = 'Ingresa una contraseña de 8 digitos' onChangeText={(text) => setPassword(text)} secureTextEntry={!shown} value = {password}/>
+                    render = {({field : {onChange,onBlur, value}}) => (
+                       <>
+                       <TextInput style = {styles.textInput}
+                        placeholder='Ingrese su Nombre Completo'
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+
+
+                       />
+
+                        {errors.name && <Text>{errors.name.message}</Text>}
+                       </>
+                    )
+                  
+                  
+                  }
+                  
+                  
+                  />
+
+
+                  <Controller 
+                    control={control}
+                    name = 'phoneNumber'
+                    rules = {{
+                      required : 'Ingrese su Numero Telefonico (10 digitos)',
+                      minLength : {
+                        value : 10,
+                        message : 'Por favor ingrese un numero telefonico valido'
+                      }
+                    }}
+                    
+
+                    render = {({field : {onChange,onBlur, value}}) => (
+                       <>
+                       <TextInput style = {styles.textInput}
+                        placeholder='Ingrese su numero de telefono'
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+
+
+                       />
+
+                        {errors.phoneNumber && <Text>{errors.phoneNumber.message}</Text>}
+                       </>
+                    )
+                  
+                  
+                  }
+                  
+                  
+                  />
+
+
+                    <Controller
+                      control={control}
+                      name='email'
+                      rules = {{
+                            required : 'Por favor ingrese su email',
+                            pattern : {
+                                value : /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                                message : 'Email Invalido'
+                            }
+                        }
+                      }
+
+                      render={({ field : {onChange, onBlur, value}}) => (
+
+                        <>
+                        <TextInput style = {styles.textInput} 
+                            placeholder='Ingrese su Email'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                           
+                        />
+
+                        {errors.email && <Text>{errors.email.message}</Text>}
+                        </>
+
+                      )
+                    }
+
+                  />
+
+                    <Controller
+                      control={control}
+                      name='password'
+                      rules = {{
+                            required : 'Por favor ingrese su contraseña',
+                            minLength :{
+                              value : 4,
+                              message : 'La contraseña debe contener mas de 4 caracteres'
+                            }
+                        }
+                      }
+
+                      render={({ field : {onChange, onBlur, value}}) => (
+
+                        <>
+                        <TextInput style = {styles.textInput} 
+                            placeholder='Ingrese su Contraseña'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                            secureTextEntry={!shown} 
+                         
+                        />
+
+                        {errors.password && <Text>{errors.password.message}</Text>}
+                        </>
+
+                      )
+                    }
+
+                    />
+
+
+                  
 
                 <View style = {styles.button}>
 
                     <TouchableOpacity 
-                       onPress= {handlePress}
+                       onPress= {handleSubmit(postClienteFinal)}
                     >
                     <Text style = {styles.buttonText}> Crear Cuenta</Text>
 

@@ -10,6 +10,7 @@ const Loggin = () => {
   const {control, handleSubmit , formState : {errors}} = useForm(); // Usare use form para la creacion del login
 
   const OnSubmit = async (data) => { // Aqui estara toda la logica del login, desde hacer POST y la autenticacion
+    
     console.log(data);
   }
 
