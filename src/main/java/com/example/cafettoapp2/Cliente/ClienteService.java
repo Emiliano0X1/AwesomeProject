@@ -21,6 +21,24 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
+    //Verificar Credenciales
+
+    public boolean verifyCliente(String email, String password) {
+
+        Optional<Cliente> clienteEmail = clienteRepository.findByEmail(email);
+
+        if (!clienteEmail.isPresent()) {
+            throw new IllegalStateException("No existe este cliente registrado");
+        }
+
+        else{
+            return Objects.equals(password,clienteEmail.get().getPassword());
+        }
+
+
+
+    }
+
     //POST Methods
 
     public Cliente addNewCliente(Cliente cliente) {
