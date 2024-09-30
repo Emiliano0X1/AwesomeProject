@@ -9,9 +9,14 @@ const Loggin = () => {
 
   const {control, handleSubmit , formState : {errors}} = useForm(); // Usare use form para la creacion del login
 
-  const OnSubmit = async (data) => { // Aqui estara toda la logica del login, desde hacer POST y la autenticacion
-    
-    console.log(data);
+  const OnSubmit = async () => { // Aqui estara toda la logica del login
+      try{
+
+        
+
+      }catch(error){
+          Alert.alert("Algo salio mal")
+      }
   }
 
 
@@ -113,7 +118,7 @@ const Loggin = () => {
               <View style = {styles.button}>
 
                     <TouchableOpacity 
-                       onPress= {handleSubmit(OnSubmit)}
+                       onPress= {handlePress}
                     >
                     <Text style = {styles.buttonText}> Iniciar Sesión </Text>
 

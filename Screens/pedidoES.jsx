@@ -11,6 +11,7 @@ const Pedidos = ({navigation}) => {
   const {productos,extras,total} = useContext(OrderContext);
   const {eliminarProducto} = useContext(OrderContext);
 
+
   
     const postOrder = fetch("http://ID/api/v1/pedidos",{
 
@@ -127,7 +128,7 @@ const Pedidos = ({navigation}) => {
           <Text style = {styles.buttonText}>Volver al Menú</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style ={styles.button} onPress={postOrder}>
+        <TouchableOpacity style ={styles.button} onPress={() => Alert.alert("El pedido se ha enviado con exito")}>
           <Text style = {styles.buttonText}>Enviar Pedido</Text>
         </TouchableOpacity>
 

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card, TextInput } from 'react-native-paper';
-import { Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 const Register = () => {
 
@@ -69,8 +69,9 @@ const Register = () => {
  // const onChange = (text) => setPassword(text);
 
 
-  const postClienteFinal = async () => {
-    console.log({ name, location, phoneNumber, email, password });
+  const postClienteFinal = async (data) => {
+
+    console.log('Datos enviados:', data); 
 
     try {
         const response = await fetch("http://ID:8080/api/v1/cliente", {
@@ -79,7 +80,7 @@ const Register = () => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name, phoneNumber, location, email, password }),
+            body: JSON.stringify(data),
         });
 
         console.log('Response Status:', response.status);
@@ -191,6 +192,33 @@ const Register = () => {
                   }
                   
                   
+                  />
+
+                      <Controller
+                      control={control}
+                      name='location'
+                      rules = {{
+                            required : 'Por favor ingrese su ubicación',
+                        }
+                      }
+
+                      render={({ field : {onChange, onBlur, value}}) => (
+
+                        <>
+                        <TextInput style = {styles.textInput} 
+                            placeholder='Ingrese su Ubicacion'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                           
+                        />
+
+                        {errors.location && <Text>{errors.location.message}</Text>}
+                        </>
+
+                      )
+                    }
+
                   />
 
 
@@ -322,7 +350,7 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 10,
-    height: 550,
+    height: 420,
     width : 350,
     
   },
@@ -333,7 +361,7 @@ const styles = StyleSheet.create({
     backgroundColor : 'white',
     borderColor : "white",
     alignItems : 'center',
-    marginTop : 60,
+    marginTop : 100,
     width : 200,
     height : 40,
     marginLeft : 75,
@@ -363,7 +391,7 @@ const styles = StyleSheet.create({
   },
 
   textInput : {
-    marginTop : 2,
+    marginTop : 15,
     width : 300,
     backgroundColor: '#f5f5f5',
     marginLeft : 18,
