@@ -35,8 +35,6 @@ const Welcome = () => {
           style={styles.logo}
           source={require( './Image-Source/Loho.png')}
       />
-
-
           
                 <Text style = {styles.title}> CAFFETO </Text>
                 <Text style = {styles.text}> El aroma del pueblo</Text>

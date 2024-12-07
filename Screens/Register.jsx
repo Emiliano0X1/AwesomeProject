@@ -74,7 +74,7 @@ const Register = () => {
     console.log('Datos enviados:', data); 
 
     try {
-        const response = await fetch("http://ID:8080/api/v1/cliente", {
+        const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/cliente", {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

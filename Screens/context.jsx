@@ -10,13 +10,18 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const [extras, setExtras] = useState ([]);
     const [extrasMain,setExtrasMain] = useState ([]);
     const [total,setTotal] = useState(0);
+    const [clienteId,setClienteId] = useState(0);
+
+    const getClienteId = (id) => {
+        setClienteId(id);
+    }
 
     const fecthProductos = async() => {
         try{
             useEffect(() => {
 
                 console.log("antes de feachear")
-                fetch("http://ID:8080/api/v1/producto")
+                fetch("https://cafettoapp-backend.onrender.com/api/v1/producto")
                 .then((res) => {
                     console.log("despues de fechear")
                     return res.json()
@@ -36,7 +41,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const fecthExtras = async () =>{
         try{
             useEffect(() => {
-                fetch("http://ID:8080/api/v1/extra")
+                fetch("https://cafettoapp-backend.onrender.com/api/v1/extra")
                 .then((res) =>{
                     return res.json()
                 })
@@ -122,7 +127,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
     return (
         <OrderContext.Provider // finalmente todas las funciones se exportan para poder ser usadas en lso componentes
-            value={{productos,total,extras,productosMain,extrasMain,addExtra,addProduct,eliminarProducto}}
+            value={{productos,total,extras,productosMain,extrasMain,clienteId,getClienteId,addExtra,addProduct,eliminarProducto}}
         >
         {children}
         </OrderContext.Provider>

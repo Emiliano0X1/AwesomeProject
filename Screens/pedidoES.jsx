@@ -8,12 +8,14 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const Pedidos = ({navigation}) => {
 
-  const {productos,extras,total} = useContext(OrderContext);
+  const fechaActual = new Date();
+  const fechaRenderizada = `${fechaActual.getFullYear()}-${(fechaActual.getMonth() + 1).toString().padStart(2, '0')}-${fechaActual.getDate().toString().padStart(2, '0')} ${fechaActual.getHours().toString().padStart(2, '0')}:${fechaActual.getMinutes().toString().padStart(2, '0')}:${fechaActual.getSeconds().toString().padStart(2, '0')}`;
+
+  const {productos,extras,total,clienteId} = useContext(OrderContext);
   const {eliminarProducto} = useContext(OrderContext);
 
-
-  
-    const postOrder = fetch("http://ID/api/v1/pedidos",{
+/*
+    const postOrder = fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/cliente/${clienteId}`,{
 
       method : 'POST',
       headers : {
@@ -22,7 +24,9 @@ const Pedidos = ({navigation}) => {
       },
 
       body: JSON.stringify({
-        cliente : 1,
+        status : 'ACEPTADO',
+        total: total,
+        fecha : fechaRenderizada,
         productos : productos
       }),
 
@@ -41,7 +45,7 @@ const Pedidos = ({navigation}) => {
       postOrder();
       eliminarProductoaDespuesdePostear(productos);
     }
-
+*/
 
   return (
     <SafeAreaView style = {styles.container}>
@@ -115,8 +119,6 @@ const Pedidos = ({navigation}) => {
       <View style = {styles.containerCards}>
         
         <Card style = {styles.CardTotal}>
-          <Text style = {styles.totalTittle}>Ingrese su nombre</Text>
-          <TextInput style = {styles.textInput}/>
           <Text style = {styles.totalTittle}>Total</Text>
           <Text style ={styles.cardText} > $ {total} pesos </Text>
         </Card>
@@ -128,7 +130,7 @@ const Pedidos = ({navigation}) => {
           <Text style = {styles.buttonText}>Volver al Menú</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style ={styles.button} onPress={() => Alert.alert("El pedido se ha enviado con exito")}>
+        <TouchableOpacity style ={styles.button} onPress={() => postOrder}>
           <Text style = {styles.buttonText}>Enviar Pedido</Text>
         </TouchableOpacity>
 
@@ -165,7 +167,7 @@ const styles = StyleSheet.create( {
   CardTotal : {
     backgroundColor : 'white',
     marginTop : 25,
-    height : 250,
+    height : 100,
     width : 300,
     position: 'relative',
   },
