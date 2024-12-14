@@ -18,45 +18,46 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
     const fecthProductos = async() => {
         try{
-            useEffect(() => {
+            console.log("antes de feachear")
+            const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/producto")
+            
+            if(!response.ok){
+                throw new Error('Hubo un problema con la obtencion de los datos')
+            }
 
-                console.log("antes de feachear")
-                fetch("https://cafettoapp-backend.onrender.com/api/v1/producto")
-                .then((res) => {
-                    console.log("despues de fechear")
-                    return res.json()
-                })
-                .then((data) => {
-                    console.log(data);
-                    setProductosMain(data);
-                    console.log(productosMain)
-                });
+            const data = response.json();
+            setProductosMain(data);
+            console.log('Si Jalo', data);
 
-            }, []);
         } catch (error){
             console.log("No jala")
         }
     }
+
+    useEffect(() => {
+        fecthProductos();
+    },[]);
     
     const fecthExtras = async () =>{
         try{
-            useEffect(() => {
-                fetch("https://cafettoapp-backend.onrender.com/api/v1/extra")
-                .then((res) =>{
-                    return res.json()
-                })
-                .then((data) => {
-                    console.log(data)
-                    setExtrasMain(data)
-                });
-            },[]);
+            const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/extra")
+
+            if(!response.ok){
+                throw new Error('Hubo un error en la optencion de los extras')
+            }
+
+            const data = response.json();
+            setExtrasMain(data);
+            console.log('extras',data);
+                
         } catch ( error){
             console.log("No jala")
         }
     }
 
-    fecthProductos();
-    fecthExtras();
+    useEffect(() => {
+        fecthExtras();
+    },[]);
 
     const addProduct = (producto,cantidad,extra) => {  // Aqui esta la logica para agregar el producto a la orden
 

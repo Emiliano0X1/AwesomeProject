@@ -14,8 +14,30 @@ const Pedidos = ({navigation}) => {
   const {productos,extras,total,clienteId} = useContext(OrderContext);
   const {eliminarProducto} = useContext(OrderContext);
 
-/*
-    const postOrder = fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/cliente/${clienteId}`,{
+
+  productos.map((producto) => {
+    console.log(producto.id)
+  })
+
+  const Pedido = {
+      status : 'EN REVISION',
+      total : total,
+      data : fechaRenderizada,
+      producto : 
+        productos.map((productoPedido) => ({
+            id : productoPedido.id,
+            extra : productoPedido.extras ? productoPedido.extras.map((extraPP) => ({
+                id : extraPP.id,
+            }))
+            : [],
+      }))
+  }
+
+  const postOrder = async() => {
+
+    try{
+
+      const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/cliente/${clienteId}`,{
 
       method : 'POST',
       headers : {
@@ -23,17 +45,30 @@ const Pedidos = ({navigation}) => {
         'Content-Type' : 'application/json',
       },
 
-      body: JSON.stringify({
-        status : 'ACEPTADO',
-        total: total,
-        fecha : fechaRenderizada,
-        productos : productos
-      }),
+      body: JSON.stringify(Pedido),
 
-    })
-    .then(response => response.json())
-    .then(data => console.log('SI jalo',data))
-    .catch(error => console.log("NO jalo",error))
+    });
+
+    console.log('Response Status:', response.status);
+
+        if (!response.ok) {
+
+          const errorData = await response.json();
+          if (response.status === 500 && errorData.message === 'Este cliente ya existe') {
+
+            Alert.alert('No se encontro el usuario. Por favor, use otro.');
+          } else {
+            Alert.alert('Ha ocurrido un error al procesar su solicitud.');
+          }
+        } else {
+            console.log('si jalo')
+        }
+
+      }catch(error){
+          Alert.alert("Hubo un error fatal en el sistema")
+      }
+
+    }
 
     
     const eliminarProductoaDespuesdePostear = (productos) => {
@@ -45,7 +80,7 @@ const Pedidos = ({navigation}) => {
       postOrder();
       eliminarProductoaDespuesdePostear(productos);
     }
-*/
+
 
   return (
     <SafeAreaView style = {styles.container}>
@@ -130,7 +165,7 @@ const Pedidos = ({navigation}) => {
           <Text style = {styles.buttonText}>Volver al Menú</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style ={styles.button} onPress={() => postOrder}>
+        <TouchableOpacity style ={styles.button} onPress={postearDefinitivamente}>
           <Text style = {styles.buttonText}>Enviar Pedido</Text>
         </TouchableOpacity>
 
