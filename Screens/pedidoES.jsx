@@ -46,7 +46,6 @@ const Pedidos = ({navigation}) => {
       },
 
       body: JSON.stringify(Pedido),
-
     });
 
     console.log('Response Status:', response.status);
