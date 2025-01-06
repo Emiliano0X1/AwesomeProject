@@ -9,23 +9,9 @@ import { OrderContext } from '../context';
 const Postres = ({navigation}) => {
 
   const {productosMain} = useContext(OrderContext)
-  /*
-  const productos = [
-    {name : 'Orden Donitas', precio : 27,id: 'P63' , extra : 'defaultExtra',type : 'Postre'},
-    {name : 'Volcán de Chocolate', precio : 40, id : 'P64', extra : 'defaultExtra',type : 'Postre'},
-    {name : 'Chispas', precio : 26, id : 'P65', extra : 'defaultExtra',type : 'Muffin'},
-    {name : 'Mora Azul', precio : 26, id : 'P66', extra : 'defaultExtra',type : 'Muffin'},
-    {name : 'Chocolate', precio : 26, id : 'P67', extra : 'defaultExtra',type : 'Muffin'},
-    {name : 'Roles', precio : 18, id : 'P68', extra : 'defaultExtra',type : 'Mini'},
-    {name : 'Brownies', precio : 18, id : 'P69', extra : 'defaultExtra',type : 'Mini'},
-    {name : 'Muffin', precio : 18, id : 'P70', extra : 'defaultExtra',type : 'Mini'},
-    {name : 'Orejitas', precio : 28, id : 'P71', extra : 'defaultExtra',type : 'Mini'},
-    {name : 'Elmo Gigantes', precio : 15, id : 'P72', extra : 'defaultExtra',type : 'Galletas'},
-  ];
-
-  */
-
+  
   const Postres = productosMain.filter(producto => producto.type === "Postre")
+  const Rebanadas = productosMain.filter(producto => producto.type === "Rebanadas")
   const Muffins = productosMain.filter(producto => producto.type === "Muffin")
   const Minis = productosMain.filter(producto => producto.type === "Mini")
   const Galletas = productosMain.filter(producto => producto.type === "Galletas")
@@ -57,6 +43,24 @@ const Postres = ({navigation}) => {
            </TouchableOpacity>
 
           ))}
+
+        </View>
+        
+        <Text style = {styles.subtitle}>Rebanadas</Text>
+
+        <View style = {styles.containerCards}>
+          {Rebanadas.map((producto) => {
+            <TouchableOpacity
+               key = {producto.id}
+               onPress={() => agregarProductoFinal(producto)}
+             >
+               <Card style = {styles.Card}>
+               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/rebanadaIcon.png')} />
+                   <Text style = {styles.cardTitle}> {producto.name}</Text>
+                   <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
+               </Card>
+            </TouchableOpacity>
+          })}
 
         </View>
 

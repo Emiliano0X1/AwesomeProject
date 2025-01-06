@@ -14,19 +14,22 @@ const Pedidos = ({navigation}) => {
   const {productos,extras,total,clienteId} = useContext(OrderContext);
   const {eliminarProducto} = useContext(OrderContext);
 
-
+  //Comentario para trolear
   productos.map((producto) => {
     console.log(producto.id)
   })
 
   const Pedido = {
       status : 'EN REVISION',
+      data : fechaActual,
       total : total,
-      data : fechaRenderizada,
       producto : 
         productos.map((productoPedido) => ({
             id : productoPedido.id,
-            extra : productoPedido.extras ? productoPedido.extras.map((extraPP) => ({
+            extras : Array.isArray(productoPedido.extras) && productoPedido.extras.length > 0 
+            ? productoPedido.extras
+            .filter((extraPP) => extraPP !== undefined && extraPP !== null)
+            .map((extraPP) => ({
                 id : extraPP.id,
             }))
             : [],
@@ -36,9 +39,10 @@ const Pedidos = ({navigation}) => {
   const postOrder = async() => {
 
     try{
-
+      console.log("Antes de enviar el pedido")
+      console.log(clienteId)
+      console.log(JSON.stringify(Pedido, null, 2));
       const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/cliente/${clienteId}`,{
-
       method : 'POST',
       headers : {
         Accept : 'application/json',
@@ -60,6 +64,7 @@ const Pedidos = ({navigation}) => {
             Alert.alert('Ha ocurrido un error al procesar su solicitud.');
           }
         } else {
+            Alert.alert('Se ha enviado el pedido con Exito');
             console.log('si jalo')
         }
 

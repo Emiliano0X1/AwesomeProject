@@ -23,7 +23,19 @@ const MainMenu = ({navigation}) => {
                   style = {styles.cardImg}
                   source={require('./Image-Source/latteMenu.jpg')}
                   />
-                  <Text style = {styles.cardTitle}>Bebidas Calientes</Text>
+                  <Text style = {styles.cardTitle}>Clásicos</Text>
+                </Card>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                onPress= {() => navigation.navigate('IcedLatte')}
+              >
+                <Card style = {styles.Card}>
+                <Card.Cover
+                  style = {styles.cardImg}
+                  source={require('./Image-Source/xd.jpg')}
+                  />
+                  <Text style = {styles.cardTitle}>Iced Latte</Text>
                 </Card>
             </TouchableOpacity>
 

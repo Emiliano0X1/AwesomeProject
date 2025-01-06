@@ -8,22 +8,6 @@ const Frappes = ({navigation}) => {
 
   const {productosMain,addProduct} = useContext(OrderContext);
 
-  /*
-  const productos = [
-    {name: "Capuchino",precio : '', precioMed : 43 ,precioGde :46 ,id : 'B17', extra : 'frappeExtra',type : 'Frappe'},
-    {name: "Chaí",precio : '', precioMed : 47 ,precioGde : 50 ,id : 'B18', extra : 'frappeExtra',type : 'Frappe'},
-    {name: "Chocolate Blanco",precio : '', precioMed : 46 ,precioGde :49 ,id : 'B19', extra : 'frappeExtra',type : 'Frappe'},
-    {name: "Fresa",precio : '', precioMed : 47 ,precioGde : 50 ,id : 'B20', extra : 'frappeExtra',type : 'Frappe'},
-    {name: "Matcha",precio : '', precioMed : 47 ,precioGde : 50,id : 'B21', extra : 'frappeExtra',type : 'Frappe'},
-    {name: "Mazapan",precio : '', precioMed : 46 ,precioGde : 49 ,id : 'B22', extra : 'frappeExtra',type : 'Frappe'},
-    {name: "Mocca",precio : '', precioMed : 45 ,precioGde : 48 ,id : 'B23', extra : 'frappeExtra',type : 'Frappe'},
-    {name: "Nutella",precio : '', precioMed : 47 ,precioGde : 50,id : 'B24', extra : 'frappeExtra',type : 'Frappe'},
-    {name: "Oreo",precio : '', precioMed : 46 ,precioGde :49 ,id : 'B25', extra : 'frappeExtra',type : 'Frappe'},
-    {name: "Taro",precio : '', precioMed : 47 ,precioGde :50 ,id : 'B26', extra : 'frappeExtra',type : 'Frappe'},
-  ];
-
-  */
-
   const Frappes = productosMain.filter(producto => producto.type === "Frappe")
 
   const agregarProductoFinal = (producto) => {

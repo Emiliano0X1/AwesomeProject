@@ -8,8 +8,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const Estatus = ({navigation}) => {
 
-  const {productos,extras,total} = useContext(OrderContext);
-  const {eliminarProducto} = useContext(OrderContext);
+  
 
 
 

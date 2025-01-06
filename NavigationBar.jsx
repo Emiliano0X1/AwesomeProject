@@ -31,6 +31,7 @@ import sodasItalianas from "./Screens/productsScreen/sodasItalianas";
 import refrescantes from "./Screens/productsScreen/refrescantes";
 import wafles from "./Screens/productsScreen/wafles";
 import postres from "./Screens/productsScreen/postres";
+import IcedLatte from './Screens/productsScreen/icedLatte';
 
 //Extra sCREENS
 
@@ -112,6 +113,10 @@ function MenuStack () {
            <Stack.Screen
             name = 'Postres'
             component = {postres}
+          />
+          <Stack.Screen
+            name = 'IcedLatte'
+            component = {IcedLatte}
           />
 
           <Stack.Screen
