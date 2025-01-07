@@ -16,6 +16,8 @@ const Postres = ({navigation}) => {
   const Minis = productosMain.filter(producto => producto.type === "Mini")
   const Galletas = productosMain.filter(producto => producto.type === "Galletas")
 
+  //console.log(Rebanadas);
+
   const agregarProductoFinal = (producto) => {
     navigation.navigate(producto.extraType,{producto});
   };
@@ -45,23 +47,26 @@ const Postres = ({navigation}) => {
           ))}
 
         </View>
-        
+
         <Text style = {styles.subtitle}>Rebanadas</Text>
 
         <View style = {styles.containerCards}>
-          {Rebanadas.map((producto) => {
-            <TouchableOpacity
-               key = {producto.id}
-               onPress={() => agregarProductoFinal(producto)}
-             >
-               <Card style = {styles.Card}>
-               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/rebanadaIcon.png')} />
-                   <Text style = {styles.cardTitle}> {producto.name}</Text>
-                   <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
-               </Card>
-            </TouchableOpacity>
-          })}
 
+          {Rebanadas.map((producto) => (
+
+         <TouchableOpacity
+              key={producto.id}
+              onPress={() => agregarProductoFinal(producto)}
+             
+            >
+              <Card style = {styles.Card}>
+              <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/muffinIcon.png')} />
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
+              </Card>
+           </TouchableOpacity>
+
+          ))}
         </View>
 
         <Text style = {styles.subtitle}>Muffins</Text>
@@ -125,7 +130,6 @@ const Postres = ({navigation}) => {
 
           ))}
         </View>
-
         
       </ScrollView>
     </SafeAreaView>
@@ -150,8 +154,8 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: 170,
-    width : 150,
+    height: 200,
+    width : 155,
     marginHorizontal : 10,
   },
 

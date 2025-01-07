@@ -39,6 +39,7 @@ import defaultExtra from "./Screens/extraScreen/defaultExtra";
 import milks from "./Screens/extraScreen/withMilk";
 import frappeExtra from "./Screens/extraScreen/frappeExtra";
 import toppingExtra from "./Screens/extraScreen/topping";
+import MilkTea from './Screens/extraScreen/withMilkTea';
 
 //Loggin Screens
 
@@ -134,6 +135,10 @@ function MenuStack () {
           <Stack.Screen
           name = 'toppingExtra'
           component = {toppingExtra}
+          />
+          <Stack.Screen
+          name = 'withMilkTea'
+          component={MilkTea}
           /> 
           
         </Stack.Navigator>

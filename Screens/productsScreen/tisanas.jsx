@@ -44,6 +44,7 @@ const Tisana= ({navigation}) => {
               <Card style = {styles.Card}>
                 <MaterialCommunityIcons style = {styles.iconStyle} name = 'kettle-steam-outline' color = 'black' size = {70}/>
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>{producto.description}</Text>
                   <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
@@ -74,8 +75,8 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: 170,
-    width : 150,
+    height: 220,
+    width : 160,
     marginHorizontal : 10,
   },
 

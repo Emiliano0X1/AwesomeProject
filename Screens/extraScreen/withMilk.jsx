@@ -11,16 +11,6 @@ const Milks = ({navigation,route}) => {
 
   const milks = extrasMain.filter(extra => extra.type === "Leche")
 
-  /*
-  const milks = [
-    {label : 'Entera', value : 'entera', price : 0,id : 'M1'},
-    {label : 'Deslactosada',value : 'deslactosada', price : 6,id : 'M2'},
-    {label : 'Almendras', value : 'almendras', price : 3, id : 'M3'},
-    {label : 'Linaza', value : 'linaza',price : 3, id : 'M4'},
-    {label : 'Avena', value : 'avena',price : 6, id : 'M5'},
-  ];
-  */
-
   const [checked, setChecked] = useState('');
 
   const checkCheked = (value) => {
