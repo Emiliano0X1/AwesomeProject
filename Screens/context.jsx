@@ -102,7 +102,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
                 if(Array.isArray(extrasArray) && extrasArray.length > 0){
                 // Sumar el precio de los extras asociados a ese producto
                     const extrasTotal = extrasArray.reduce((extraAcc, extra) => {
-                        return extraAcc + (extra.price || 0);
+                        return extraAcc + (extra.price * producto.cantidad || 0);
                 }, 0);
 
                 // Añadir el total del producto y sus extras al acumulador

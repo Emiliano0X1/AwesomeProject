@@ -11,12 +11,13 @@ const Pedidos = ({navigation}) => {
   const fechaActual = new Date();
   const fechaRenderizada = `${fechaActual.getFullYear()}-${(fechaActual.getMonth() + 1).toString().padStart(2, '0')}-${fechaActual.getDate().toString().padStart(2, '0')} ${fechaActual.getHours().toString().padStart(2, '0')}:${fechaActual.getMinutes().toString().padStart(2, '0')}:${fechaActual.getSeconds().toString().padStart(2, '0')}`;
 
-  const {productos,extras,total,clienteId} = useContext(OrderContext);
+  const {productos,extras,total,clienteId,cantidad} = useContext(OrderContext);
   const {eliminarProducto} = useContext(OrderContext);
 
+  console.log("Cantdad", cantidad)
   //Comentario para trolear
   productos.map((producto) => {
-    console.log(producto.id)
+    console.log("Por favor sirve" , producto.cantidad)
   })
 
   const Pedido = {

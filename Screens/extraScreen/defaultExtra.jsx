@@ -12,10 +12,6 @@ const DefaultExtra = ({navigation,route}) => {
   const {producto} = route.params;
   const [cantidad, setCantidad] = useState(1); // se inicializa en 1
 
-  const guardarProdcuto = async () => {
-
-    
-  }
 
   const agregarExtraFinal = () => {
       addProduct(producto,cantidad);
