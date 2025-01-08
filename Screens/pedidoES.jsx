@@ -14,8 +14,7 @@ const Pedidos = ({navigation}) => {
   const {productos,extras,total,clienteId,cantidad} = useContext(OrderContext);
   const {eliminarProducto} = useContext(OrderContext);
 
-  console.log("Cantdad", cantidad)
-  //Comentario para trolear
+
   productos.map((producto) => {
     console.log("Por favor sirve" , producto.cantidad)
   })
@@ -26,15 +25,15 @@ const Pedidos = ({navigation}) => {
       total : total,
       producto : 
         productos.map((productoPedido) => ({
-            id : productoPedido.id,
-            extras : Array.isArray(productoPedido.extras) && productoPedido.extras.length > 0 
-            ? productoPedido.extras
-            .filter((extraPP) => extraPP !== undefined && extraPP !== null)
-            .map((extraPP) => ({
-                id : extraPP.id,
-            }))
-            : [],
-      }))
+          id : productoPedido.id,
+          cantidad : productoPedido.cantidad,
+          extras : Array.isArray(productoPedido.extras) && productoPedido.extras.length > 0 ? productoPedido.extras
+          .filter((extraPP) => extraPP !== undefined && extraPP !== null)
+          .map((extraPP) => ({
+              id : extraPP.id,
+          }))
+          : [],
+    }))
   }
 
   const postOrder = async() => {

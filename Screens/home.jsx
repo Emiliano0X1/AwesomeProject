@@ -20,7 +20,7 @@ const Home = ({navigation}) => {
         </Text> 
 
       <Text style = {styles.text}> 
-        Hola, somos Caffeto una cafeteria donde no te puedes perder los amgnificos sabores que tenemos para ti
+        Hola, somos Caffeto una cafeteria donde no te puedes perder los magnificos sabores que tenemos para ti
         que esperas para ordenar.
       </Text>
 
