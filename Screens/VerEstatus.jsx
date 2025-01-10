@@ -1,45 +1,72 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, NativeAppEventEmitter } from 'react-native';
-import { Card, IconButton, TextInput} from 'react-native-paper';
+import { Button, Card, IconButton, TextInput} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderContext } from './context';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
-
 const Estatus = ({navigation}) => {
 
-  
+  const[pedidos, setPedidos] = useState([]);
+  const {clienteId} = useContext(OrderContext);
 
+  console.log("Hola soy la pantalla Estatus",clienteId)
 
+  const fetchPedidos = async() => {
+    try{
+      console.log("Antes del Fechear pedidos")
+      const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/${clienteId}`);
+      console.log("Despues de Fechar")
+      console.log(response.status);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+
+      
+      setPedidos(data);
+      console.log("Pedidos Data", data)
+    } catch(err){
+      Alert.alert('Ocurrio un error en el sistema, por favor intenta refrescar la aplicacion')
+    }
+  }
+
+  useEffect(() => {
+    fetchPedidos();
+  },[]);
 
   return (
     <SafeAreaView style = {styles.container}>
       <ScrollView>
 
-        <Text style = {styles.title}>Estatus del Pedido #1</Text>
+        <Text style = {styles.title}>Resumen del Pedido</Text>
 
-        <Text style = {styles.subtitle}> Orden </Text>
+        <Button style ={styles.button} onPress={fetchPedidos}>
+          <Text style={styles.buttonText}>Actualizar Historial</Text>
+        </Button>
 
-        <View style = {styles.containerCards}>
-          <Card style = {styles.Card}>
-            <Text style = {styles.cardText}>Producto : </Text>
-            <Text style = {styles.cardText}>Precio : </Text>
-            <Text style = {styles.cardText}>Extras: </Text>
-          </Card>
-        </View>
+        {pedidos !== undefined ? pedidos.map((pedido, index) => (
 
-        <Text style = {styles.subtitle}>Status : ACEPTADO</Text>
-        <Text style = {styles.subtitle}>Tiempo : 20 minutos</Text>
-        <Text style = {styles.subtitle}>Recoger : En sucursal</Text>
+          <View key={index} style = {styles.containerCards}>
+            
+            <Text style = {styles.subtitle}>Pedido {pedido.id}</Text>
 
-        <View style = {styles.buttonsContainer}>
+              <Card style = {styles.Card}>
 
-        <TouchableOpacity style = {styles.button} onPress={() => navigation.navigate('Menu')}>
-          <Text style = {styles.buttonText}>Cancelar Pedido</Text>
-        </TouchableOpacity>
+                <Text style = {styles.cardText}> Estatus del pedido : {pedido.status}</Text>
+                <Text style = {styles.cardText}> Total de la Orden : {pedido.total}</Text>
+                <Text style = {styles.cardText}> Fecha : {pedido.data}</Text>
 
+              </Card>
 
-      </View>
+          </View>
+          
+          
+        )) : <Text style = {styles.subtitle}>No hay pedidos registrados</Text>}
+
+        
+        <Text style={styles.subtitle}>Puede pasar a recoger sus productos en un tiempo entre 15 a 25 Minutos</Text>
+
 
       </ScrollView>
       </SafeAreaView>
@@ -54,16 +81,16 @@ const styles = StyleSheet.create( {
   },
 
   containerCards : {
-    padding: 10,
+    padding: 5,
     backgroundColor : 'white',
     alignItems: 'center',
   },
 
   Card : {
     backgroundColor : 'white',
-    marginTop : 25,
-    height : 365,
-    width : 300,
+    marginTop : 20,
+    height : 125,
+    width : 320,
     position: 'relative',
   },
 
@@ -97,6 +124,7 @@ const styles = StyleSheet.create( {
   },
 
   cardText : {
+    marginTop : 10,
     paddingLeft : 18,
     fontSize : 18,
     paddingBottom : 5,
@@ -123,10 +151,11 @@ const styles = StyleSheet.create( {
       fontWeight : 'bold',
   },
   button : {
-    marginTop : 70,
+    marginTop : 20,
+    marginLeft : 100,
     backgroundColor: 'black',
-    width : 180,
-    height: 50,
+    width : 220,
+    height: 42,
     borderRadius : 25,
 },
 
