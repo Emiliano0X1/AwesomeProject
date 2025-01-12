@@ -8,19 +8,8 @@ import { OrderContext } from '../context';
 const Refrescantes = ({navigation}) => {
 
   const{productosMain} = useContext(OrderContext)
-  /*
-  const productos = [
-    {name : 'Té Helado', precio : 30,id: 'B46' , extra : 'defaultExtra',type : 'Refrescantes'},
-    {name : 'Té Rojo', precio : 25, id : 'B47', extra : 'defaultExtra',type : 'Refrescantes'},
-    {name : 'Botella De Agua', precio : 12, id : 'B48', extra : 'defaultExtra',type : 'Refrescantes'},
-    {name : 'Latte En las Rocas', precio : 36, id : 'B49', extra : 'withMilk',type : 'Refrescantes'},
-    {name : 'Affogato', precio : 36, id : 'B50',extra : 'defaultExtra',type : 'Refrescantes'},
-  ];
-
-  */
-
+ 
   const Resfrescantes = productosMain.filter(producto => producto.type === "Refrescante")
-
 
   const agregarProductoFinal = (producto) => {
     navigation.navigate(producto.extraType,{producto});
@@ -34,7 +23,9 @@ const Refrescantes = ({navigation}) => {
 
         <View style = {styles.containerCards}>
         {Resfrescantes.map((producto) =>( 
-        <TouchableOpacity
+          
+        producto.active ? (
+          <TouchableOpacity
               key = {producto.id}
               onPress={() => agregarProductoFinal(producto)}
             >
@@ -45,6 +36,13 @@ const Refrescantes = ({navigation}) => {
               </Card>
            </TouchableOpacity>
 
+        ) : (
+          <Card style = {styles.Card} key={producto.id}>
+            <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+              <Text style = {styles.cardTitle}>{producto.name}</Text>
+              <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+          </Card> 
+        )
           ))}
         </View>
       </ScrollView>

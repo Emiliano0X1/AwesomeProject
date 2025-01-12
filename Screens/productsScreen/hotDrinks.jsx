@@ -25,22 +25,29 @@ const HotDrinks = ({navigation}) => {
 
         <View style = {styles.containerCards}>
           {hotDrinks.map((producto) => (
-            <TouchableOpacity
-              key = {producto.id}
-              onPress={() => agregarProductoFinal(producto)}
-            >
-              <Card style = {styles.Card}>
-                <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
-                  <Text style = {styles.cardTitle}> {producto.name} </Text>
-                  <Text style = {styles.cardSubtitle}> ${producto.price} pesos</Text>
-              </Card>
-           </TouchableOpacity>
+            
+            producto.active ? (
+              <TouchableOpacity
+                key = {producto.id}
+                onPress={() => agregarProductoFinal(producto)}
+              >
+                <Card style = {styles.Card}>
+                  <Ionicons style = {styles.iconStyle} name = 'cafe-outline' color = 'black' size = {70}/>
+                    <Text style = {styles.cardTitle}> {producto.name} </Text>
+                    <Text style = {styles.cardSubtitle}> ${producto.price} pesos</Text>
+                </Card>
+              </TouchableOpacity>
 
+            ) : (
+              <Card style = {styles.Card} key={producto.id}>
+                  <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                      <Text style = {styles.cardTitle}>{producto.name}</Text>
+                      <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+              </Card>
+            )
           ))}
            </View>
            
-
-
         </ScrollView>
 
     </SafeAreaView>
@@ -72,8 +79,12 @@ const styles = StyleSheet.create({
   },
 
   cardImg : {
-      padding: 18,
-      backgroundColor : 'white',
+    padding: 18,
+    backgroundColor : 'white',
+    height : 70,
+    width : 70,
+    alignSelf: 'center',
+    marginTop: 20,
   },
 
   cardTitle : {
@@ -103,6 +114,10 @@ const styles = StyleSheet.create({
   iconStyle : {
     alignSelf: 'center',
     marginTop: 20,
+  },
+  cardImg2 : {
+    height : 1,
+    width : 1,
   }
 
 

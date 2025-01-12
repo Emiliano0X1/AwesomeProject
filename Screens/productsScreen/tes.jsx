@@ -35,7 +35,9 @@ const Tes = ({navigation}) => {
         <View style = {styles.containerCards}>
 
         {Tes.map((producto) => ( 
-        <TouchableOpacity
+
+          producto.active ? (
+          <TouchableOpacity
               key={producto.id}
               onPress={() => agregarProductoFinal(producto)}
             >
@@ -46,7 +48,13 @@ const Tes = ({navigation}) => {
                   <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
-
+          ) : (
+            <Card style = {styles.Card} key={producto.id}>
+              <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+            </Card>
+          )
             ))}
 
         </View>

@@ -9,23 +9,6 @@ import { OrderContext } from '../context';
 const Wafles = ({navigation}) => {
 
   const {productosMain} = useContext(OrderContext)
-  /*
-  const productos = [
-    {name : 'Banana Mix', precio : 50,id: 'W51' , description : 'Cajeta, plátano, nuez y lechera', extra : 'toppingExtra',type : 'Waffle'},
-    {name : 'Cream Chesse', precio : 50, id : 'W52', description : 'Queso philadelphia, durazno y lechera',extra : 'toppingExtra',type : 'Waffle'},
-    {name : 'Silvestre', precio : 52, id : 'W53', description : 'Queso philadelphia, mermelada,fresa y lechera', extra : 'toppingExtra',type : 'Waffle'},
-    {name : 'Napolitano', precio : 60, id : 'W54', description : 'Nutella, fresa, queso philadelphia y lechera', extra : 'toppingExtra',type : 'Waffle'},
-    {name : 'Sanísimo', precio : 55, id : 'W55', description : 'Yogurt natural, kiwi, maple y granola' ,extra : 'toppingExtra',type : 'Waffle'},
-    {name : 'Tropical', precio : 72, id : 'W56', description : 'Durazno, fresa, kiwi, plátano,maple, granola y yogurt', extra : 'toppingExtra',type : 'Waffle'},
-    {name : 'Premium', precio : 77, id : 'W57', description : 'Helado de fresa, cereza,fresa, moras y crema batida',extra : 'toppingExtra',type : 'Waffle'},
-    {name : 'Ice', precio : 52, id : 'W58', description: 'Helado de vainilla, dulce de leche, plátano y frutillas',extra : 'toppingExtra',type : 'Waffle'},
-    {name : 'Fresa', precio : 48, id : 'W59', description: 'Nutella + Fruta',extra : 'toppingExtra',type : 'Waffle-Nutella'},
-    {name : 'Plátano', precio : 45, id : 'W60',description: 'Nutella + Fruta' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
-    {name : 'Durazno', precio : 50, id : 'W61',description: 'Nutella + Fruta' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
-    {name : 'Kiwi', precio : 50, id : 'W62',description: 'Nutella + Fruta' ,extra : 'toppingExtra',type : 'Waffle-Nutella'},
-  ];
-
-  */
 
    const Waffles = productosMain.filter(producto => producto.type === "Waffle")
    const WafflesNutella = productosMain.filter(producto => producto.type === "Waffle-Nutella")
@@ -42,8 +25,8 @@ const Wafles = ({navigation}) => {
 
         <View style = {styles.containerCards}>
         {Waffles.map((producto) => ( 
-
-        <TouchableOpacity
+        producto.active ? (
+          <TouchableOpacity
               key = {producto.id}
               onPress={() => agregarProductoFinal(producto)}  
             >
@@ -54,7 +37,13 @@ const Wafles = ({navigation}) => {
                   <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
-
+          ) : (
+            <Card style = {styles.Card} key={producto.id}>
+              <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+            </Card>
+          )
           ))}
 
           </View>

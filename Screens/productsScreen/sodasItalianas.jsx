@@ -9,17 +9,6 @@ const SodasItalianas = ({navigation}) => {
 
   const {productosMain} = useContext(OrderContext)
 
-  /*
-  const productos = [
-    {name : 'Manzana Verde', precio : 42,id: 'B41' , extra : 'defaultExtra',type : 'Soda Italiana'},
-    {name : 'Mora Azul', precio : 42, id : 'B42', extra : 'defaultExtra',type : 'Soda Italiana'},
-    {name : 'Cereza', precio : 42, id : 'B43', extra : 'defaultExtra',type : 'Soda Italiana'},
-    {name : 'Curacao Azul', precio : 42, id : 'B44', extra : 'defaultExtra',type : 'Soda Italiana'},
-    {name : 'Mango', precio : 42, id : 'B45',extra : 'defaultExtra',type : 'Soda Italiana'},
-  ];
-
-  */
-
   const SodasItalianas = productosMain.filter(producto => producto.type === "Soda Italiana")
 
   const agregarProductoFinal = (producto) => {
@@ -34,8 +23,9 @@ const SodasItalianas = ({navigation}) => {
 
         <View style = {styles.containerCards}>
         {SodasItalianas.map((producto) => ( 
-
-        <TouchableOpacity
+          
+          producto.active ? (
+          <TouchableOpacity
               key = {producto.id}
               onPress = {() => agregarProductoFinal(producto)}
             >
@@ -46,6 +36,13 @@ const SodasItalianas = ({navigation}) => {
               </Card>
            </TouchableOpacity>
 
+          ) : (
+            <Card style = {styles.Card} key={producto.id}>
+              <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+            </Card>
+          )
         ))}
         </View>
       </ScrollView>

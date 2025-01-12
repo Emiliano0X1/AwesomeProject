@@ -8,21 +8,7 @@ const Smoothies = ({navigation}) => {
 
   const {productosMain} = useContext(OrderContext)
 
-  /*
-
-  const productos = [
-    {name : 'Piña Colada', precio : 42,id: 'B35' , description : 'Piña, leche de coco y yogurt', extra : 'defaultExtra',type : 'Smoothie'},
-    {name : 'Plátano-Café', precio : 38, id : 'B36', description : 'Plátano, cacao, café y leche de almendras', extra : 'withMilk',type : 'Smoothie'},
-    {name : 'Kiwi', precio : 45, id : 'B37', description : 'Kiwi, plátano, yogurt, leche de almendras', extra : 'withMilk',type : 'Smoothie'},
-    {name : 'Manzana', precio : 50, id : 'B38',description : 'Manzana, yogurt, avena, crema de almendras, leche de almendras', extra : 'withMilk',type : 'Smoothie'},
-    {name : 'Frutos Rojos', precio : 50, id : 'B39', description : 'Fresa, moras, frambuesa y chía' ,extra : 'withMilk',type : 'Smoothie'},
-    {name : 'Durazno', precio : 45, id : 'B40', description : 'Durazno, manzana, avena y leche de almendras', extra : 'withMilk',type : 'Smoothie'},
-  ];
-
-  */
-
   const Smoothies = productosMain.filter(producto => producto.type === "Smoothie")
-
 
   console.log(Smoothies)
   const agregarProductoFinal = (producto) => {
@@ -39,6 +25,9 @@ const Smoothies = ({navigation}) => {
         <View style = {styles.containerCards}>
 
         {Smoothies.map((producto)=> ( 
+          
+
+          producto.active ? (
 
         <TouchableOpacity
               key = {producto.id}
@@ -52,7 +41,14 @@ const Smoothies = ({navigation}) => {
                   <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
-
+          ) : (
+            <Card style = {styles.Card} key={producto.id}>
+              <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                <Text style = {styles.cardTitle}>{producto.name}</Text>
+                <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+            </Card>
+          )
+          
           ))}
 
         </View>

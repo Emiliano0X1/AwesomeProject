@@ -32,6 +32,8 @@ const Postres = ({navigation}) => {
 
           {Postres.map((producto) => ( 
 
+          
+        producto.active ? (
         <TouchableOpacity
              key = {producto.id}
              onPress={() => agregarProductoFinal(producto)}
@@ -44,6 +46,13 @@ const Postres = ({navigation}) => {
               </Card>
            </TouchableOpacity>
 
+          ):(
+            <Card style = {styles.Card} key={producto.id}>
+              <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+            </Card>
+          )
           ))}
 
         </View>
@@ -54,6 +63,10 @@ const Postres = ({navigation}) => {
 
           {Rebanadas.map((producto) => (
 
+            <>
+
+          {producto.active ? (
+
          <TouchableOpacity
               key={producto.id}
               onPress={() => agregarProductoFinal(producto)}
@@ -66,6 +79,14 @@ const Postres = ({navigation}) => {
               </Card>
            </TouchableOpacity>
 
+          ) : (
+              <Card style = {styles.Card} key = {producto.id}>
+                <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+              </Card>
+          )}
+            </>
           ))}
         </View>
 
@@ -74,6 +95,8 @@ const Postres = ({navigation}) => {
         <View style = {styles.containerCards}>
 
           {Muffins.map((producto) => ( 
+            <>
+            {producto.active === true ? (
           <TouchableOpacity
               key = {producto.id}
               onPress={() => agregarProductoFinal(producto)}
@@ -84,7 +107,14 @@ const Postres = ({navigation}) => {
                   <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
-
+            ) : (
+              <Card style = {styles.Card} key = {producto.id}>
+                <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+              </Card>
+            )}
+            </>
           ))}
 
         </View>
@@ -94,6 +124,8 @@ const Postres = ({navigation}) => {
         <View style = {styles.containerCards}>
 
           {Minis.map((producto) => (
+            <>
+            {producto.active  ? (
 
          <TouchableOpacity
               key={producto.id}
@@ -107,6 +139,15 @@ const Postres = ({navigation}) => {
               </Card>
            </TouchableOpacity>
 
+            ) : (
+                <Card style = {styles.Card} key = {producto.id}>
+                  <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                      <Text style = {styles.cardTitle}>{producto.name}</Text>
+                      <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+                </Card>
+            )}
+          
+            </>
           ))}
         </View>
 
@@ -115,6 +156,8 @@ const Postres = ({navigation}) => {
         <View style = {styles.containerCards}>
 
           {Galletas.map((producto) => (
+            <>
+            {producto.active ? (
 
          <TouchableOpacity
               key={producto.id}
@@ -127,7 +170,14 @@ const Postres = ({navigation}) => {
                   <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
-
+            ) : (
+              <Card style = {styles.Card} key={producto.id}>
+                <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                  <Text style = {styles.cardTitle}>{producto.name}</Text>
+                  <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+              </Card>
+            )}
+            </>
           ))}
         </View>
         

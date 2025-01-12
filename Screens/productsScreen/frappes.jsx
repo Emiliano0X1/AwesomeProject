@@ -6,7 +6,7 @@ import { OrderContext } from '../context';
 
 const Frappes = ({navigation}) => {
 
-  const {productosMain,addProduct} = useContext(OrderContext);
+  const {productosMain} = useContext(OrderContext);
 
   const Frappes = productosMain.filter(producto => producto.type === "Frappe")
 
@@ -22,9 +22,11 @@ const Frappes = ({navigation}) => {
 
         <View style = {styles.containerCards}>
         {Frappes.map((producto) => ( 
-        <TouchableOpacity
-              key = {producto.id}
-              onPress={() => agregarProductoFinal(producto)}
+         
+          producto.active ? (
+            <TouchableOpacity
+                key = {producto.id}
+                onPress={() => agregarProductoFinal(producto)}
             >
               <Card style = {styles.Card}>
               <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/frappeIcon.jpg')} />
@@ -32,7 +34,16 @@ const Frappes = ({navigation}) => {
                   <Text style = {styles.cardSubtitle}> Med : ${producto.medPrice} pesos</Text>
                   <Text style = {styles.cardSubtitle}> Gde : ${producto.gdePrice} pesos</Text>
               </Card>
-           </TouchableOpacity>
+            </TouchableOpacity>
+
+            ) : (
+              
+                <Card style = {styles.Card} key={producto.id}>
+                  <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                    <Text style = {styles.cardTitle}>{producto.name}</Text>
+                    <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+                </Card>
+            )
 
           ))}
 

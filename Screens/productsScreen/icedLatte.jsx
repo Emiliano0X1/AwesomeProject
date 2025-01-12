@@ -23,6 +23,8 @@ const IcedLatte = ({navigation}) => {
         
                 <View style = {styles.containerCards}>
                   {icedLatte.map((producto) => (
+
+                  producto.active ? (
                     <TouchableOpacity
                       key = {producto.id}
                       onPress={() => agregarProductoFinal(producto)}
@@ -33,7 +35,14 @@ const IcedLatte = ({navigation}) => {
                           <Text style = {styles.cardSubtitle}> ${producto.price} pesos</Text>
                       </Card>
                    </TouchableOpacity>
-        
+
+                    ):(
+                        <Card style = {styles.Card} key = {producto.id}>
+                          <Image style={styles.cardImg} resizeMode='cover' source={require('./Icons/noExist.png')}/>
+                              <Text style = {styles.cardTitle}>{producto.name}</Text>
+                              <Text style = {styles.cardSubtitle}>No esta disponible</Text>
+                        </Card>
+                    )
                   ))}
                    </View>
                    
