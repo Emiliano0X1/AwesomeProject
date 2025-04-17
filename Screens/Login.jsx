@@ -1,10 +1,12 @@
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {useForm,Controller} from 'react-hook-form';
 import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card, TextInput } from 'react-native-paper';
 import { OrderContext } from '../Screens/context'
+
+import messaging from '@react-native-firebase/messaging';
 
 const Loggin = () => {
 
@@ -44,6 +46,8 @@ const Loggin = () => {
           Alert.alert('Se ha iniciado sesion con exito');
           console.log("Aignacion del email", data.id)
           getClienteId(data.id);
+
+          updateToken(data.id)
           handlePress();
     
         }
@@ -52,7 +56,73 @@ const Loggin = () => {
       }catch(error){
           Alert.alert("Hubo un error fatal en el sistema")
       }
+  };
+
+  async function requestUserPermission() {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  
+    if (enabled) {
+      console.log('Authorization status:', authStatus);
+    }
   }
+  
+  const generateToken = async () => { //This gets the device token for the push notifications
+    try {
+      const token = await messaging().getToken();
+  
+      if (token) {
+        console.log('Token:', token);
+        return token
+      } else {
+        console.log('No se pudo obtener el token');
+        return null
+      }
+    } catch (error) {
+      console.log('Error al obtener el token:', error);
+    }
+  };
+
+  useEffect(() => {
+    requestUserPermission()
+  },[])
+
+  const updateToken = async(cliente_id) => { //In this function we update the token for the client in the current device
+
+    try{
+
+    const token = await generateToken()
+    console.log("Tipo de token:", typeof token);
+    const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/cliente/${cliente_id}/token?token=${token}`, {
+      method : 'PATCH',
+      headers : {
+        Accept : 'application/json',
+        'Content-Type' : 'application/json'
+      },
+      credentials : 'include',
+    })
+
+
+    console.log('Repsonse status : ' , response.status)
+
+    if(!response.ok){
+      const errorData = await response.json()
+      console.log("No funciono correctamente", errorData)
+    }
+
+    else{
+      console.log('Funciona correctamente');
+    }
+
+  }catch(error){
+    console.log("Hubo un error fatal", error)
+  }
+
+
+}
+
 
 
   const navigation = useNavigation();

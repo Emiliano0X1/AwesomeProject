@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "108426778609",
+    "project_id": "caffeto-app-1f4f6",
+    "storage_bucket": "caffeto-app-1f4f6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108426778609:android:afcb331da9772a4915d650",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqS2A4rGiNMLrAonYaljFLaz9YugFlL9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

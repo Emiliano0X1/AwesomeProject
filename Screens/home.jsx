@@ -6,8 +6,28 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card } from 'react-native-paper';
 import Icons from 'react-native-vector-icons/AntDesign'
 import Icons2 from 'react-native-vector-icons/Entypo'
+import notifee from '@notifee/react-native';
 
 const Home = ({navigation}) => {
+
+  async function displayNotifications(){
+
+    const channelId = await notifee.createChannel({ //Channels are required for Android
+      id: 'default',
+      name : 'Default Channel'
+    })
+
+    await notifee.displayNotification({
+      title : 'Notification : DAY ONE',
+      body :'Estas navegando a Frappes',
+      android : {
+        channelId,
+        color: 'blue'
+      },
+    });
+
+    navigation.navigate('Frappes')
+}
 
   const componentes = {
     name : 'Caffeto',
@@ -27,11 +47,11 @@ const Home = ({navigation}) => {
       <View style = {styles.button}>
 
       <TouchableOpacity
-                       onPress= {() => navigation.navigate('Menu')}
-                    >
-                    <Text style = {styles.buttonText}> Hacer mi Pedido </Text>
+          onPress= {() => navigation.navigate('Menu')}
+          >
+        <Text style = {styles.buttonText}> Hacer mi Pedido </Text>
 
-                    </TouchableOpacity>
+      </TouchableOpacity>
 
       </View>
 
@@ -58,7 +78,7 @@ const Home = ({navigation}) => {
           <View style = {styles.cardButton}>
             <Button
               title = 'Ordenar Ahora'
-              onPress= {() => navigation.navigate('Frappes')}
+              onPress= {() => displayNotifications()}
               color = 'black'
               >
             </Button>
@@ -79,7 +99,7 @@ const Home = ({navigation}) => {
             <View style = {styles.cardButton}>
             <Button
               title = 'Ordenar Ahora'
-              onPress= {() => navigation.navigate('HotDrinks')}
+              onPress= {() => navigation.navigate('IcedLatte')}
               color = 'black'
               >
             </Button>

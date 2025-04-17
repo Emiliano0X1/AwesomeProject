@@ -2,7 +2,6 @@ import React from 'react';
 import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-
 const Welcome = () => {
 
   const navigation = useNavigation();
