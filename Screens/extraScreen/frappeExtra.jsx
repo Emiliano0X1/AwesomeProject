@@ -94,9 +94,11 @@ const FrappeExtra = ({navigation,route}) => {
     
     if(selectedButtons.includes('mediano')){
       producto.price = producto.medPrice;
+      producto.size = 'Mediano';
     }
     else{
       producto.price = producto.gdePrice;
+      producto.size = 'Grande';
     }
     console.log(producto.price);
   }
