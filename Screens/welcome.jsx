@@ -1,6 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Slider from './Components/slider';
+import { Button, Text } from 'react-native-paper';
 
 const Welcome = () => {
 
@@ -17,28 +19,26 @@ const Welcome = () => {
   return (
   
     <View style={styles.container}>
+      <View style = {styles.textMainContainer}>
+        <Text variant='headlineLarge' style = {{textAlign : 'center'}}>Bienvenido a CAFFETO OFFICIAL APP</Text>
+      </View>
+      
+      <View style = {styles.sliderContainer}>
+        <Slider></Slider>
+      </View>
 
-        <ImageBackground 
-        source={require('./Image-Source/fondoChilo.png')} 
-        resizeMode="cover" 
-        style={styles.img}
-        
-       >
-        
+      <View style = {styles.buttonsContainer}>
+        <Button mode='elevated' onPress={handlePressLogin} textColor='black' >
+            Iniciar Sesion
+        </Button>
 
-        <View style = {styles.coloray}/>
+        <Button mode='outlined' onPress={handlePressRegister} textColor='black'>
+          Crear Cuenta
+        </Button>
+      </View>
 
+        {/*
           <View style = { styles.content}>
-
-          <Image
-          style={styles.logo}
-          source={require( './Image-Source/Loho.png')}
-      />
-          
-                <Text style = {styles.title}> CAFFETO </Text>
-                <Text style = {styles.text}> El aroma del pueblo</Text>
-                
-
                 <View style = {styles.button}>
 
                     <TouchableOpacity
@@ -63,7 +63,8 @@ const Welcome = () => {
 
           </View>
 
-        </ImageBackground>
+        */}
+
 
       </View>
 
@@ -74,30 +75,34 @@ const Welcome = () => {
 const styles = StyleSheet.create({
 
   container : {
-    flex: 1,
-    justifyContent: 'center',
+    flex : 1,
+    justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor : '#F4E8D0',
+    paddingVertical : 140
   },
 
-  img : {
-    flex: 1,
-    justifyContent : 'center',
-    alignItems : 'center',
-    width: '100%',
-    height : '100%',
+  textMainContainer : {
+      position : 'absolute',
+      marginTop : 70,
+      alignItems : 'center',
+      justifyContent : 'flex-start',
+  },
+
+  sliderContainer : {
+    marginVertical : 20
+  },
+
+  buttonsContainer : {
+    flexDirection : 'row',
+    gap : 40,
     
-  },
-
-  coloray : {
-    ...StyleSheet.absoluteFillObject,
-     backgroundColor: 'rgba(0, 0, 0, 0.4)'
   },
 
   content: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 105.5,
-    
   },
 
   button : {
@@ -110,12 +115,8 @@ const styles = StyleSheet.create({
   },
 
   buttonWhite : {
-    padding : 5,
-    marginBottom: 10,
     backgroundColor : 'white',
-    alignItems : 'center',
-    width : 200,
-    height : 40,
+    color : 'black'
   },
 
   buttonText : {
@@ -136,26 +137,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily : 'Roboto',
   },
-
-  title : {
-    marginVertical: 20,
-    color: 'black',
-    fontSize: 46,
-    fontFamily : 'Roboto',
-    fontWeight : 'bold',
-    marginTop : 100,
-  },
-
-  logo : {
-    position: 'absolute',
-    alignItems : 'center',
-    top: -250,
-    width: 700,
-    height: 700,
-    marginBottom : 50,
-
-  }
-
 
 });
 

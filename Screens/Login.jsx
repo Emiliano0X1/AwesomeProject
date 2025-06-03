@@ -47,7 +47,7 @@ const Loggin = () => {
           console.log("Aignacion del email", data.id)
           getClienteId(data.id);
 
-          updateToken(data.id)
+          //updateToken(data.id)
           handlePress();
     
         }
@@ -58,6 +58,7 @@ const Loggin = () => {
       }
   };
 
+  /* A try of Auth
   async function requestUserPermission() {
     const authStatus = await messaging().requestPermission();
     const enabled =
@@ -123,6 +124,7 @@ const Loggin = () => {
 
 }
 
+*/
 
 
   const navigation = useNavigation();
