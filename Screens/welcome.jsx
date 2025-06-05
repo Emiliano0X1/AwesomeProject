@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Slider from './Components/slider';
 import { Button, Text } from 'react-native-paper';
+import { ImagesSlider } from "../Screens/Data/imagesSlide";
 
 const Welcome = () => {
 
@@ -19,12 +20,9 @@ const Welcome = () => {
   return (
   
     <View style={styles.container}>
-      <View style = {styles.textMainContainer}>
-        <Text variant='headlineLarge' style = {{textAlign : 'center'}}>Bienvenido a CAFFETO OFFICIAL APP</Text>
-      </View>
-      
+    
       <View style = {styles.sliderContainer}>
-        <Slider></Slider>
+        <Slider data={ImagesSlider}></Slider>
       </View>
 
       <View style = {styles.buttonsContainer}>
@@ -90,13 +88,13 @@ const styles = StyleSheet.create({
   },
 
   sliderContainer : {
-    marginVertical : 20
+    marginVertical : 20,
+    marginBottom : 80,
   },
 
   buttonsContainer : {
     flexDirection : 'row',
     gap : 40,
-    
   },
 
   content: {
