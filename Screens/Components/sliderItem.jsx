@@ -2,8 +2,9 @@ import { Text } from "react-native-paper";
 import { Dimensions, FlatList, Image, StyleSheet, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
-const {width} = Dimensions.get('screen')
- 
+const {width} = Dimensions.get('screen');
+
+
 const SliderItem = ({item,index}) => {
     return(
         <View style = {styles.itemContainer}>

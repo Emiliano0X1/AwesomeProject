@@ -1,5 +1,5 @@
-import { Linking, StyleSheet } from "react-native"
-import { IconButton } from "react-native-paper"
+import { Linking, StyleSheet, View } from "react-native"
+import { IconButton, Text } from "react-native-paper"
 import FontAwesome5Brands from "react-native-vector-icons/FontAwesome5"
 
 export default function FooterHome(){
@@ -34,14 +34,17 @@ export default function FooterHome(){
     }
     return (
         <View style = {styles.container}>
+
             <IconButton
-                icon={() => <FontAwesome5Brands name = 'facebook' size = {60} brand></FontAwesome5Brands>}
+                icon={() => <FontAwesome5Brands name = 'facebook' size = {40} brand></FontAwesome5Brands>}
+                size = {40}
                 onPress={() => openFacebook()}
             >
             </IconButton>
 
             <IconButton
-                icon={() => <FontAwesome5Brands name = 'instagram' size = {60} brand></FontAwesome5Brands>}
+                icon={() => <FontAwesome5Brands name = 'instagram' size = {40} brand></FontAwesome5Brands>}
+                size={40}
                 onPress={() => openInstagram()}
             >
             </IconButton>
@@ -51,9 +54,10 @@ export default function FooterHome(){
 
 const styles = StyleSheet.create({
     container: {
+        
         display : 'flex',
         flexDirection : 'row',
-        justifyContent : 'space-evenly',
+        justifyContent : 'space-around',
         alignItems : 'center'
     }
 })

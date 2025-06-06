@@ -2,7 +2,6 @@ import React from 'react';
 import { View,TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button, Card, Text } from 'react-native-paper';
-import Icons from 'react-native-vector-icons/AntDesign'
 import Icons2 from 'react-native-vector-icons/Entypo'
 import notifee from '@notifee/react-native';
 import HeaderHome from './Components/header';
@@ -32,6 +31,10 @@ const Home = ({navigation}) => {
     navigation.navigate('Frappes')
 }
 
+const handlePedidoNavigation = () => {
+  navigation.navigate('MainMenu')
+}
+
   return (
     <SafeAreaView style = {styles.container}>
       <ScrollView>
@@ -40,48 +43,53 @@ const Home = ({navigation}) => {
 
         <Slider data = {ImagesSlider}></Slider> 
 
-        <View> 
-          <Button mode='outlined' textColor='black'>Hacer mi Pedido</Button>
+        <View style = {styles.buttonContainer}> 
+          <Button mode='outlined' textColor='black' onPress={handlePedidoNavigation}>Hacer mi Pedido</Button>
         </View>
 
         <View>
-          <Text variant='headlineMedium'>Pedido Mas Reciente</Text>
-          <MoreRecentPedido></MoreRecentPedido>
+          <Text variant='headlineMedium' style = {{textAlign : 'center'}}>Pedido Mas Reciente</Text>
+          {/*<MoreRecentPedido></MoreRecentPedido>*/}
         </View>
 
         <View>
 
-          <Text variant='headlineMedium'>Somos Caffeto</Text>
-
-          <Text variant='bodyLarge' > 
+        <View style = {styles.textContainer}>
+          <Text variant='headlineMedium' style = {{textAlign : 'center'}}>Somos Caffeto</Text>
+          <Text variant='bodyLarge' style = {{textAlign : 'center' , marginTop : 10 , width : 350}} > 
             Hola, somos Caffeto una cafeteria en donde no te puedes perder los magnificos sabores que tenemos para ti
             que esperas para ordenar.
           </Text>
+        </View>
 
         </View>
 
+        <View style = {styles.iconsContainer}>
 
-        <View>
-            <Icons
-              style = {styles.Icons}
-              name = 'clockcircle'
+          <View style = {styles.iconStyle}>
+            <Icons2
+              name = 'clock'
               size = {35}
               color = 'black'            
             />
 
-            <Text style= {styles.subtext1}> Horarios : 6- 10 pm todos los dias</Text>
+            <Text variant='labelLarge'> Horarios : 6- 10 pm todos los dias</Text>
+            </View>
 
+          <View style = {styles.iconStyle}>
             <Icons2
-              style = {styles.Icons2}
               name = 'location-pin'
               size = {45}
               color = 'black' 
             />
 
-            <Text style= {styles.subtext2}> Ubicacion : Yehualtepec, Puebla, Mexico</Text>
+            <Text variant='labelLarge'> Ubicacion : Yehualtepec, Puebla, Mexico</Text>
+          </View>
+
 
         </View>
 
+        <Text>Siguenos en Nuestras Redes Sociales</Text>
         <FooterHome></FooterHome>
         
       </ScrollView>
@@ -94,96 +102,38 @@ const Home = ({navigation}) => {
 const styles = StyleSheet.create({
 
   container : {
-    backgroundColor : '#f5f5f5',
+    backgroundColor : '#FBF5E8',
     flex : 1,
   },
-  title : {
-    marginTop : 25,
-    fontSize : 50,
-    color: 'black',
-    textAlign : 'center',
-    fontWeight : 'bold',
-  },
 
-  button : {
-    marginLeft : 100,
-    width: '50%',
-    height : 40,
-    backgroundColor : 'black',
-    alignItems : ' center',
+  buttonContainer : {
+    alignItems : 'center',
     justifyContent : 'center',
+    padding : 10
   },
 
-  buttonText : {
-      fontSize : 18,
-      color : 'white',
-      textAlign : 'center',
-      
+  textContainer : {
+    display : 'flex',
+    marginTop : 10,
+    marginVertical : 20,
+    alignItems : 'center',
+    justifyContent : 'center',
+    padding : 5
   },
 
-
-  containerCards : {
-    padding: 10,
-    backgroundColor : 'white',
+  iconsContainer : {
+    display : 'flex',
+    justifyContent : 'center',
+    flexDirection : 'column'
   },
 
-  Card : {
-    backgroundColor : 'white',
-    marginTop : 25,
-  },
-
-  cardImg : {
-      padding: 18,
-      backgroundColor : 'white',
-  },
-
-  cardButton : {
-      width : '25%',
-      position : 'absolute',
-      backgroundColor : 'black',
-      marginLeft : '70%',
-      marginTop : '50%', 
-  },
-
-  cardTitle : {
-    paddingLeft : 18,
-    fontSize : 18,
-    paddingBottom : 5,
-  },
-
-  cardText : {
-    paddingLeft : 18,
-    fontSize : 18,
-    paddingBottom : 18,
-  },
-
-  Icons : {
-      flex: 1,
-      paddingLeft: 60,
-      paddingTop : 25,
-  },
-
-  Icons2 : {
-    flex: 1,
-    paddingLeft: 55,
-    paddingTop : 25,
-  },
-
-  subtext1 : {
-      position: 'absolute',
-      fontSize : 13,
-      marginTop : 35,
-      marginLeft : 100,
-      color: 'black',
-  },
-
-  subtext2 : {
-    position: 'absolute',
-    fontSize : 13,
-    marginTop : 100,
-    marginLeft : 100,
-    color: 'black',
-}
+  iconStyle : {
+    display : 'flex',
+    alignItems : 'center',
+    justifyContent : 'center',
+    flexDirection : 'row',
+    gap : 10
+  }
 
 
 });
