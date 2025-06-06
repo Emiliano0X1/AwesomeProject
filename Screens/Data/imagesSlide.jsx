@@ -25,6 +25,12 @@ export const ImagesSlider = [
         image : require("../Image-Source/pCaff-005.jpg"),
         description : "Ingresa sesion o registra una cuenta"
     },
+
+     {
+        title : 'Bienvenido a la Caffeto App',
+        image : require("../Image-Source/pCaff-006.jpg"),
+        description : "Ingresa sesion o registra una cuenta"
+    },
     
 
 ]

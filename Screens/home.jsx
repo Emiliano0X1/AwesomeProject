@@ -73,15 +73,16 @@ const handlePedidoNavigation = () => {
               color = 'black'            
             />
 
-            <Text variant='labelLarge'> Horarios : 6- 10 pm todos los dias</Text>
+            <Icons2
+              name = 'location-pin'
+              size = {40}
+              color = 'black' 
+            />
+
             </View>
 
           <View style = {styles.iconStyle}>
-            <Icons2
-              name = 'location-pin'
-              size = {45}
-              color = 'black' 
-            />
+            <Text variant='labelLarge' style = {{marginBottom : 18}}> Horarios : 6- 10 pm todos los dias</Text>
 
             <Text variant='labelLarge'> Ubicacion : Yehualtepec, Puebla, Mexico</Text>
           </View>
@@ -89,8 +90,10 @@ const handlePedidoNavigation = () => {
 
         </View>
 
-        <Text>Siguenos en Nuestras Redes Sociales</Text>
-        <FooterHome></FooterHome>
+        <View style = {styles.footerContainer}>
+          <Text variant='headlineSmall' style = {{textAlign : 'center'}}>Siguenos en Nuestras Redes Sociales</Text>
+          <FooterHome></FooterHome>
+        </View>
         
       </ScrollView>
       
@@ -124,15 +127,21 @@ const styles = StyleSheet.create({
   iconsContainer : {
     display : 'flex',
     justifyContent : 'center',
-    flexDirection : 'column'
+    flexDirection : 'row'
   },
 
   iconStyle : {
     display : 'flex',
-    alignItems : 'center',
+    alignItems : 'flex-start',
     justifyContent : 'center',
-    flexDirection : 'row',
-    gap : 10
+    flexDirection : 'column',
+    gap : 10,
+    padding : 8
+  },
+
+  footerContainer : {
+    marginTop : 30,
+    padding : 5
   }
 
 

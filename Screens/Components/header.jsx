@@ -1,14 +1,16 @@
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { IconButton, Text } from "react-native-paper";
 import AntDesign from 'react-native-vector-icons/AntDesign'
-
 
 export default function HeaderHome(){
 
     return(
     <View style = {styles.container}>
-        <Text variant="titleSmall">CAFFETO</Text>
-        
+        <Image 
+            source= {require('../Image-Source/logoMain.jpg')} 
+            style ={{height : 110, width : 110, resizeMode: 'contain'}}
+        >
+        </Image>
         <IconButton
             icon={() => <AntDesign name= 'user' size = {40}></AntDesign>}
             onPress={() => console.log("Profile")}
@@ -25,6 +27,7 @@ const styles = StyleSheet.create({
         flexDirection : 'row',
         justifyContent : 'space-between',
         alignItems : 'center',
-        padding : 20
+        paddingLeft : 20,
+        paddingRight : 20
     }
 })
