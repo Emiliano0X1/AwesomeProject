@@ -32,7 +32,7 @@ const Home = ({navigation}) => {
 }
 
 const handlePedidoNavigation = () => {
-  navigation.navigate('MainMenu')
+  navigation.navigate('Menu')
 }
 
   return (
@@ -49,45 +49,47 @@ const handlePedidoNavigation = () => {
 
         <View>
           <Text variant='headlineMedium' style = {{textAlign : 'center'}}>Pedido Mas Reciente</Text>
-          {/*<MoreRecentPedido></MoreRecentPedido>*/}
+          <MoreRecentPedido navigation={navigation}></MoreRecentPedido>
         </View>
 
         <View>
 
-        <View style = {styles.textContainer}>
-          <Text variant='headlineMedium' style = {{textAlign : 'center'}}>Somos Caffeto</Text>
-          <Text variant='bodyLarge' style = {{textAlign : 'center' , marginTop : 10 , width : 350}} > 
-            Hola, somos Caffeto una cafeteria en donde no te puedes perder los magnificos sabores que tenemos para ti
-            que esperas para ordenar.
-          </Text>
-        </View>
+          <View style = {styles.textContainer}>
+            <Text variant='headlineMedium' style = {{textAlign : 'center'}}>Somos Caffeto</Text>
+            <Text variant='bodyLarge' style = {{textAlign : 'center' , marginTop : 10 , width : 350}} > 
+              Hola, somos Caffeto una cafeteria en donde no te puedes perder los magnificos sabores que tenemos para ti
+              que esperas para ordenar.
+            </Text>
+          </View>
 
         </View>
 
         <View style = {styles.iconsContainer}>
-
           <View style = {styles.iconStyle}>
             <Icons2
               name = 'clock'
               size = {35}
               color = 'black'            
             />
-
             <Icons2
               name = 'location-pin'
               size = {40}
               color = 'black' 
             />
-
             </View>
 
           <View style = {styles.iconStyle}>
             <Text variant='labelLarge' style = {{marginBottom : 18}}> Horarios : 6- 10 pm todos los dias</Text>
-
-            <Text variant='labelLarge'> Ubicacion : Yehualtepec, Puebla, Mexico</Text>
+            <Text variant='labelLarge'> Ubicación : Yehualtepec, Puebla, Mexico</Text>
           </View>
+        </View>
 
-
+        <View style = {styles.imageContainer}>
+          <Image
+            source={require("../Screens/Image-Source/ubi.png")}
+            style = {styles.image}
+          >
+          </Image>
         </View>
 
         <View style = {styles.footerContainer}>
@@ -139,11 +141,27 @@ const styles = StyleSheet.create({
     padding : 8
   },
 
+  imageContainer : {
+    alignItems : 'center',
+    justifyContent : 'center'
+  },
+
+  image: {
+    width : 350, 
+    height : 300,
+    marginTop :  10,
+    alignItems : 'center',
+    borderRadius : 12,
+    elevation : 16,
+    shadowOffset : {width : 0, height : 4},
+    shadowOpacity : 0.25,
+    shadowRadius : 6
+  },
+
   footerContainer : {
     marginTop : 30,
     padding : 5
   }
-
 
 });
 
