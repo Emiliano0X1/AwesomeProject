@@ -19,7 +19,6 @@ export default function FooterHome(){
         }
 
     }
-        
     const openFacebook = async () => { //Estas funciones son para redirigir al usuario
         const urlWeb = 'https://www.facebook.com/CafettoYehualtepec';
         const urlApp = 'fb://page/CafettoYehualtepec';

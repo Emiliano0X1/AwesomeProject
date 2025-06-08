@@ -77,12 +77,12 @@ const styles = StyleSheet.create( {
 
   container : {
       flex : 1,
-      backgroundColor: 'white',
+      backgroundColor: '#FBF5E8',
   },
 
   containerCards : {
     padding: 5,
-    backgroundColor : 'white',
+    backgroundColor : '#FBF5E8',
     alignItems: 'center',
   },
 

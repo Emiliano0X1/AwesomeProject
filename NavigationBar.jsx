@@ -82,63 +82,78 @@ function MenuStack () {
            <Stack.Screen
             name = 'HotDrinks'
             component = {hotDrinks}
+            options={{ headerShown: false }}
           />
            <Stack.Screen
             name = 'Frappes'
             component = {frappes}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name = 'Tes'
             component = {tes}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name = 'Tisanas'
             component = {tisanas}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name = 'Smoothies'
             component = {smothies}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name = 'SodasItalianas'
             component = {sodasItalianas}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name = 'Refrescantes'
             component = {refrescantes}
+            options={{ headerShown: false }}
           />
            <Stack.Screen
             name = 'Wafles'
             component = {wafles}
+            options={{ headerShown: false }}
           />
            <Stack.Screen
             name = 'Postres'
             component = {postres}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name = 'IcedLatte'
             component = {IcedLatte}
+            options={{ headerShown: false }}
           />
 
           <Stack.Screen
           name = 'defaultExtra'
           component = {defaultExtra}
+          options={{ headerShown: false }}
           />  
           <Stack.Screen
           name = 'withMilk'
           component = {milks}
+          options={{ headerShown: false }}
           /> 
           <Stack.Screen
           name = 'frappeExtra'
           component = {frappeExtra}
+          options={{ headerShown: false }}
           /> 
           <Stack.Screen
           name = 'toppingExtra'
           component = {toppingExtra}
+          options={{ headerShown: false }}
           />
           <Stack.Screen
           name = 'withMilkTea'
           component={MilkTea}
+          options={{ headerShown: false }}
           /> 
           
         </Stack.Navigator>

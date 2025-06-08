@@ -80,7 +80,7 @@ const DefaultExtra = ({navigation,route}) => {
 const styles = StyleSheet.create({
 
     container : {
-        backgroundColor : '#f5f5f5',
+        backgroundColor : '#FBF5E8',
         flex : 1,
     },
 

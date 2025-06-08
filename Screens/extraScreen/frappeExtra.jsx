@@ -17,23 +17,6 @@ const FrappeExtra = ({navigation,route}) => {
 
   console.log(cremas)
 
-  /*
-
-  const milks = [
-    {label : 'Entera', value : 'entera', price : 0, id : 'M1'},
-    {label : 'Deslactosada',value : 'deslactosada', price : 6 , id: 'M2'},
-    {label : 'Almendras', value : 'almendras', price : 3 , id : 'M3'},
-    {label : 'Linaza', value : 'linaza',price : 3 , id : 'M4'},
-    {label : 'Avena', value : 'avena',price : 6 , id : 'M5'},
-];
-
-  const cremas = [
-  { label: 'Con Crema Extra',value: true, price: 5 ,id : 'C1'},
-  { label : 'Sin Crema Extra',value: false, price: 0, id : 'C2' }
-  ];
-
-  */
-
   //La eleccion de la leche
   const [size,setSize] = useState('');
   const [selectedMilk, setSelectecMilk] = useState ('');
@@ -240,7 +223,7 @@ const FrappeExtra = ({navigation,route}) => {
 const styles = StyleSheet.create({
 
     container : {
-        backgroundColor : '#f5f5f5',
+        backgroundColor : '#FBF5E8',
         flex : 1,
     },
 

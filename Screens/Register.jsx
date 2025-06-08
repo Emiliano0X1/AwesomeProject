@@ -111,22 +111,11 @@ const Register = () => {
   return (
   
     <View style={styles.container}>
-
-        <ImageBackground 
-        source={require('./Image-Source/fondoChilo.png')} 
-        resizeMode="cover" 
-        style={styles.img}
-        
-       >
-
-        <Text style = {styles.title}>CAFFETO</Text>
-
-        <View style = {styles.coloray}/>
-
+        <View style = {styles.containerText}>
+          <Text style = {styles.title}>Registrate a nuestra aplicación</Text>
+        </View>
               <View style = {styles.containerCards}>
-
                 <Card elevation = {4} style = {styles.Card}>
-
                   <Controller 
                     control={control}
                     name = 'name'
@@ -137,8 +126,6 @@ const Register = () => {
                         message : 'Por favor ingrese su nombre'
                       }
                     }}
-                    
-
                     render = {({field : {onChange,onBlur, value}}) => (
                        <>
                        <TextInput style = {styles.textInput}
@@ -146,20 +133,12 @@ const Register = () => {
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
-
-
                        />
-
-                        {errors.name && <Text>{errors.name.message}</Text>}
+                        {errors.name && <Text style = {styles.textError}>{errors.name.message}</Text>}
                        </>
-                    )
-                  
-                  
-                  }
-                  
-                  
+                    )                 
+                  }                                   
                   />
-
 
                   <Controller 
                     control={control}
@@ -184,16 +163,11 @@ const Register = () => {
 
                        />
 
-                        {errors.phoneNumber && <Text>{errors.phoneNumber.message}</Text>}
+                        {errors.phoneNumber && <Text style = {styles.textError}>{errors.phoneNumber.message}</Text>}
                        </>
                     )
-                  
-                  
                   }
-                  
-                  
                   />
-
                       <Controller
                       control={control}
                       name='location'
@@ -213,15 +187,13 @@ const Register = () => {
                            
                         />
 
-                        {errors.location && <Text>{errors.location.message}</Text>}
+                        {errors.location && <Text style = {styles.textError}>{errors.location.message}</Text>}
                         </>
 
                       )
                     }
 
                   />
-
-
                     <Controller
                       control={control}
                       name='email'
@@ -245,7 +217,7 @@ const Register = () => {
                            
                         />
 
-                        {errors.email && <Text>{errors.email.message}</Text>}
+                        {errors.email && <Text style = {styles.textError}>{errors.email.message}</Text>}
                         </>
 
                       )
@@ -277,7 +249,7 @@ const Register = () => {
                          
                         />
 
-                        {errors.password && <Text>{errors.password.message}</Text>}
+                        {errors.password && <Text style = {styles.textError}>{errors.password.message}</Text>}
                         </>
 
                       )
@@ -285,28 +257,15 @@ const Register = () => {
 
                     />
 
-
-                  
-
                 <View style = {styles.button}>
-
                     <TouchableOpacity 
                        onPress= {handleSubmit(postClienteFinal)}
                     >
                     <Text style = {styles.buttonText}> Crear Cuenta</Text>
-
                     </TouchableOpacity>
-
-
                     </View>
-
                 </Card>
-
-
           </View>
-
-        </ImageBackground>
-
       </View>
 
   );
@@ -319,20 +278,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor : '#FBF5E8'
   },
 
-  img : {
-    flex: 1,
-    justifyContent : 'center',
-    alignItems : 'center',
-    width: '100%',
-    height : '100%',
-    
+  textError : {
+    marginLeft : 18
   },
 
-  coloray : {
-    ...StyleSheet.absoluteFillObject,
-     backgroundColor: 'rgba(0, 0, 0, 0.4)'
+  containerText : {
+    marginTop : 10,
   },
 
   content: {
@@ -350,9 +304,8 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 10,
-    height: 420,
+    height: 480,
     width : 350,
-    
   },
 
   button : {
@@ -361,7 +314,7 @@ const styles = StyleSheet.create({
     backgroundColor : 'white',
     borderColor : "white",
     alignItems : 'center',
-    marginTop : 100,
+    marginTop : 50,
     width : 200,
     height : 40,
     marginLeft : 75,
@@ -380,7 +333,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily : 'Roboto',
     paddingLeft : 20,
-    marginTop : 10,
   },
 
   title : {
@@ -396,17 +348,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     marginLeft : 18,
   },
-
-  logo : {
-    position: 'absolute',
-    alignItems : 'center',
-    top: -250,
-    width: 700,
-    height: 700,
-    marginBottom : 50,
-
-  }
-
 
 });
 

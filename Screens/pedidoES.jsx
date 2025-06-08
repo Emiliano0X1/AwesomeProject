@@ -175,8 +175,6 @@ const Pedidos = ({navigation}) => {
 
       </View>
 
-      
-
       </ScrollView>
     </SafeAreaView>
   );
@@ -186,12 +184,12 @@ const styles = StyleSheet.create( {
 
   container : {
       flex : 1,
-      backgroundColor: 'white',
+      backgroundColor: '#FBF5E8',
   },
 
   containerCards : {
     padding: 10,
-    backgroundColor : 'white',
+    backgroundColor : '#FBF5E8',
     alignItems: 'center',
   },
 

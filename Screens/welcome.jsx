@@ -26,44 +26,14 @@ const Welcome = () => {
       </View>
 
       <View style = {styles.buttonsContainer}>
-        <Button mode='elevated' onPress={handlePressLogin} textColor='black' >
+        <Button mode='elevated' onPress={handlePressLogin} textColor='white' labelStyle = {{fontSize : 16}} buttonColor='black'>
             Iniciar Sesion
         </Button>
 
-        <Button mode='outlined' onPress={handlePressRegister} textColor='black'>
+        <Button mode='outlined' onPress={handlePressRegister} textColor='black' labelStyle = {{fontSize : 16}}>
           Crear Cuenta
         </Button>
       </View>
-
-        {/*
-          <View style = { styles.content}>
-                <View style = {styles.button}>
-
-                    <TouchableOpacity
-                       onPress= {handlePressLogin}
-                    >
-                    <Text style = {styles.buttonText}> Iniciar Sesion </Text>
-
-                    </TouchableOpacity>
-
-                    </View>
-
-                <View style = {styles.buttonWhite}>
-
-                    <TouchableOpacity
-                       onPress= {handlePressRegister}
-                    >
-                    <Text style = {styles.buttonTextWhite}> Registrarme </Text>
-
-                    </TouchableOpacity>
-
-                </View>
-
-          </View>
-
-        */}
-
-
       </View>
 
   );
@@ -103,38 +73,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 105.5,
   },
 
-  button : {
-    padding : 5,
-    marginBottom: 10,
-    backgroundColor : 'black',
-    alignItems : 'center',
-    width : 200,
-    height : 40,
-  },
-
-  buttonWhite : {
-    backgroundColor : 'white',
-    color : 'black'
-  },
-
-  buttonText : {
-    color : 'white',
-    fontFamily : 'Iniria Serif-LightItalic',
-    fontSize : 18,
-  },
-
-  buttonTextWhite : {
-    color : 'black',
-    fontFamily : 'Iniria Serif-LightItalic',
-    fontSize : 18,
-  },
-
-  text : {
-    marginVertical: 20,
-    color: 'black',
-    fontSize: 18,
-    fontFamily : 'Roboto',
-  },
 
 });
 

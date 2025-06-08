@@ -141,23 +141,14 @@ const Loggin = () => {
   return (
   
     <View style={styles.container}>
+        <View>
+          <Text style = {styles.title}>Bienvenido a CAFFETO, inicia sesión</Text>
+        </View>
 
-        <ImageBackground 
-        source={require('./Image-Source/fondoChilo.png')} 
-        resizeMode="cover" 
-        style={styles.img}
-        
-       >
-
-        <Text style = {styles.title}>CAFFETO</Text>
-
-        <View style = {styles.coloray}/>
-
-              <View style = {styles.containerCards}>
+            <View style = {styles.containerCards}>
 
                 <Card style = {styles.Card}>
 
-        
                   <Controller
                       control={control}
                       name='email'
@@ -181,7 +172,7 @@ const Loggin = () => {
                            
                         />
 
-                        {errors.email && <Text>{errors.email.message}</Text>}
+                        {errors.email && <Text style = {styles.textError}>{errors.email.message}</Text>}
                         </>
 
                       )
@@ -213,7 +204,7 @@ const Loggin = () => {
                          
                         />
 
-                        {errors.password && <Text>{errors.password.message}</Text>}
+                        {errors.password && <Text style = {styles.textError}>{errors.password.message}</Text>}
                         </>
 
                       )
@@ -237,9 +228,6 @@ const Loggin = () => {
 
 
           </View>
-
-        </ImageBackground>
-
       </View>
 
   );
@@ -252,6 +240,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor : '#FBF5E8'
+  },
+
+   textError : {
+    marginLeft : 18
   },
 
   img : {
@@ -261,11 +254,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height : '100%',
     
-  },
-
-  coloray : {
-    ...StyleSheet.absoluteFillObject,
-     backgroundColor: 'rgba(0, 0, 0, 0.4)'
   },
 
   content: {
@@ -313,16 +301,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily : 'Roboto',
     paddingLeft : 20,
-    marginTop : 30,
   },
 
   title : {
-    marginVertical: 20,
+    marginVertical: 30,
     color: 'black',
     fontSize: 46,
     fontFamily : 'Roboto',
     fontWeight : 'bold',
-    marginTop : 30,
+    marginTop : 5,
   },
 
   textInput : {

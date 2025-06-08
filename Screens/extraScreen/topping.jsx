@@ -12,17 +12,6 @@ const Topping = ({navigation,route}) => {
 
   const toppings = extrasMain.filter(extra => extra.type === "Topping")
 
-  /*
-  const toppings = [
-    {label : 'Oreo', value : 'oreo', price : 6,id : 'T1'},
-    {label : 'Lunetas',value : 'lunetas', price : 6,id : 'T2'},
-    {label : 'Frutas Extras', value : 'frutas extras', price : 6, id : 'T3'},
-    {label : 'Almendras Fileteadas', value : 'almendras fileteadas',price : 6, id : 'T4'},
-    {label : 'Crema Batida', value : 'crema batida',price : 6, id : 'T5'},
-    {label : 'Bola de Helado', value : 'bola de helado',price : 6, id : 'T6'},
-  ];
-  */
-
   const [checked, setChecked] = useState('');
 
   const checkCheked = (value) => {
@@ -136,7 +125,7 @@ const Topping = ({navigation,route}) => {
 const styles = StyleSheet.create({
 
     container : {
-        backgroundColor : '#f5f5f5',
+        backgroundColor : '#FBF5E8',
         flex : 1,
     },
 
@@ -188,7 +177,7 @@ const styles = StyleSheet.create({
   
     CheckboxText : {
       fontSize : 16,
-      color: 'gray',
+      color: 'black',
       marginLeft: 40,
       marginTop : -30,
     },
