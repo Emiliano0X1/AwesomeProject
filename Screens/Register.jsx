@@ -282,7 +282,8 @@ const styles = StyleSheet.create({
   },
 
   textError : {
-    marginLeft : 18
+    marginLeft : 18,
+    fontFamily : 'BricolageGrotesque-Regular'
   },
 
   containerText : {
@@ -323,7 +324,7 @@ const styles = StyleSheet.create({
 
   buttonText : {
     color : 'black',
-    fontFamily : 'Iniria Serif-LightItalic',
+    fontFamily : 'BricolageGrotesque-SemiBold',
     fontSize : 18,
   },
 
@@ -331,15 +332,14 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     color: 'black',
     fontSize: 18,
-    fontFamily : 'Roboto',
+    fontFamily : 'BricolageGrotesque-Regular',
     paddingLeft : 20,
   },
 
   title : {
     color: 'black',
-    fontSize: 46,
-    fontFamily : 'Roboto',
-    fontWeight : 'bold',
+    fontSize: 36,
+    fontFamily : 'BricolageGrotesque-Bold',
   },
 
   textInput : {
@@ -347,6 +347,7 @@ const styles = StyleSheet.create({
     width : 300,
     backgroundColor: '#f5f5f5',
     marginLeft : 18,
+    fontFamily : 'BricolageGrotesque-SemiBold'
   },
 
 });

@@ -26,11 +26,11 @@ const Welcome = () => {
       </View>
 
       <View style = {styles.buttonsContainer}>
-        <Button mode='elevated' onPress={handlePressLogin} textColor='white' labelStyle = {{fontSize : 16}} buttonColor='black'>
+        <Button mode='elevated' onPress={handlePressLogin} textColor='white' labelStyle = {{fontSize : 16, fontFamily : 'BricolageGrotesque-SemiBold'}} buttonColor='black'>
             Iniciar Sesion
         </Button>
 
-        <Button mode='outlined' onPress={handlePressRegister} textColor='black' labelStyle = {{fontSize : 16}}>
+        <Button mode='outlined' onPress={handlePressRegister} textColor='black' labelStyle = {{fontSize : 16 , fontFamily : 'BricolageGrotesque-SemiBold'}}>
           Crear Cuenta
         </Button>
       </View>

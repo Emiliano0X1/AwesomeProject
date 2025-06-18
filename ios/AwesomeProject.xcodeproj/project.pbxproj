@@ -14,6 +14,13 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-AwesomeProject-AwesomeProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-AwesomeProject-AwesomeProjectTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		C0B8CFB660464C29A11937C2 /* BricolageGrotesque-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1476FC69BA734B39AF5C9442 /* BricolageGrotesque-Bold.ttf */; };
+		967CAF87892E4332891870D8 /* BricolageGrotesque-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53C0472B0D3247F8A54A6A4C /* BricolageGrotesque-ExtraBold.ttf */; };
+		7EEF43405EB94487AF70DB86 /* BricolageGrotesque-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 921424F0CF4047138C26DE71 /* BricolageGrotesque-ExtraLight.ttf */; };
+		31C8A9936D46445CBF00F859 /* BricolageGrotesque-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 612F2D71D9C9456DA7B98BEB /* BricolageGrotesque-Light.ttf */; };
+		63C58D8FFE0D411CB174E1C7 /* BricolageGrotesque-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 638EC6EA9F234881B7E61114 /* BricolageGrotesque-Medium.ttf */; };
+		B2E78044C68449A58C2B4838 /* BricolageGrotesque-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 982F72EB74444D5C952E7ED0 /* BricolageGrotesque-Regular.ttf */; };
+		8F14A1CC0DC145F79D51F3F0 /* BricolageGrotesque-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 354FA07C36DE40C0B48022F3 /* BricolageGrotesque-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AwesomeProject/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AwesomeProject/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AwesomeProject/main.m; sourceTree = "<group>"; };
-	    13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = AwesomeProject/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = AwesomeProject/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-AwesomeProject-AwesomeProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AwesomeProject-AwesomeProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-AwesomeProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject.debug.xcconfig"; path = "Target Support Files/Pods-AwesomeProject/Pods-AwesomeProject.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-AwesomeProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject.release.xcconfig"; path = "Target Support Files/Pods-AwesomeProject/Pods-AwesomeProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -45,6 +52,13 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AwesomeProject/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig"; path = "Target Support Files/Pods-AwesomeProject-AwesomeProjectTests/Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		1476FC69BA734B39AF5C9442 /* BricolageGrotesque-Bold.ttf */ = {isa = PBXFileReference; name = "BricolageGrotesque-Bold.ttf"; path = "../assets/fonts/BricolageGrotesque-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		53C0472B0D3247F8A54A6A4C /* BricolageGrotesque-ExtraBold.ttf */ = {isa = PBXFileReference; name = "BricolageGrotesque-ExtraBold.ttf"; path = "../assets/fonts/BricolageGrotesque-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		921424F0CF4047138C26DE71 /* BricolageGrotesque-ExtraLight.ttf */ = {isa = PBXFileReference; name = "BricolageGrotesque-ExtraLight.ttf"; path = "../assets/fonts/BricolageGrotesque-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		612F2D71D9C9456DA7B98BEB /* BricolageGrotesque-Light.ttf */ = {isa = PBXFileReference; name = "BricolageGrotesque-Light.ttf"; path = "../assets/fonts/BricolageGrotesque-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		638EC6EA9F234881B7E61114 /* BricolageGrotesque-Medium.ttf */ = {isa = PBXFileReference; name = "BricolageGrotesque-Medium.ttf"; path = "../assets/fonts/BricolageGrotesque-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		982F72EB74444D5C952E7ED0 /* BricolageGrotesque-Regular.ttf */ = {isa = PBXFileReference; name = "BricolageGrotesque-Regular.ttf"; path = "../assets/fonts/BricolageGrotesque-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		354FA07C36DE40C0B48022F3 /* BricolageGrotesque-SemiBold.ttf */ = {isa = PBXFileReference; name = "BricolageGrotesque-SemiBold.ttf"; path = "../assets/fonts/BricolageGrotesque-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +138,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				D438E762139D470BB49D9326 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +164,21 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		D438E762139D470BB49D9326 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				1476FC69BA734B39AF5C9442 /* BricolageGrotesque-Bold.ttf */,
+				53C0472B0D3247F8A54A6A4C /* BricolageGrotesque-ExtraBold.ttf */,
+				921424F0CF4047138C26DE71 /* BricolageGrotesque-ExtraLight.ttf */,
+				612F2D71D9C9456DA7B98BEB /* BricolageGrotesque-Light.ttf */,
+				638EC6EA9F234881B7E61114 /* BricolageGrotesque-Medium.ttf */,
+				982F72EB74444D5C952E7ED0 /* BricolageGrotesque-Regular.ttf */,
+				354FA07C36DE40C0B48022F3 /* BricolageGrotesque-SemiBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +275,13 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				C0B8CFB660464C29A11937C2 /* BricolageGrotesque-Bold.ttf in Resources */,
+				967CAF87892E4332891870D8 /* BricolageGrotesque-ExtraBold.ttf in Resources */,
+				7EEF43405EB94487AF70DB86 /* BricolageGrotesque-ExtraLight.ttf in Resources */,
+				31C8A9936D46445CBF00F859 /* BricolageGrotesque-Light.ttf in Resources */,
+				63C58D8FFE0D411CB174E1C7 /* BricolageGrotesque-Medium.ttf in Resources */,
+				B2E78044C68449A58C2B4838 /* BricolageGrotesque-Regular.ttf in Resources */,
+				8F14A1CC0DC145F79D51F3F0 /* BricolageGrotesque-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -244,7 +244,8 @@ const styles = StyleSheet.create({
   },
 
    textError : {
-    marginLeft : 18
+    marginLeft : 18,
+    fontFamily : 'BricolageGrotesque-Regular'
   },
 
   img : {
@@ -271,7 +272,7 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 10,
-    height: 300,
+    height: 320,
     width : 350,
     
   },
@@ -291,7 +292,7 @@ const styles = StyleSheet.create({
 
   buttonText : {
     color : 'white',
-    fontFamily : 'Iniria Serif-LightItalic',
+    fontFamily : 'BricolageGrotesque-Regular',
     fontSize : 18,
   },
 
@@ -299,7 +300,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     color: 'black',
     fontSize: 18,
-    fontFamily : 'Roboto',
+    fontFamily : 'BricolageGrotesque-Regular',
     paddingLeft : 20,
   },
 
@@ -307,9 +308,8 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     color: 'black',
     fontSize: 46,
-    fontFamily : 'Roboto',
-    fontWeight : 'bold',
     marginTop : 5,
+    fontFamily : 'BricolageGrotesque-Bold'
   },
 
   textInput : {
@@ -317,6 +317,7 @@ const styles = StyleSheet.create({
     width : 300,
     backgroundColor: '#f5f5f5',
     marginLeft : 18,
+    fontFamily : 'BricolageGrotesque-Regular'
   },
 
   logo : {
