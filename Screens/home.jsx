@@ -44,19 +44,19 @@ const handlePedidoNavigation = () => {
         <Slider data = {ImagesSlider}></Slider> 
 
         <View style = {styles.buttonContainer}> 
-          <Button mode='outlined' textColor='black' onPress={handlePedidoNavigation}>Hacer mi Pedido</Button>
+          <Button mode='outlined' textColor='black' onPress={handlePedidoNavigation} labelStyle = {{fontFamily : 'BricolageGrotesque-SemiBold'}}>Hacer mi Pedido</Button>
         </View>
 
         <View>
-          <Text variant='headlineMedium' style = {{textAlign : 'center'}}>Pedido Mas Reciente</Text>
+          <Text variant='headlineMedium' style = {{textAlign : 'center', fontFamily : 'BricolageGrotesque-Bold'}}>Pedido Más Reciente</Text>
           <MoreRecentPedido navigation={navigation}></MoreRecentPedido>
         </View>
 
         <View>
 
           <View style = {styles.textContainer}>
-            <Text variant='headlineMedium' style = {{textAlign : 'center'}}>Somos Caffeto</Text>
-            <Text variant='bodyLarge' style = {{textAlign : 'center' , marginTop : 10 , width : 350}} > 
+            <Text variant='headlineMedium' style = {{textAlign : 'center', fontFamily : 'BricolageGrotesque-Bold'}}>Somos Caffeto</Text>
+            <Text variant='bodyLarge' style = {{textAlign : 'center' , marginTop : 10 , width : 350, fontFamily : 'BricolageGrotesque-Regular'}} > 
               Hola, somos Caffeto una cafeteria en donde no te puedes perder los magnificos sabores que tenemos para ti
               que esperas para ordenar.
             </Text>
@@ -79,8 +79,8 @@ const handlePedidoNavigation = () => {
             </View>
 
           <View style = {styles.iconStyle}>
-            <Text variant='labelLarge' style = {{marginBottom : 18}}> Horarios : 6- 10 pm todos los dias</Text>
-            <Text variant='labelLarge'> Ubicación : Yehualtepec, Puebla, Mexico</Text>
+            <Text variant='labelLarge' style = {{marginBottom : 18, fontFamily : 'BricolageGrotesque-SemiBold'}}> Horarios : 6- 10 pm todos los dias</Text>
+            <Text variant='labelLarge' style = {{fontFamily : 'BricolageGrotesque-SemiBold'}}> Ubicación : Yehualtepec, Puebla, Mexico</Text>
           </View>
         </View>
 
@@ -93,7 +93,7 @@ const handlePedidoNavigation = () => {
         </View>
 
         <View style = {styles.footerContainer}>
-          <Text variant='headlineSmall' style = {{textAlign : 'center'}}>Siguenos en Nuestras Redes Sociales</Text>
+          <Text variant='headlineSmall' style = {{textAlign : 'center', fontFamily : 'BricolageGrotesque-Bold'}}>Siguenos en Nuestras Redes Sociales</Text>
           <FooterHome></FooterHome>
         </View>
         
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   buttonContainer : {
     alignItems : 'center',
     justifyContent : 'center',
-    padding : 10
+    padding : 14
   },
 
   textContainer : {

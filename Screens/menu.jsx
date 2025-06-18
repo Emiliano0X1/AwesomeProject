@@ -173,7 +173,7 @@ const MainMenu = ({navigation}) => {
         fontSize : 18,
         paddingBottom : 5,
         color : 'black',
-        fontWeight : 'bold',
+        fontFamily : 'BricolageGrotesque-Bold'
       },
 
       title : {
@@ -182,7 +182,7 @@ const MainMenu = ({navigation}) => {
         textAlign : 'left',
         marginLeft : 20,
         color: 'black',
-        fontWeight : 'bold',
+        fontFamily : 'BricolageGrotesque-Bold'
       },
     
     

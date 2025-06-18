@@ -40,12 +40,12 @@ export default function MoreRecentPedido({navigation}){
                 <View style = {styles.cardInsideContainer}>
 
                     <View>
-                        <Text variant="labelLarge">Pedido #1 </Text>
+                        <Text variant="labelLarge" style = {{fontFamily : 'BricolageGrotesque-SemiBold'}}>Pedido #1 </Text>
                     </View>
 
                     <View style = {styles.rightView}>
                         <Ioicons name = 'timer-outline' size = {30}></Ioicons>
-                        <Text variant="labelLarge">{timeWait}</Text>
+                        <Text variant="labelLarge" style = {{fontFamily : 'BricolageGrotesque-SemiBold'}}>{timeWait}</Text>
                     </View>
                 </View>
             </Card>

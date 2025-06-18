@@ -27,7 +27,7 @@ const Welcome = () => {
 
       <View style = {styles.buttonsContainer}>
         <Button mode='elevated' onPress={handlePressLogin} textColor='white' labelStyle = {{fontSize : 16, fontFamily : 'BricolageGrotesque-SemiBold'}} buttonColor='black'>
-            Iniciar Sesion
+            Iniciar Sesión
         </Button>
 
         <Button mode='outlined' onPress={handlePressRegister} textColor='black' labelStyle = {{fontSize : 16 , fontFamily : 'BricolageGrotesque-SemiBold'}}>
