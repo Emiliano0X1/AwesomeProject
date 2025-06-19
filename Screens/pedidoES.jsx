@@ -204,7 +204,7 @@ const styles = StyleSheet.create( {
   CardTotal : {
     backgroundColor : 'white',
     marginTop : 25,
-    height : 100,
+    height : 110,
     width : 300,
     position: 'relative',
   },
@@ -218,8 +218,8 @@ const styles = StyleSheet.create( {
     position: 'absolute',
       width : '15%',
       backgroundColor : 'white',
-      marginLeft : '70%',
-      marginTop : '15%', 
+      marginLeft : '75%',
+      marginTop : '12%', 
       zIndex: 1,
   },
 

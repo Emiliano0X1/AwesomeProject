@@ -128,6 +128,7 @@ const styles = StyleSheet.create( {
     paddingLeft : 18,
     fontSize : 18,
     paddingBottom : 5,
+    fontFamily : 'BricolageGrotesque-Regular'
   },
 
   cardIcon : {
@@ -140,15 +141,17 @@ const styles = StyleSheet.create( {
     fontSize : 30,
     color: 'black',
     textAlign : 'center',
-    fontWeight : 'bold',
+    fontFamily : 'BricolageGrotesque-Bold'
   },
 
   subtitle : {
       marginLeft : 20,
+      marginRight : 20,
       marginTop : 25,
       fontSize : 20,
+      textAlign : 'center',
       color: 'black',
-      fontWeight : 'bold',
+      fontFamily : 'BricolageGrotesque-Regular'
   },
   button : {
     marginTop : 20,
@@ -165,6 +168,7 @@ buttonText : {
     alignContent: 'center',
     alignSelf: 'center',
     marginTop : 10,
+    fontFamily : 'BricolageGrotesque-SemiBold'
 },
 
 buttonsContainer : {
@@ -179,8 +183,8 @@ buttonsContainer : {
     paddingLeft : 18,
     marginTop: 20,
     color: 'black',
-    fontWeight : 'bold',
     fontSize : 24,
+    fontFamily : 'BricolageGrotesque-SemiBold'
   },
 
   textInput : {
