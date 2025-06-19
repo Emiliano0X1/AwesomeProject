@@ -10,16 +10,6 @@ const Tes = ({navigation}) => {
 
   const {addProduct,productosMain} = useContext(OrderContext);
 
-  /*
-  const productos = [
-    {name : 'Relax', precio : 25,id: 'B27' , extra : 'defaultExtra',type : 'Te'},
-    {name : 'Té Verde', precio : 25, id : 'B28', extra : 'defaultExtra',type : 'Te'},
-    {name : 'Rooibos Chocomenta', precio : 25, id : 'B29', extra : 'defaultExtra',type : 'Te'},
-    {name : 'Rooibos Mango', precio : 25, id : 'B30', extra : 'defaultExtra',type : 'Te'}
-  ];
-
-  */
-
   const Tes = productosMain.filter(producto => producto.type === "Tes")
 
   const agregarProductoFinal = (producto) => {
@@ -95,15 +85,15 @@ const styles = StyleSheet.create({
     fontSize : 18,
     paddingBottom : 5,
     color : 'black',
-    fontWeight : 'bold',
     textAlign: 'center',
+    fontFamily : 'BricolageGrotesque-SemiBold'
   },
 
   cardSubtitle : {
-    fontSize : 14,
+    fontSize : 13,
     textAlign: 'center',
     color : 'gray',
-
+    fontFamily : 'BricolageGrotesque-Regular'
   },
 
   title : {
@@ -112,7 +102,7 @@ const styles = StyleSheet.create({
     textAlign : 'left',
     marginLeft : 20,
     color: 'black',
-    fontWeight : 'bold',
+    fontFamily : 'BricolageGrotesque-Bold'
   },
 
   iconStyle : {

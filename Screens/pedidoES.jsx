@@ -196,7 +196,7 @@ const styles = StyleSheet.create( {
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height : 365,
+    height : 390,
     width : 300,
     position: 'relative',
   },
@@ -228,12 +228,14 @@ const styles = StyleSheet.create( {
     paddingLeft : 18,
     fontSize : 20,
     paddingBottom : 5,
+    fontFamily : 'BricolageGrotesque-Bold'
   },
 
   cardText : {
     paddingLeft : 18,
     fontSize : 18,
     paddingBottom : 5,
+    fontFamily : 'BricolageGrotesque-Regular'
   },
 
   cardIcon : {
@@ -246,7 +248,7 @@ const styles = StyleSheet.create( {
     fontSize : 50,
     color: 'black',
     textAlign : 'center',
-    fontWeight : 'bold',
+    fontFamily : 'BricolageGrotesque-Bold'
   },
   button : {
     marginTop : 70,
@@ -262,6 +264,7 @@ buttonText : {
     alignContent: 'center',
     alignSelf: 'center',
     marginTop : 10,
+    fontFamily : 'BricolageGrotesque-SemiBold'
 },
 
 buttonsContainer : {
@@ -276,21 +279,15 @@ buttonsContainer : {
     paddingLeft : 18,
     marginTop: 20,
     color: 'black',
-    fontWeight : 'bold',
     fontSize : 24,
-  },
-
-  textInput : {
-    marginTop : 20,
-    width : 220,
-    backgroundColor: '#f5f5f5',
-    marginLeft : 18,
+    fontFamily : 'BricolageGrotesque-Bold'
   },
 
   cardTextSeparator : {
     marginLeft : 18,
     fontSize : 16,
-    letterSpacing : 10
+    letterSpacing : 10,
+    fontFamily : 'BricolageGrotesque-Regular'
   }
   
 });

@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: 150,
+    height: 160,
     width : 150,
     marginHorizontal : 10,
   },
@@ -91,14 +91,15 @@ const styles = StyleSheet.create({
     fontSize : 18,
     paddingBottom : 5,
     color : 'black',
-    fontWeight : 'bold',
     textAlign: 'center',
+    fontFamily : 'BricolageGrotesque-SemiBold'
   },
 
   cardSubtitle : {
     fontSize : 14,
     textAlign: 'center',
     color : 'gray',
+    fontFamily : 'BricolageGrotesque-Regular'
 
   },
 
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     textAlign : 'left',
     marginLeft : 20,
     color: 'black',
-    fontWeight : 'bold',
+    fontFamily : 'BricolageGrotesque-Bold'
   },
 
   iconStyle : {

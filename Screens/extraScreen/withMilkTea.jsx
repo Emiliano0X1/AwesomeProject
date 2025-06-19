@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
       textAlign : 'left',
       marginLeft : 20,
       color: 'black',
-      fontWeight : 'bold',
+      fontFamily : 'BricolageGrotesque-Bold'
     },
 
     counterContainer : {
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     button : {
         marginTop : 30,
         backgroundColor: 'black',
-        width : 180,
+        width : 190,
         height: 50,
         borderRadius : 25,
     },
@@ -162,12 +162,14 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignSelf: 'center',
         marginTop : 10,
+        fontFamily : 'BricolageGrotesque-SemiBold'
     },
 
     text : {
         fontSize : 20,
         textAlign : 'center',
         alignItems : 'left',
+        fontFamily : 'BricolageGrotesque-Regular'
     },
 
     CheckboxConatiner : {
@@ -175,6 +177,7 @@ const styles = StyleSheet.create({
       alignItems: 'left',
       padding: 20,
       paddingBottom : 10,
+      
     },
   
     CheckboxText : {
@@ -182,6 +185,7 @@ const styles = StyleSheet.create({
       color: 'gray',
       marginLeft: 40,
       marginTop : -30,
+      fontFamily : 'BricolageGrotesque-Regular'
     },
 
     buttonsContainer : {

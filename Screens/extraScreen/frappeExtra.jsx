@@ -73,7 +73,6 @@ const FrappeExtra = ({navigation,route}) => {
   };
 
   const getSize = (producto) => {
-    console.log(producto.price);
     
     if(selectedButtons.includes('mediano')){
       producto.price = producto.medPrice;
@@ -83,7 +82,8 @@ const FrappeExtra = ({navigation,route}) => {
       producto.price = producto.gdePrice;
       producto.size = 'Grande';
     }
-    console.log(producto.price);
+    console.log("Precio del Producto" + producto.price);
+    console.log("Tamaño del Producto" + producto.size)
   }
 
   //El contador 
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
       textAlign : 'left',
       marginLeft : 20,
       color: 'black',
-      fontWeight : 'bold',
+      fontFamily : 'BricolageGrotesque-Bold'
     },
 
     counterContainer : {
@@ -258,12 +258,14 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignSelf: 'center',
         marginTop : 10,
+        fontFamily : 'BricolageGrotesque-SemiBold'
     },
 
     text : {
         fontSize : 20,
         textAlign : 'center',
         alignItems : 'left',
+        fontFamily : 'BricolageGrotesque-Regular'
     },
 
     CheckboxConatiner : {
@@ -278,6 +280,7 @@ const styles = StyleSheet.create({
       color: 'gray',
       marginLeft: 40,
       marginTop : -30,
+      fontFamily : 'BricolageGrotesque-Regular'
     },
 
     buttonsContainer : {

@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
       textAlign : 'left',
       marginLeft : 20,
       color: 'black',
-      fontWeight : 'bold',
+      fontFamily : 'BricolageGrotesque-Bold'
     },
 
     counterContainer : {
@@ -106,12 +106,13 @@ const styles = StyleSheet.create({
         fontSize : 20,
         textAlign : 'center',
         alignItems : 'left',
+        fontFamily : 'BricolageGrotesque-Regular'
     },
 
     button : {
       marginTop : 70,
       backgroundColor: 'black',
-      width : 180,
+      width : 190,
       height: 50,
       borderRadius : 25,
   },
@@ -122,6 +123,7 @@ const styles = StyleSheet.create({
       alignContent: 'center',
       alignSelf: 'center',
       marginTop : 10,
+      fontFamily : 'BricolageGrotesque-SemiBold'
   },
 
   buttonsContainer : {

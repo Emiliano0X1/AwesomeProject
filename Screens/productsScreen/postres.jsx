@@ -204,8 +204,8 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: 200,
-    width : 155,
+    height: 210,
+    width : 165,
     marginHorizontal : 10,
   },
 
@@ -219,18 +219,19 @@ const styles = StyleSheet.create({
   },
 
   cardTitle : {
-    fontSize : 18,
+    fontSize : 17,
     paddingBottom : 5,
     color : 'black',
-    fontWeight : 'bold',
     textAlign: 'center',
+    fontFamily : 'BricolageGrotesque-SemiBold'
   },
 
   cardSubtitle : {
-    fontSize : 14,
+    fontSize : 15,
     paddingBottom : 5,
     textAlign: 'center',
     color : 'gray',
+    fontFamily : 'BricolageGrotesque-Regular'
 
   },
 
@@ -240,7 +241,7 @@ const styles = StyleSheet.create({
     textAlign : 'left',
     marginLeft : 20,
     color: 'black',
-    fontWeight : 'bold',
+    fontFamily : 'BricolageGrotesque-Bold'
   },
 
   subtitle : {
@@ -249,7 +250,7 @@ const styles = StyleSheet.create({
     textAlign : 'left',
     marginLeft : 20,
     color: 'black',
-    fontWeight : 'bold',
+    fontFamily : 'BricolageGrotesque-Bold'
   },
 
   iconStyle : {
