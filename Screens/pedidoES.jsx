@@ -17,6 +17,7 @@ const Pedidos = ({navigation}) => {
 
   productos.map((producto) => {
     console.log("Por favor sirve" , producto.cantidad)
+    console.log(JSON.stringify(producto))
   })
 
   const Pedido = {
@@ -28,10 +29,8 @@ const Pedidos = ({navigation}) => {
           id : productoPedido.id,
           cantidad : productoPedido.cantidad,
           extras : Array.isArray(productoPedido.extras) && productoPedido.extras.length > 0 ? productoPedido.extras
-          .filter((extraPP) => extraPP !== undefined && extraPP !== null)
-          .map((extraPP) => ({
-              id : extraPP.id,
-          }))
+          .filter((extraPP) => extraPP && extraPP !== undefined && typeof extraPP.id === 'number')
+          .map((extraPP) => ({id : extraPP.id}))
           : [],
     }))
   }

@@ -1,28 +1,64 @@
+
 import React, {useContext, useEffect, useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, NativeAppEventEmitter } from 'react-native';
-import { Button, Card, IconButton, TextInput} from 'react-native-paper';
+import { View,  StyleSheet, ScrollView, TouchableOpacity, Alert, NativeAppEventEmitter } from 'react-native';
+import { Button, Card, IconButton, TextInput, Text} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { OrderContext } from './context';
+import { OrderContext } from '../context';
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import SeparatorByStatus from './Components/separatorAppVersion';
-
-const Estatus = () => {
-
-  return (
-    <SafeAreaView style = {styles.container}>
-      <ScrollView>
-
-        <Text style = {styles.title}>Resumen del Pedido</Text>
-
-        <SeparatorByStatus></SeparatorByStatus>
-
-        <Text style={styles.subtitle}>Puede pasar a recoger sus productos en un tiempo entre 15 a 25 Minutos</Text>
 
 
-        </ScrollView>
-      </SafeAreaView>
-  );
-};
+const PedidoCard = ({status}) => {
+    const [pedidos, setPedidos] = useState([]);
+    const {clienteId} = useContext(OrderContext);
+    
+    console.log("Hola soy la pantalla Estatus",clienteId)
+    
+    const fetchPedidos = async() => {
+        try{
+          console.log("Antes del Fechear pedidos")
+          const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/cliente/status/${clienteId}?status=${status}`);
+          console.log("Despues de Fechar")
+          console.log(response.status);
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();    
+          setPedidos(data);
+          console.log("Pedidos Data", data)
+        } catch(err){
+          Alert.alert('Ocurrio un error en el sistema, por favor intenta refrescar la aplicacion')
+        }
+      }
+    
+      useEffect(() => {
+        fetchPedidos();
+      },[]);
+
+    return(
+    <View style = {styles.container}>
+        {pedidos !== undefined ? pedidos.map((pedido, index) => (
+        
+            <View key={index} style = {styles.containerCards}>
+                    
+                <Text style = {styles.subtitle}>Pedido {pedido.pedido_id}</Text>
+        
+                      <Card style = {styles.Card}>
+        
+                        <Text style = {styles.cardText}> Estatus del pedido : {pedido.status}</Text>
+                        <Text style = {styles.cardText}> Total de la Orden : {pedido.total}</Text>
+                        <Text style = {styles.cardText}> Fecha : {pedido.date}</Text>
+        
+                      </Card>
+        
+                  </View>
+                    
+                )) : <Text style = {styles.subtitle}>No hay pedidos registrados</Text>}
+        </View>
+    )
+}
+
+export default PedidoCard;
+
 
 const styles = StyleSheet.create( {
 
@@ -152,4 +188,3 @@ buttonsContainer : {
   }
 
 });
-export default Estatus;

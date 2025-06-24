@@ -1,7 +1,7 @@
 
 import React, { useContext, useEffect } from 'react';
 import {useForm,Controller} from 'react-hook-form';
-import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
+import {StyleSheet, Text, View,Button,Alert, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card, TextInput } from 'react-native-paper';
 import { OrderContext } from '../Screens/context'
@@ -11,30 +11,24 @@ import messaging from '@react-native-firebase/messaging';
 const Loggin = () => {
 
   const {getClienteId} = useContext(OrderContext);
-
   const {control, handleSubmit , formState : {errors}} = useForm(); // Usare use form para la creacion del login
 
   const OnSubmit = async (data) => { // Aqui estara toda la logica del login
       try{
 
         console.log("Datos antes de enviar el login", data)
-
         const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/cliente/login?email=${data.email}&password=${data.password}`, {
-
           method : 'POST',
           headers : {
             Accept : 'application/json',
             'Content-Type' : 'application/json',
           },
-
         });
 
         console.log('Response Status:', response.status);
-
         if (!response.ok) {
           const errorData = await response.json();
           if (response.status === 500 && errorData.message === 'Este cliente ya existe') {
-
             Alert.alert('No se encontro el usuario. Por favor, use otro.');
           } else {
             Alert.alert('Ha ocurrido un error al procesar su solicitud.');
@@ -49,11 +43,8 @@ const Loggin = () => {
 
           //updateToken(data.id)
           handlePress();
-    
         }
-
-      
-      }catch(error){
+      } catch(error){
           Alert.alert("Hubo un error fatal en el sistema")
       }
   };
@@ -169,7 +160,6 @@ const Loggin = () => {
                             onBlur={onBlur}
                             onChangeText={onChange}
                             value={value}
-                           
                         />
 
                         {errors.email && <Text style = {styles.textError}>{errors.email.message}</Text>}
