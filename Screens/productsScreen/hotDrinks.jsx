@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { OrderContext } from '../context';
+import ArrowBack from '../Components/flechitaBack';
 
 const HotDrinks = ({navigation}) => {
 
@@ -20,6 +21,8 @@ const HotDrinks = ({navigation}) => {
 
     <SafeAreaView style = {styles.container}>
       <ScrollView>
+
+        <ArrowBack navigation={navigation}></ArrowBack>
     
         <Text style = {styles.title}> Bebidas Calientes </Text> 
 
@@ -104,7 +107,6 @@ const styles = StyleSheet.create({
   },
 
   title : {
-    marginTop : 25,
     fontSize : 35,
     textAlign : 'left',
     marginLeft : 20,

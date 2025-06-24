@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import { OrderContext } from '../context';
+import ArrowBack from '../Components/flechitaBack';
 
 const Refrescantes = ({navigation}) => {
 
@@ -18,6 +19,8 @@ const Refrescantes = ({navigation}) => {
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
+
+        <ArrowBack navigation={navigation}></ArrowBack>
 
         <Text style = {styles.title}> Refrescantes </Text>
 
@@ -99,7 +102,6 @@ const styles = StyleSheet.create({
   },
 
   title : {
-    marginTop : 25,
     fontSize : 35,
     textAlign : 'left',
     marginLeft : 20,

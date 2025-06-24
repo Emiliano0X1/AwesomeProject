@@ -3,6 +3,7 @@ import { View, Text,TouchableOpacity, StyleSheet, ScrollView,Button,Alert } from
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card ,Checkbox, TextInput} from 'react-native-paper';
 import { OrderContext } from '../context';
+import ArrowBack from '../Components/flechitaBack';
 
 const DefaultExtra = ({navigation,route}) => {
 
@@ -40,6 +41,8 @@ const DefaultExtra = ({navigation,route}) => {
     return(
         <SafeAreaView style = {styles.container}>
             <ScrollView>
+
+              <ArrowBack navigation={navigation}></ArrowBack>
 
                 <Text style = {styles.title}>Cantidad de Bebidas</Text>
 
@@ -85,7 +88,6 @@ const styles = StyleSheet.create({
     },
 
     title : {
-      marginTop : 55,
       marginBottom : 25,
       fontSize : 25,
       textAlign : 'left',

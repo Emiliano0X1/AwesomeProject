@@ -3,6 +3,7 @@ import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, Image
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import { OrderContext } from '../context';
+import ArrowBack from '../Components/flechitaBack';
 
 const Smoothies = ({navigation}) => {
 
@@ -19,6 +20,8 @@ const Smoothies = ({navigation}) => {
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
+
+        <ArrowBack navigation={navigation}></ArrowBack>
 
         <Text style = {styles.title}> Smoothies (16 onzas)</Text>
 
@@ -107,7 +110,6 @@ const styles = StyleSheet.create({
   },
 
   title : {
-    marginTop : 25,
     fontSize : 35,
     textAlign : 'left',
     marginLeft : 20,

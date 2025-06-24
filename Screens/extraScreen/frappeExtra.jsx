@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card ,Checkbox, TextInput} from 'react-native-paper';
 import ButtonMultiselect, { ButtonLayout } from 'react-native-button-multiselect';
 import { OrderContext } from '../context';
+import ArrowBack from '../Components/flechitaBack';
 
 const FrappeExtra = ({navigation,route}) => {
 
@@ -128,6 +129,8 @@ const FrappeExtra = ({navigation,route}) => {
         <SafeAreaView style = {styles.container}>
             <ScrollView>
 
+              <ArrowBack navigation={navigation}></ArrowBack>
+
                 <Text style = {styles.title}>Cantidad de Bebidas</Text>
 
                 <View style = {styles.counterContainer}>
@@ -163,7 +166,7 @@ const FrappeExtra = ({navigation,route}) => {
 
               </View>
 
-                <Text style = {styles.title}> Tipo de Leche </Text>
+              <Text style = {styles.title}> Tipo de Leche </Text>
               
               <View style = {styles.CheckboxConatiner}>
                 {milks.map((milk)=> (
@@ -178,7 +181,7 @@ const FrappeExtra = ({navigation,route}) => {
                 </View>
               ))}
 
-              <Text style= {styles.title}> Extras : </Text>
+              <Text style = {styles.titleXD}> Extras : </Text>
 
               <View style = {styles.CheckboxConatiner}>
                 {cremas.map((crema) => (
@@ -228,10 +231,16 @@ const styles = StyleSheet.create({
     },
 
     title : {
-      marginTop : 45,
       fontSize : 25,
       textAlign : 'left',
       marginLeft : 20,
+      color: 'black',
+      fontFamily : 'BricolageGrotesque-Bold'
+    },
+
+      titleXD : {
+      fontSize : 25,
+      textAlign : 'left',
       color: 'black',
       fontFamily : 'BricolageGrotesque-Bold'
     },

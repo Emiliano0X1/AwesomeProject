@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { OrderContext } from '../context';
+import ArrowBack from '../Components/flechitaBack';
 
 const SodasItalianas = ({navigation}) => {
 
@@ -18,6 +19,8 @@ const SodasItalianas = ({navigation}) => {
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
+
+        <ArrowBack navigation={navigation}></ArrowBack>
 
         <Text style = {styles.title}> Sodas Italianas </Text>
 
@@ -94,7 +97,6 @@ const styles = StyleSheet.create({
   },
 
   title : {
-    marginTop : 25,
     fontSize : 35,
     textAlign : 'left',
     marginLeft : 20,

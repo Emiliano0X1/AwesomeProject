@@ -5,6 +5,7 @@ import { Card} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { OrderContext } from '../context';
+import ArrowBack from '../Components/flechitaBack';
 
 const Wafles = ({navigation}) => {
 
@@ -20,6 +21,8 @@ const Wafles = ({navigation}) => {
   return (
     <SafeAreaView style = {styles.container} >
       <ScrollView>
+
+        <ArrowBack navigation={navigation}></ArrowBack>
 
         <Text style = {styles.title}> Waffles </Text>
 
@@ -124,7 +127,6 @@ const styles = StyleSheet.create({
   },
 
   title : {
-    marginTop : 25,
     fontSize : 35,
     textAlign : 'left',
     marginLeft : 20,

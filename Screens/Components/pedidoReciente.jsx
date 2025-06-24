@@ -1,33 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
 import Ioicons from 'react-native-vector-icons/Ionicons'
+import { OrderContext } from '../context';
 
 //Obtener Query del backend para calcular el tiempo de espera estimado
 
 export default function MoreRecentPedido({navigation}){
 
-    const[timeWait,setTimeWait] = useState('')
+    const[ pedido , setPedido] = useState(null);
+    const {clienteId} = useContext(OrderContext);
 
-    const calculateTimeOfWait = (time, initialTime) => {
-        const now = new Date()
-        now.setHours(now.getHours() - 6)
+    const fetchPedido = async () => {
+        try{
+            const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/first/${clienteId}`)
+            if(!response.ok){
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            setPedido(data)
+            //console.log(data)
 
-        const totalMinutes = now.getMinutes() + time
-        const hour = now.getHours() + Math.floor(totalMinutes/60)
-        console.log("Hora actual" ,hour)
-        console.log("Minutos", minutes)
+        } catch(error){
+            console.log("No funciona el fetch", error)
+        }
 
-        const minutes = totalMinutes % 60;
-
-        const formatedHour = hour % 12 || 12;
-        const formatedMinutes = minutes.toString().padStart(2,"0")
-        const ampm = hour >= 12 ? "pm" : "am"
-        setTimeWait(`${formatedHour} : ${formatedMinutes} ${ampm}`)
-    }
+    } 
 
     useEffect(() => {
-        calculateTimeOfWait(20,11)
+        fetchPedido();
     },[])
 
     const handleNavigationStatus = () => {
@@ -38,15 +39,23 @@ export default function MoreRecentPedido({navigation}){
         <View style = {styles.container}>
             <Card style = {styles.cardStyle} onPress={handleNavigationStatus}>
                 <View style = {styles.cardInsideContainer}>
+                    {pedido  ? (
+                        <>
 
-                    <View>
-                        <Text variant="labelLarge" style = {{fontFamily : 'BricolageGrotesque-SemiBold'}}>Pedido #1 </Text>
-                    </View>
+                        <View>
+                            <Text variant="labelLarge" style = {{fontFamily : 'BricolageGrotesque-SemiBold'}}>Pedido #{pedido.pedido_id} </Text>
+                        </View>
 
-                    <View style = {styles.rightView}>
-                        <Ioicons name = 'timer-outline' size = {30}></Ioicons>
-                        <Text variant="labelLarge" style = {{fontFamily : 'BricolageGrotesque-SemiBold'}}>{timeWait}</Text>
-                    </View>
+                        <View style = {styles.rightView}>
+                            <Ioicons name = 'timer-outline' size = {30}></Ioicons>
+                            <Text variant="labelLarge" style = {{fontFamily : 'BricolageGrotesque-SemiBold'}}>{pedido.status}</Text>
+                        </View>
+
+                    </>
+
+                    ) : (
+                        <Text variant="labelLarge" style = {{fontFamily : 'BricolageGrotesque-SemiBold'}}>"Maybe Tomorrow is a new Day"</Text>
+                    )}
                 </View>
             </Card>
         </View>
@@ -81,6 +90,5 @@ const styles = StyleSheet.create({
     }
 
     
-
 
 })

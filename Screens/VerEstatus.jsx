@@ -1,26 +1,31 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, NativeAppEventEmitter } from 'react-native';
-import { Button, Card, IconButton, TextInput} from 'react-native-paper';
+import { View,StyleSheet, ScrollView, TouchableOpacity, Alert, NativeAppEventEmitter, Image } from 'react-native';
+import { Button, Card, IconButton, TextInput, Text} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderContext } from './context';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import SeparatorByStatus from './Components/separatorAppVersion';
+import PedidoInfoCard from './Components/cardInfoPedido';
 
 const Estatus = () => {
 
   return (
     <SafeAreaView style = {styles.container}>
       <ScrollView>
-
         <Text style = {styles.title}>Resumen del Pedido</Text>
+          <View style = {styles.itemContainer}>
+            <Image source={require("../Screens/Image-Source/pCaff-005.jpg")} style = {styles.imagesStyle}></Image>
+          </View>
+          <View>
+             <PedidoInfoCard></PedidoInfoCard>
+          </View>
 
-        <SeparatorByStatus></SeparatorByStatus>
-
+          <View>
+            <Text variant='headlineSmall' style = {styles.textTitle}>Pedidos Anteriores</Text>
+          </View>
         <Text style={styles.subtitle}>Puede pasar a recoger sus productos en un tiempo entre 15 a 25 Minutos</Text>
-
-
-        </ScrollView>
-      </SafeAreaView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -31,11 +36,31 @@ const styles = StyleSheet.create( {
       backgroundColor: '#FBF5E8',
   },
 
+  itemContainer : {
+    marginBottom : 15,
+    justifyContent: 'center',
+    alignItems : 'center',
+    gap	: 20,
+  },
+
+    imagesStyle :{
+        width : 360,
+        height: 340,
+        borderRadius : 20
+    },
+
+  textTitle : {
+    fontFamily :  'BricolageGrotesque-Bold',
+    textAlign : 'center',
+    marginTop : 20
+  },
+
   containerCards : {
     padding: 5,
     backgroundColor : '#FBF5E8',
     alignItems: 'center',
   },
+
 
   Card : {
     backgroundColor : 'white',
