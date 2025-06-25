@@ -2,10 +2,13 @@ import { useState, useContext, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { Card, Text } from "react-native-paper";
 import { OrderContext } from '../context';
+import { useSafeAreaFrame } from "react-native-safe-area-context";
 
 export default function PedidoInfoCard(){
 
-    const [ pedido , setPedido] = useState(null);
+    const [pedido , setPedido] = useState(null);
+    const [dateEstimated, setDateEstimated] = useState('');
+    const [dateString, setDateString] = useState('')
     const {clienteId} = useContext(OrderContext);
 
     const fetchPedido = async () => {
@@ -22,9 +25,50 @@ export default function PedidoInfoCard(){
         }
     } 
 
+    const calculateTimeOfReady =  () => {
+        const dateString = pedido.date;
+        const date = new Date(dateString)
+        console.log(date.getHours())
+        date.setHours(date.getHours() - 6);
+
+        const totalMinutes = date.getMinutes() + 15;
+        const hours = date.getHours() + Math.floor(totalMinutes / 60)
+        const minutes = totalMinutes % 60;
+        
+        const formatedHours = hours % 12 || 12;
+        const formatedMinutes = minutes.toString().padStart(2,'0');
+        const ampm = hours >= 12 ? 'pm' : 'am';
+    
+        setDateEstimated(`${formatedHours}: ${formatedMinutes} ${ampm}`)
+    }
+
+    const convertToTimeFormat =  () => {
+        const dateString = pedido.date;
+        const date = new Date(dateString)
+        console.log(date.getHours())
+        date.setHours(date.getHours() - 6);
+
+        const totalMinutes = date.getMinutes();
+        const hours = date.getHours() + Math.floor(totalMinutes / 60)
+        const minutes = totalMinutes % 60;
+        
+        const formatedHours = hours % 12 || 12;
+        const formatedMinutes = minutes.toString().padStart(2,'0');
+        const ampm = hours >= 12 ? 'pm' : 'am';
+    
+        setDateString(`${formatedHours}: ${formatedMinutes} ${ampm}`)
+    }
+
     useEffect(() => {
         fetchPedido();
     },[])
+
+    useEffect(() => {
+        if(pedido) {
+            calculateTimeOfReady();
+            convertToTimeFormat();
+        }
+    },[pedido])
 
     return(
         <View style = {styles.container}>
@@ -34,11 +78,11 @@ export default function PedidoInfoCard(){
                       <View style = {styles.textContainer}>
                         <Text style = {styles.textTitleCard} variant="headlineMedium">Pedido #{pedido.pedido_id}</Text>
                         <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular'}}>Total : ${pedido.total} pesos</Text>
-                        <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular'}}>Fecha : {pedido.date}</Text>
-                        <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular'}}>Hora : {pedido.date}</Text>
+                        <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular'}}>Fecha : {pedido.date.slice(0,10)}</Text>
+                        <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular'}}>Hora de Envio : {dateString}</Text>
                         {pedido && pedido.status === 'EN PREPARACION' && (
                             <>
-                                <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular'}}> Hora Estimada de Entrega : </Text>
+                            <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular' , marginLeft : -6}}> Hora de Entrega: {dateEstimated} </Text>
                             </>
                         )}
                         <Text variant="headlineSmall" style = {{fontFamily : 'BricolageGrotesque-SemiBold'}}>Estatus : {pedido.status}</Text>
@@ -61,7 +105,7 @@ const styles = StyleSheet.create({
     cardStyle : {
         backgroundColor : 'white',
         marginTop : 20,
-        height : 250,
+        height : 280,
         width : 380,
         position: 'relative',
     },
@@ -80,6 +124,8 @@ const styles = StyleSheet.create({
 
     textContainer : {
         padding : 30,
+        marginVertical : 10
+
     }
 
 

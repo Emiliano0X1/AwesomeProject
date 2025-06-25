@@ -6,6 +6,7 @@ import { OrderContext } from './context';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import SeparatorByStatus from './Components/separatorAppVersion';
 import PedidoInfoCard from './Components/cardInfoPedido';
+import PedidoCard from './Components/pedidoCard';
 
 const Estatus = () => {
 
@@ -19,9 +20,9 @@ const Estatus = () => {
           <View>
              <PedidoInfoCard></PedidoInfoCard>
           </View>
-
-          <View>
+          <View style = {styles.cardPedidoContainer}>
             <Text variant='headlineSmall' style = {styles.textTitle}>Pedidos Anteriores</Text>
+            <PedidoCard></PedidoCard>
           </View>
         <Text style={styles.subtitle}>Puede pasar a recoger sus productos en un tiempo entre 15 a 25 Minutos</Text>
       </ScrollView>
@@ -34,6 +35,11 @@ const styles = StyleSheet.create( {
   container : {
       flex : 1,
       backgroundColor: '#FBF5E8',
+  },
+
+  cardPedidoContainer : {
+    justifyContent : 'center',
+    alignContent : 'center'
   },
 
   itemContainer : {
