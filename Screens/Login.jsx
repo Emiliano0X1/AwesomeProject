@@ -1,12 +1,14 @@
 
 import React, { useContext, useEffect } from 'react';
 import {useForm,Controller} from 'react-hook-form';
-import {StyleSheet, Text, View,Button,Alert, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, PermissionsAndroid, Dimensions} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card, TextInput } from 'react-native-paper';
 import { OrderContext } from '../Screens/context'
 
 import messaging from '@react-native-firebase/messaging';
+
+const {width , height} = Dimensions.get('screen');
 
 const Loggin = () => {
 
@@ -41,7 +43,7 @@ const Loggin = () => {
           console.log("Aignacion del email", data.id)
           getClienteId(data.id);
 
-          //updateToken(data.id)
+          updateToken(data.id)
           handlePress();
         }
       } catch(error){
@@ -49,22 +51,20 @@ const Loggin = () => {
       }
   };
 
-  /* A try of Auth
-  async function requestUserPermission() {
-    const authStatus = await messaging().requestPermission();
-    const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-  
-    if (enabled) {
-      console.log('Authorization status:', authStatus);
+  const requestUserPermission =async () => {
+    const granted = PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+    if(granted === PermissionsAndroid.RESULTS.GRANTED){
+      console.log("Notifcation permission granted")
+    }
+
+    else{
+      console.log("Notification permission denied")
     }
   }
   
   const generateToken = async () => { //This gets the device token for the push notifications
     try {
       const token = await messaging().getToken();
-  
       if (token) {
         console.log('Token:', token);
         return token
@@ -82,40 +82,32 @@ const Loggin = () => {
   },[])
 
   const updateToken = async(cliente_id) => { //In this function we update the token for the client in the current device
-
     try{
+      const token = await generateToken()
+      console.log("Tipo de token:", typeof token);
+      const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/cliente/${cliente_id}/token?token=${token}`, {
+        method : 'PATCH',
+        headers : {
+          Accept : 'application/json',
+          'Content-Type' : 'application/json'
+        },
+        credentials : 'include',
+      })
+      console.log('Repsonse status : ' , response.status)
 
-    const token = await generateToken()
-    console.log("Tipo de token:", typeof token);
-    const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/cliente/${cliente_id}/token?token=${token}`, {
-      method : 'PATCH',
-      headers : {
-        Accept : 'application/json',
-        'Content-Type' : 'application/json'
-      },
-      credentials : 'include',
-    })
+      if(!response.ok){
+        const errorData = await response.json()
+        console.log("No funciono correctamente", errorData)
+      }
 
-
-    console.log('Repsonse status : ' , response.status)
-
-    if(!response.ok){
-      const errorData = await response.json()
-      console.log("No funciono correctamente", errorData)
-    }
-
-    else{
-      console.log('Funciona correctamente');
-    }
+      else{
+        console.log('Funciona correctamente');
+      }
 
   }catch(error){
     console.log("Hubo un error fatal", error)
   }
-
-
 }
-
-*/
 
 
   const navigation = useNavigation();
@@ -230,7 +222,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor : '#FBF5E8'
+    backgroundColor : '#FBF5E8',
+    padding : 8
   },
 
    textError : {
@@ -262,9 +255,9 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 10,
-    height: 320,
-    width : 350,
-    
+    height: height * 0.35,
+    width : width * 0.8,
+    alignSelf : 'center'
   },
 
   button : {
@@ -274,10 +267,9 @@ const styles = StyleSheet.create({
     borderColor : "white",
     alignItems : 'center',
     marginTop : 60,
-    width : 200,
+    width : '60%',
     height : 40,
-    marginLeft : 75,
-  
+    marginLeft : 68,
   },
 
   buttonText : {
@@ -304,23 +296,11 @@ const styles = StyleSheet.create({
 
   textInput : {
     marginTop : 20,
-    width : 300,
+    width : width * 0.68,
     backgroundColor: '#f5f5f5',
     marginLeft : 18,
     fontFamily : 'BricolageGrotesque-Regular'
   },
-
-  logo : {
-    position: 'absolute',
-    alignItems : 'center',
-    top: -250,
-    width: 700,
-    height: 700,
-    marginBottom : 50,
-
-  }
-
-
 });
 
 export default Loggin;

@@ -1,8 +1,9 @@
 import { useState, useContext, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
 import { Card, Text } from "react-native-paper";
 import { OrderContext } from '../context';
-import { useSafeAreaFrame } from "react-native-safe-area-context";
+const {width , height} = Dimensions.get('screen');
+
 
 export default function PedidoInfoCard(){
 
@@ -26,9 +27,7 @@ export default function PedidoInfoCard(){
     } 
 
     const calculateTimeOfReady =  () => {
-        const dateString = pedido.date;
-        const date = new Date(dateString)
-        console.log(date.getHours())
+        const date = new Date();
         date.setHours(date.getHours() - 6);
 
         const totalMinutes = date.getMinutes() + 15;
@@ -73,10 +72,10 @@ export default function PedidoInfoCard(){
     return(
         <View style = {styles.container}>
             <Card style = {styles.cardStyle}>
-                {pedido ? (
+                {pedido && pedido.date ? (
                     <>
                       <View style = {styles.textContainer}>
-                        <Text style = {styles.textTitleCard} variant="headlineMedium">Pedido #{pedido.pedido_id}</Text>
+                        <Text style = {styles.textTitleCard} variant="headlineSmall">Pedido #{pedido.pedido_id}</Text>
                         <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular'}}>Total : ${pedido.total} pesos</Text>
                         <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular'}}>Fecha : {pedido.date.slice(0,10)}</Text>
                         <Text variant="titleLarge" style = {{fontFamily : 'BricolageGrotesque-Regular'}}>Hora de Envio : {dateString}</Text>
@@ -105,8 +104,8 @@ const styles = StyleSheet.create({
     cardStyle : {
         backgroundColor : 'white',
         marginTop : 20,
-        height : 280,
-        width : 380,
+        height : height * 0.3,
+        width : width * 0.86,
         position: 'relative',
     },
 

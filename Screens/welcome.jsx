@@ -34,7 +34,7 @@ const Welcome = () => {
           Crear Cuenta
         </Button>
       </View>
-      </View>
+    </View>
 
   );
 };
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor : '#FBF5E8',
-    paddingVertical : 140
+    paddingVertical : 140,
   },
 
   textMainContainer : {
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   buttonsContainer : {
     flexDirection : 'row',
     gap : 40,
+    padding : 10,
   },
 
   content: {

@@ -1,11 +1,10 @@
 
 import React, {useContext, useEffect, useState} from 'react';
-import { View,  StyleSheet, ScrollView, TouchableOpacity, Alert, NativeAppEventEmitter } from 'react-native';
+import { View,  StyleSheet, ScrollView,  Alert,Dimensions } from 'react-native';
 import { Button, Card, IconButton, TextInput, Text} from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderContext } from '../context';
 import Ioicons from 'react-native-vector-icons/Ionicons'
-import AntDesign from 'react-native-vector-icons/AntDesign'
+const {width , height} = Dimensions.get('screen');
 
 
 const PedidoCard = () => {
@@ -85,8 +84,8 @@ const styles = StyleSheet.create( {
   Card : {
     backgroundColor : 'white',
     marginTop : 20,
-    height : 125,
-    width : 320,
+    height : height * 0.2,
+    width : width * 0.85,
     position: 'relative',
   },
 

@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
         fontSize : 20,
         textAlign : 'center',
         alignItems : 'left',
+        color : 'gray',
         fontFamily : 'BricolageGrotesque-Regular'
     },
 

@@ -1,9 +1,10 @@
 import React ,{useState,useContext} from 'react';
-import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
+import {StyleSheet, Text, ScrollView, View,TouchableOpacity,Image, Dimensions} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import { OrderContext } from '../context';
 import ArrowBack from '../Components/flechitaBack';
+const {width ,height} = Dimensions.get('screen');
 
 const Smoothies = ({navigation}) => {
 
@@ -78,8 +79,8 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: 230,
-    width : 160,
+    height: height * 0.25,
+    width : width * 0.39,
     marginHorizontal : 10,
   },
 

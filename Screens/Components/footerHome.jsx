@@ -35,14 +35,14 @@ export default function FooterHome(){
         <View style = {styles.container}>
 
             <IconButton
-                icon={() => <FontAwesome5Brands name = 'facebook' size = {40} brand></FontAwesome5Brands>}
+                icon={() => <FontAwesome5Brands name = 'facebook' size = {40} brand style = {{color : 'gray'}}></FontAwesome5Brands>}
                 size = {40}
                 onPress={() => openFacebook()}
             >
             </IconButton>
 
             <IconButton
-                icon={() => <FontAwesome5Brands name = 'instagram' size = {40} brand></FontAwesome5Brands>}
+                icon={() => <FontAwesome5Brands name = 'instagram' size = {40} brand style = {{color : 'gray'}}></FontAwesome5Brands>}
                 size={40}
                 onPress={() => openInstagram()}
             >

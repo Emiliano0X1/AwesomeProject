@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, NativeAppEventEmitter } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert,Dimensions} from 'react-native';
 import { Card, IconButton, TextInput} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderContext } from './context';
 import AntDesign from 'react-native-vector-icons/AntDesign'
+const {width ,height} = Dimensions.get('screen');
 
 
 const Pedidos = ({navigation}) => {
@@ -17,6 +18,7 @@ const Pedidos = ({navigation}) => {
 
   productos.map((producto) => {
     console.log("Por favor sirve" , producto.cantidad)
+    console.log(producto.size)
     console.log(JSON.stringify(producto))
   })
 
@@ -26,8 +28,9 @@ const Pedidos = ({navigation}) => {
       total : total,
       producto : 
         productos.map((productoPedido) => ({
-          id : productoPedido.id,
           cantidad : productoPedido.cantidad,
+          size : productoPedido.type === 'Frappe' ? productoPedido.size : 'Regular',
+          producto : {id : productoPedido.id},
           extras : Array.isArray(productoPedido.extras) && productoPedido.extras.length > 0 ? productoPedido.extras
           .filter((extraPP) => extraPP && extraPP !== undefined && typeof extraPP.id === 'number')
           .map((extraPP) => ({id : extraPP.id}))
@@ -195,8 +198,8 @@ const styles = StyleSheet.create( {
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height : 390,
-    width : 300,
+    height : height * 0.44,
+    width : width * 0.74,
     position: 'relative',
   },
 
@@ -225,6 +228,7 @@ const styles = StyleSheet.create( {
   cardTitle : {
     marginTop: 20,
     paddingLeft : 18,
+    color : 'black',
     fontSize : 20,
     paddingBottom : 5,
     fontFamily : 'BricolageGrotesque-Bold'
@@ -232,7 +236,8 @@ const styles = StyleSheet.create( {
 
   cardText : {
     paddingLeft : 18,
-    fontSize : 18,
+    fontSize : 17,
+    color : 'gray',
     paddingBottom : 5,
     fontFamily : 'BricolageGrotesque-Regular'
   },
@@ -259,7 +264,7 @@ const styles = StyleSheet.create( {
 
 buttonText : {
     color : 'white',
-    fontSize: 18,
+    fontSize: 16,
     alignContent: 'center',
     alignSelf: 'center',
     marginTop : 10,
@@ -286,7 +291,8 @@ buttonsContainer : {
     marginLeft : 18,
     fontSize : 16,
     letterSpacing : 10,
-    fontFamily : 'BricolageGrotesque-Regular'
+    fontFamily : 'BricolageGrotesque-Regular',
+    color : 'gray',
   }
   
 });

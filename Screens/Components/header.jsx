@@ -12,7 +12,7 @@ export default function HeaderHome(){
         >
         </Image>
         <IconButton
-            icon={() => <AntDesign name= 'user' size = {40}></AntDesign>}
+            icon={() => <AntDesign name= 'user' size = {40} style = {{color : 'gray'}}></AntDesign>}
             onPress={() => console.log("Profile")}
         >
         </IconButton>

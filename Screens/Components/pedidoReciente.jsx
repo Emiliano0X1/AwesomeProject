@@ -1,8 +1,9 @@
 import { useEffect, useState, useContext } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View,Dimensions } from "react-native";
 import { Card, Text } from "react-native-paper";
 import Ioicons from 'react-native-vector-icons/Ionicons'
 import { OrderContext } from '../context';
+const {width , height} = Dimensions.get('screen');
 
 //Obtener Query del backend para calcular el tiempo de espera estimado
 
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     },
     
     cardStyle :{
-        width : 350,
+        width : width * 0.85,
         height : 70,
         backgroundColor : 'white',
     },

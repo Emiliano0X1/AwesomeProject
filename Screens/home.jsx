@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import { View,TouchableOpacity, StyleSheet, Image, ScrollView , Dimensions} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button, Card, Text } from 'react-native-paper';
 import Icons2 from 'react-native-vector-icons/Entypo'
@@ -9,6 +9,7 @@ import Slider from './Components/slider';
 import { ImagesSlider } from "../Screens/Data/imagesSlide";
 import MoreRecentPedido from './Components/pedidoReciente';
 import FooterHome from './Components/footerHome';
+const {width , height} = Dimensions.get('screen');
 
 const Home = ({navigation}) => {
 
@@ -56,7 +57,7 @@ const handlePedidoNavigation = () => {
 
           <View style = {styles.textContainer}>
             <Text variant='headlineMedium' style = {{textAlign : 'center', fontFamily : 'BricolageGrotesque-Bold'}}>Somos Caffeto</Text>
-            <Text variant='bodyLarge' style = {{textAlign : 'center' , marginTop : 10 , width : 350, fontFamily : 'BricolageGrotesque-Regular'}} > 
+            <Text variant='bodyLarge' style = {{textAlign : 'center' , marginTop : 10 , width : width * 0.85, fontFamily : 'BricolageGrotesque-Regular'}} > 
               Hola, somos Caffeto una cafeteria en donde no te puedes perder los magnificos sabores que tenemos para ti
               que esperas para ordenar.
             </Text>
@@ -147,8 +148,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width : 350, 
-    height : 300,
+    width : width * 0.85, 
+    height : height * 0.35,
     marginTop :  10,
     alignItems : 'center',
     borderRadius : 12,

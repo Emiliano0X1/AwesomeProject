@@ -1,10 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { View,StyleSheet, ScrollView, TouchableOpacity, Alert, NativeAppEventEmitter, Image } from 'react-native';
-import { Button, Card, IconButton, TextInput, Text} from 'react-native-paper';
+import { Text} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { OrderContext } from './context';
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import SeparatorByStatus from './Components/separatorAppVersion';
 import PedidoInfoCard from './Components/cardInfoPedido';
 import PedidoCard from './Components/pedidoCard';
 

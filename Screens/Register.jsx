@@ -1,24 +1,14 @@
 
 import React, { useState } from 'react';
-import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
+import {StyleSheet, Text, View,Button,Alert, TouchableOpacity, ImageBackground,Image, Dimensions} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card, TextInput } from 'react-native-paper';
 import { Controller, useForm } from 'react-hook-form';
+const {width , height} = Dimensions.get('screen');
 
 const Register = () => {
 
   const {control, handleSubmit , formState : {errors}} = useForm();
-
-  /*
-  const [name,setName] = useState('');
-  const [location,setLocation] = useState('');
-  const [phoneNumber,setPhoneNumber] = useState('');
-  const [email,setEmail] = useState('');
-
-  const [password, setPassword] = useState('');
-
-  */
-
   const [shown, setShown] = useState(false); // Estado para mostrar/ocultar contraseña
 
   const navigation = useNavigation();
@@ -294,7 +284,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 105.5,
-    
   },
 
   containerCards : {
@@ -305,8 +294,8 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 10,
-    height: 480,
-    width : 350,
+    height: height * 0.54,
+    width : width * 0.85,
   },
 
   button : {
@@ -316,9 +305,9 @@ const styles = StyleSheet.create({
     borderColor : "white",
     alignItems : 'center',
     marginTop : 50,
-    width : 200,
+    width : width * 0.45,
     height : 40,
-    marginLeft : 75,
+    marginLeft : 80,
   
   },
 
@@ -344,7 +333,7 @@ const styles = StyleSheet.create({
 
   textInput : {
     marginTop : 15,
-    width : 300,
+    width : width * 0.75,
     backgroundColor: '#f5f5f5',
     marginLeft : 18,
     fontFamily : 'BricolageGrotesque-SemiBold'

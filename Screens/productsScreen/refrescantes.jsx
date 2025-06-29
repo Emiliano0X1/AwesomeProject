@@ -1,10 +1,12 @@
 import React ,{useContext, useState} from 'react';
-import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
+import {StyleSheet, Text, ScrollView, View,TouchableOpacity,Image, Dimensions} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import { OrderContext } from '../context';
 import ArrowBack from '../Components/flechitaBack';
+const {width ,height} = Dimensions.get('screen');
+
 
 const Refrescantes = ({navigation}) => {
 
@@ -71,8 +73,8 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: 180,
-    width : 160,
+    height: height * 0.2,
+    width : width * 0.37,
     marginHorizontal : 10,
   },
 

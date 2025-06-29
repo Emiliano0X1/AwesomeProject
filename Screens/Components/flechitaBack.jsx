@@ -11,8 +11,8 @@ export default function ArrowBack({navigation}){
     return(
         <View style = {styles.container}>
             <IconButton
-                icon={() => <Ionicons name = 'arrow-back-circle-outline' size = {30}></Ionicons>}
-                size={30}
+                icon={() => <Ionicons name = 'arrow-back-circle-outline' size = {35} style = {{color : 'black'}}></Ionicons>}
+                size={35}
                 onPress={handleNavigation}
             >
             </IconButton>

@@ -1,9 +1,10 @@
 import React ,{useContext,useState,useEffect} from 'react';
-import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity, ImageBackground,Image} from 'react-native';
+import {StyleSheet, Text, ScrollView, View,Button,Alert, TouchableOpacity,Image, Dimensions} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card} from 'react-native-paper';
 import { OrderContext } from '../context';
 import ArrowBack from '../Components/flechitaBack';
+const {width , height} = Dimensions.get('screen');
 
 const Frappes = ({navigation}) => {
 
@@ -76,8 +77,8 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: 180,
-    width : 155,
+    height: height * 0.2,
+    width : width * 0.37,
     marginHorizontal : 10,
   },
 
