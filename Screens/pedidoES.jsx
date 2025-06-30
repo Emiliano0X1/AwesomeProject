@@ -87,6 +87,17 @@ const Pedidos = ({navigation}) => {
       eliminarProductoaDespuesdePostear(productos);
     }
 
+    const disableButtonSend = () => {
+      const date = new Date();
+      date.setHours(date.getHours() - 6)
+      console.log(date.getHours())
+
+      if(date.getHours() < 18 || date.getHours() > 23){
+         return true;
+      }
+
+      return false;
+    }
 
   return (
     <SafeAreaView style = {styles.container}>
@@ -171,7 +182,7 @@ const Pedidos = ({navigation}) => {
           <Text style = {styles.buttonText}>Volver al Menú</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style ={styles.button} onPress={postearDefinitivamente}>
+        <TouchableOpacity style ={styles.button} onPress={postearDefinitivamente} disabled = {disableButtonSend()}>
           <Text style = {styles.buttonText}>Enviar Pedido</Text>
         </TouchableOpacity>
 
