@@ -12,8 +12,8 @@ const Pedidos = ({navigation}) => {
   const fechaActual = new Date();
   const fechaRenderizada = `${fechaActual.getFullYear()}-${(fechaActual.getMonth() + 1).toString().padStart(2, '0')}-${fechaActual.getDate().toString().padStart(2, '0')} ${fechaActual.getHours().toString().padStart(2, '0')}:${fechaActual.getMinutes().toString().padStart(2, '0')}:${fechaActual.getSeconds().toString().padStart(2, '0')}`;
 
-  const {productos,extras,total,clienteId,cantidad} = useContext(OrderContext);
-  const {eliminarProducto} = useContext(OrderContext);
+  const {productos,total,clienteId, jwtToken} = useContext(OrderContext);
+  const {eliminarProducto,setProductos} = useContext(OrderContext);
 
 
   productos.map((producto) => {
@@ -49,6 +49,7 @@ const Pedidos = ({navigation}) => {
       headers : {
         Accept : 'application/json',
         'Content-Type' : 'application/json',
+        Authorization : `Bearer ${jwtToken}`
       },
 
       body: JSON.stringify(Pedido),
@@ -78,7 +79,7 @@ const Pedidos = ({navigation}) => {
 
     
     const eliminarProductoaDespuesdePostear = (productos) => {
-        productos = [];
+        setProductos([]);
     }
 
 
@@ -172,7 +173,11 @@ const Pedidos = ({navigation}) => {
         
         <Card style = {styles.CardTotal}>
           <Text style = {styles.totalTittle}>Total</Text>
-          <Text style ={styles.cardText} > $ {total} pesos </Text>
+          {productos.length != 0 ? (
+            <Text style ={styles.cardText} > $ {total} pesos </Text>
+          ) : (
+            <Text style ={styles.cardText} > $ 0 pesos </Text>
+          )}
         </Card>
       </View>
 
@@ -209,7 +214,7 @@ const styles = StyleSheet.create( {
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height : height * 0.44,
+    height : height * 0.5,
     width : width * 0.74,
     position: 'relative',
   },

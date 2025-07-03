@@ -64,7 +64,7 @@ const Register = () => {
     console.log('Datos enviados:', data); 
 
     try {
-        const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/cliente", {
+        const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/cliente/register", {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -78,7 +78,6 @@ const Register = () => {
         if (!response.ok) {
           const errorData = await response.json();
           if (response.status === 500 && errorData.message === 'Este cliente ya existe') {
-
             Alert.alert('El email ya está registrado. Por favor, use otro.');
           } else {
             Alert.alert('Ha ocurrido un error al procesar su solicitud.');
@@ -92,7 +91,7 @@ const Register = () => {
         }
       } catch (error) {
         // Manejar errores de red
-        setError('Error de red. Por favor, intente de nuevo más tarde.');
+       console.log('Error de red. Por favor, intente de nuevo más tarde.');
       }
     };
 

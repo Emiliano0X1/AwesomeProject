@@ -10,11 +10,16 @@ const {width , height} = Dimensions.get('screen');
 export default function MoreRecentPedido({navigation}){
 
     const[ pedido , setPedido] = useState(null);
-    const {clienteId} = useContext(OrderContext);
+    const {clienteId, jwtToken} = useContext(OrderContext);
 
     const fetchPedido = async () => {
         try{
-            const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/first/${clienteId}`)
+            const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/first/${clienteId}`, {
+                headers : {
+                    Authorization : `Bearer ${jwtToken}`
+                }
+            })
+            
             if(!response.ok){
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }

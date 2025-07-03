@@ -12,20 +12,25 @@ const {width , height} = Dimensions.get('screen');
 
 const Loggin = () => {
 
-  const {getClienteId} = useContext(OrderContext);
+  const {getClienteId,setProductos, setJwtToken} = useContext(OrderContext);
+  const {jwtToken, clienteId} = useContext(OrderContext)
   const {control, handleSubmit , formState : {errors}} = useForm(); // Usare use form para la creacion del login
 
   const OnSubmit = async (data) => { // Aqui estara toda la logica del login
       try{
 
         console.log("Datos antes de enviar el login", data)
-        const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/cliente/login?email=${data.email}&password=${data.password}`, {
+        const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/cliente/login`, {
           method : 'POST',
           headers : {
             Accept : 'application/json',
             'Content-Type' : 'application/json',
           },
-        });
+          body : JSON.stringify({
+            email : data.email,
+            password : data.password
+        })
+      });
 
         console.log('Response Status:', response.status);
         if (!response.ok) {
@@ -36,14 +41,25 @@ const Loggin = () => {
             Alert.alert('Ha ocurrido un error al procesar su solicitud.');
           }
         } else {
-    
-          const data = await response.json();
-          console.log('Si jalo, OMG',data)
-          Alert.alert('Se ha iniciado sesion con exito');
-          console.log("Aignacion del email", data.id)
-          getClienteId(data.id);
 
-          updateToken(data.id)
+          const data = await response.json();
+
+          const responseToken = Object.keys(data)[0];
+          const tokenStart = responseToken.indexOf("token=") + 6;
+          const tokenEnd = responseToken.indexOf(")",tokenStart);
+          const token = responseToken.substring(tokenStart,tokenEnd)
+          const clienteId = data[responseToken];
+
+          console.log("JWT TOEKN" , token)
+
+          console.log('Si jalo, OMG',data)
+          
+          Alert.alert('Se ha iniciado sesion con exito');
+          console.log("Aignacion del email", clienteId)
+          
+          setJwtToken(token);
+          getClienteId(clienteId);
+          setProductos([]);
           handlePress();
         }
       } catch(error){
@@ -79,7 +95,13 @@ const Loggin = () => {
 
   useEffect(() => {
     requestUserPermission()
-  },[])
+
+    if(jwtToken && clienteId){
+      console.log("JWT TOKEN antes de mandarlo al patch", jwtToken)
+      updateToken(clienteId)
+    }
+
+  },[jwtToken,clienteId])
 
   const updateToken = async(cliente_id) => { //In this function we update the token for the client in the current device
     try{
@@ -89,7 +111,8 @@ const Loggin = () => {
         method : 'PATCH',
         headers : {
           Accept : 'application/json',
-          'Content-Type' : 'application/json'
+          'Content-Type' : 'application/json',
+          Authorization : `Bearer ${jwtToken}`
         },
         credentials : 'include',
       })

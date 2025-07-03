@@ -44,7 +44,7 @@ const Postres = ({navigation}) => {
               <Card style = {styles.Card}>
                 <Image style = {styles.cardImg} resizeMode='cover' source={require('./Icons/muffinIcon.png')} />
                   <Text style = {styles.cardTitle}>{producto.name}</Text>
-                  <Text style = {styles.cardSubtitle}>${producto.price}pesos</Text>
+                  <Text style = {styles.cardSubtitle}>${producto.price} pesos</Text>
               </Card>
            </TouchableOpacity>
 
@@ -206,8 +206,8 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 25,
-    height: height * 0.2,
-    width : width * 0.37,
+    height: height * 0.28,
+    width : width * 0.4,
     marginHorizontal : 10,
   },
 

@@ -11,6 +11,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const [extrasMain,setExtrasMain] = useState ([]);
     const [total,setTotal] = useState(0);
     const [clienteId,setClienteId] = useState(0);
+    const [jwtToken,setJwtToken] = useState("");
 
     const getClienteId = (id) => {
         setClienteId(id);
@@ -19,7 +20,14 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const fecthProductos = async () => {
         try {
             console.log("antes de fechear productos");
-            const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/producto");
+            const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/producto" ,  {
+                headers : {Authorization : `Bearer ${jwtToken}`}
+            });
+
+            if(!response.ok){
+                console.log("Las credenciales no son correctas o no existe el token")
+            }
+
             const data = await response.json();
             setProductosMain(data); 
             console.log("Productos:", data);
@@ -36,7 +44,14 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const fecthExtras = async () => {
         try {
             console.log("antes de fechear extras");
-            const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/extra");
+            const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/extra", {
+                headers : {Authorization : `Bearer ${jwtToken}`}
+            });
+
+            if(!response.ok){
+                console.log("Las credenciales no son correctas o no existe el token")
+            }
+
             const data = await response.json();
             setExtrasMain(data);
             console.log("Extras:", data);
@@ -47,8 +62,10 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     
 
     useEffect(() => {
-        fecthProductos();
-    }, []);
+        if(jwtToken){
+            fecthProductos();
+        }
+    }, [jwtToken]);
     
     
 
@@ -121,7 +138,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
     return (
         <OrderContext.Provider // finalmente todas las funciones se exportan para poder ser usadas en lso componentes
-            value={{productos,total,extras,productosMain,extrasMain,clienteId,getClienteId,addExtra,addProduct,eliminarProducto}}
+            value={{productos,total,extras,productosMain,extrasMain,clienteId,jwtToken,setJwtToken,getClienteId,addExtra,addProduct,eliminarProducto,setProductos}}
         >
         {children}
         </OrderContext.Provider>

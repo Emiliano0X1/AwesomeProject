@@ -9,14 +9,18 @@ const {width , height} = Dimensions.get('screen');
 
 const PedidoCard = () => {
     const [pedidos, setPedidos] = useState([]);
-    const {clienteId} = useContext(OrderContext);
+    const {clienteId, jwtToken} = useContext(OrderContext);
     
     console.log("Hola soy la pantalla Estatus",clienteId)
     
     const fetchPedidos = async() => {
         try{
           console.log("Antes del Fechear pedidos")
-          const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/cliente/${clienteId}`);
+          const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/cliente/${clienteId}`, {
+            headers : {
+              Authorization : `Bearer ${jwtToken}`
+            }
+          });
           console.log("Despues de Fechar")
           console.log(response.status);
           if (!response.ok) {

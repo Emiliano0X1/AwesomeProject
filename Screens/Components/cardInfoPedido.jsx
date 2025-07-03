@@ -10,11 +10,16 @@ export default function PedidoInfoCard(){
     const [pedido , setPedido] = useState(null);
     const [dateEstimated, setDateEstimated] = useState('');
     const [dateString, setDateString] = useState('')
-    const {clienteId} = useContext(OrderContext);
+    const {clienteId, jwtToken} = useContext(OrderContext);
 
     const fetchPedido = async () => {
         try{
-            const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/first/${clienteId}`)
+            const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/first/${clienteId}`, {
+                headers : {
+                    Authorization : `Bearer ${jwtToken}`
+                }
+            })
+
             if(!response.ok){
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -104,7 +109,7 @@ const styles = StyleSheet.create({
     cardStyle : {
         backgroundColor : 'white',
         marginTop : 20,
-        height : height * 0.3,
+        height : height * 0.4,
         width : width * 0.86,
         position: 'relative',
     },
