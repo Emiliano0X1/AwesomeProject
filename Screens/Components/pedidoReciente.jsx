@@ -3,6 +3,7 @@ import { StyleSheet, View,Dimensions } from "react-native";
 import { Card, Text } from "react-native-paper";
 import Ioicons from 'react-native-vector-icons/Ionicons'
 import { OrderContext } from '../context';
+import { AuthContext } from "../authContext";
 const {width , height} = Dimensions.get('screen');
 
 //Obtener Query del backend para calcular el tiempo de espera estimado
@@ -10,7 +11,7 @@ const {width , height} = Dimensions.get('screen');
 export default function MoreRecentPedido({navigation}){
 
     const[ pedido , setPedido] = useState(null);
-    const {clienteId, jwtToken} = useContext(OrderContext);
+    const {clienteId, jwtToken} = useContext(AuthContext);
 
     const fetchPedido = async () => {
         try{
@@ -34,7 +35,9 @@ export default function MoreRecentPedido({navigation}){
     } 
 
     useEffect(() => {
-        fetchPedido();
+        if(jwtToken && clienteId){
+            fetchPedido()
+        }
     },[])
 
     const handleNavigationStatus = () => {

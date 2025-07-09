@@ -4,12 +4,19 @@ import { View,  StyleSheet, ScrollView,  Alert,Dimensions } from 'react-native';
 import { Button, Card, IconButton, TextInput, Text} from 'react-native-paper';
 import { OrderContext } from '../context';
 import Ioicons from 'react-native-vector-icons/Ionicons'
+import { AuthContext } from '../authContext';
+import { useNavigation } from '@react-navigation/native';
+
 const {width , height} = Dimensions.get('screen');
 
 
 const PedidoCard = () => {
     const [pedidos, setPedidos] = useState([]);
-    const {clienteId, jwtToken} = useContext(OrderContext);
+    const {clienteId} = useContext(AuthContext);
+    const {jwtToken, isExpired} = useContext(AuthContext)
+
+    const navigation = useNavigation();
+
     
     console.log("Hola soy la pantalla Estatus",clienteId)
     
@@ -26,6 +33,12 @@ const PedidoCard = () => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
+
+          if(isExpired()){
+            Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
+            navigation.navigate('welcome')
+          }
+
           const data = await response.json();    
           setPedidos(data);
           console.log("Pedidos Data", data)
@@ -35,8 +48,10 @@ const PedidoCard = () => {
       }
     
       useEffect(() => {
-        fetchPedidos();
-      },[]);
+        if(jwtToken && typeof jwtToken === "string"){  
+          fetchPedidos();
+        }
+      },[jwtToken]);
 
     return(
     <View style = {styles.container}>

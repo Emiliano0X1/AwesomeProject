@@ -1,7 +1,9 @@
 import { useState, useContext, useEffect } from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
+import { StyleSheet, View, Dimensions, Alert } from "react-native";
 import { Card, Text } from "react-native-paper";
 import { OrderContext } from '../context';
+import { AuthContext } from "../authContext";
+import { useNavigation } from '@react-navigation/native';
 const {width , height} = Dimensions.get('screen');
 
 
@@ -10,7 +12,10 @@ export default function PedidoInfoCard(){
     const [pedido , setPedido] = useState(null);
     const [dateEstimated, setDateEstimated] = useState('');
     const [dateString, setDateString] = useState('')
-    const {clienteId, jwtToken} = useContext(OrderContext);
+    const {clienteId} = useContext(AuthContext);
+    const {jwtToken, isExpired} = useContext(AuthContext)
+
+    const navigation = useNavigation();
 
     const fetchPedido = async () => {
         try{
@@ -23,6 +28,12 @@ export default function PedidoInfoCard(){
             if(!response.ok){
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
+
+            if(isExpired()){
+                Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
+                navigation.navigate('welcome')
+            }
+
             const data = await response.json();
             setPedido(data)
             //console.log(data)
@@ -64,8 +75,10 @@ export default function PedidoInfoCard(){
     }
 
     useEffect(() => {
-        fetchPedido();
-    },[])
+        if(jwtToken && typeof jwtToken === "string"){
+           fetchPedido();
+        }
+    },[jwtToken])
 
     useEffect(() => {
         if(pedido) {

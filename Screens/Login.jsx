@@ -7,13 +7,15 @@ import { Card, TextInput } from 'react-native-paper';
 import { OrderContext } from '../Screens/context'
 
 import messaging from '@react-native-firebase/messaging';
+import { AuthContext } from './authContext';
 
 const {width , height} = Dimensions.get('screen');
 
 const Loggin = () => {
 
-  const {getClienteId,setProductos, setJwtToken} = useContext(OrderContext);
-  const {jwtToken, clienteId} = useContext(OrderContext)
+  const {setProductos} = useContext(OrderContext);
+  const {clienteId,storeClienteId} = useContext(AuthContext)
+  const {jwtToken,login} = useContext(AuthContext)
   const {control, handleSubmit , formState : {errors}} = useForm(); // Usare use form para la creacion del login
 
   const OnSubmit = async (data) => { // Aqui estara toda la logica del login
@@ -57,8 +59,8 @@ const Loggin = () => {
           Alert.alert('Se ha iniciado sesion con exito');
           console.log("Aignacion del email", clienteId)
           
-          setJwtToken(token);
-          getClienteId(clienteId);
+          login(token) //Guarda el token en el contexto global
+          storeClienteId(clienteId);
           setProductos([]);
           handlePress();
         }

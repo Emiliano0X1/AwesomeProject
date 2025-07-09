@@ -1,11 +1,15 @@
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import {Alert, StyleSheet, View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Slider from './Components/slider';
 import { Button, Text } from 'react-native-paper';
 import { ImagesSlider } from "../Screens/Data/imagesSlide";
+import { AuthContext } from './authContext';
+
 
 const Welcome = () => {
+
+  const {isExpired} = useContext(AuthContext)
 
   const navigation = useNavigation();
 
@@ -16,6 +20,17 @@ const Welcome = () => {
   const handlePressRegister = () => {
     navigation.navigate('register');  // Navegar a la pantalla del tab navigator
   }
+
+  const checkExpired = () => {
+    if(!isExpired()){
+      Alert.alert("Sesion Guardada", "Siga disfrutando CaffetoApp")
+      navigation.navigate('Main')
+    }
+  }
+
+  useEffect(() => {
+    checkExpired()
+  },[])
 
   return (
   

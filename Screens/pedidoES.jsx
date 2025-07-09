@@ -4,6 +4,8 @@ import { Card, IconButton, TextInput} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderContext } from './context';
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import { AuthorizationStatus } from '@react-native-firebase/messaging';
+import { AuthContext } from './authContext';
 const {width ,height} = Dimensions.get('screen');
 
 
@@ -12,8 +14,10 @@ const Pedidos = ({navigation}) => {
   const fechaActual = new Date();
   const fechaRenderizada = `${fechaActual.getFullYear()}-${(fechaActual.getMonth() + 1).toString().padStart(2, '0')}-${fechaActual.getDate().toString().padStart(2, '0')} ${fechaActual.getHours().toString().padStart(2, '0')}:${fechaActual.getMinutes().toString().padStart(2, '0')}:${fechaActual.getSeconds().toString().padStart(2, '0')}`;
 
-  const {productos,total,clienteId, jwtToken} = useContext(OrderContext);
+  const {productos,total} = useContext(OrderContext);
+  const {clienteId} = useContext(AuthContext)
   const {eliminarProducto,setProductos} = useContext(OrderContext);
+  const {jwtToken} = useContext(AuthContext)
 
 
   productos.map((producto) => {
@@ -61,14 +65,16 @@ const Pedidos = ({navigation}) => {
 
           const errorData = await response.json();
           if (response.status === 500 && errorData.message === 'Este cliente ya existe') {
-
             Alert.alert('No se encontro el usuario. Por favor, use otro.');
+            return false
           } else {
             Alert.alert('Ha ocurrido un error al procesar su solicitud.');
+            return false
           }
         } else {
             Alert.alert('Se ha enviado el pedido con Exito');
             console.log('si jalo')
+            return true
         }
 
       }catch(error){
@@ -84,7 +90,7 @@ const Pedidos = ({navigation}) => {
 
 
     const postearDefinitivamente = (productos) => {
-      postOrder();
+       postOrder();
       eliminarProductoaDespuesdePostear(productos);
     }
 

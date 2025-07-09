@@ -1,6 +1,9 @@
 
-import React , {createContext,useState,useEffect} from 'react';
+import React , {createContext,useState,useEffect,useContext} from 'react';
 import HotDrinks from './productsScreen/hotDrinks';
+import { AuthContext } from './authContext';
+import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const OrderContext = createContext (); // El context sirve para poder englobar todo los prop  y poder psarlos de padre a hijo para sju utilizacion
 
@@ -10,22 +13,32 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     const [extras, setExtras] = useState ([]);
     const [extrasMain,setExtrasMain] = useState ([]);
     const [total,setTotal] = useState(0);
-    const [clienteId,setClienteId] = useState(0);
-    const [jwtToken,setJwtToken] = useState("");
+    //const [clienteId,setClienteId] = useState(0);
 
-    const getClienteId = (id) => {
-        setClienteId(id);
-    }
+    const {jwtToken, isExpired} = useContext(AuthContext)
+
+    //const navigation = useNavigation()
+
+   // const getClienteId = (id) => {
+     //   setClienteId(id);
+   // }
 
     const fecthProductos = async () => {
         try {
             console.log("antes de fechear productos");
             const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/producto" ,  {
-                headers : {Authorization : `Bearer ${jwtToken}`}
+                headers : {
+                    Authorization : `Bearer ${jwtToken}`
+                }
             });
 
             if(!response.ok){
                 console.log("Las credenciales no son correctas o no existe el token")
+            }
+
+            if(isExpired()){
+                Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
+               // navigation.navigate('welcome')
             }
 
             const data = await response.json();
@@ -60,15 +73,13 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
         }
     };
     
-
     useEffect(() => {
-        if(jwtToken){
+        if(jwtToken && typeof jwtToken === "string"){
             fecthProductos();
         }
     }, [jwtToken]);
     
     
-
     const addProduct = (producto,cantidad,extra) => {  // Aqui esta la logica para agregar el producto a la orden
 
         const extrasArray = Array.isArray(extra) ? extra : [extra]; //checa si es un array o no, para convertirlo a array
@@ -138,7 +149,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
     return (
         <OrderContext.Provider // finalmente todas las funciones se exportan para poder ser usadas en lso componentes
-            value={{productos,total,extras,productosMain,extrasMain,clienteId,jwtToken,setJwtToken,getClienteId,addExtra,addProduct,eliminarProducto,setProductos}}
+            value={{productos,total,extras,productosMain,extrasMain,addExtra,addProduct,eliminarProducto,setProductos}}
         >
         {children}
         </OrderContext.Provider>

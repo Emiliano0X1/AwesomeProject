@@ -38,15 +38,10 @@ const Register = () => {
     }
 
     else{
-
       console.log('antes del posteo del json')
-
       postClienteFinal();
-      
       console.log('despues del posteo')
-
       navigation.navigate('welcome');
-
     }
     
   } catch (error){
