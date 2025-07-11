@@ -17,14 +17,8 @@ const Pedidos = ({navigation}) => {
   const {productos,total} = useContext(OrderContext);
   const {clienteId} = useContext(AuthContext)
   const {eliminarProducto,setProductos} = useContext(OrderContext);
-  const {jwtToken} = useContext(AuthContext)
+  const {jwtToken,isExpired} = useContext(AuthContext)
 
-
-  productos.map((producto) => {
-    console.log("Por favor sirve" , producto.cantidad)
-    console.log(producto.size)
-    console.log(JSON.stringify(producto))
-  })
 
   const Pedido = {
       status : 'EN REVISION',
@@ -42,12 +36,19 @@ const Pedidos = ({navigation}) => {
     }))
   }
 
+  const checkIfIsExpired = () => {
+    if(isExpired(jwtToken)){
+      Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
+      navigation.navigate('welcome')
+    }
+  }
+
   const postOrder = async() => {
 
     try{
-      console.log("Antes de enviar el pedido")
-      console.log(clienteId)
-      console.log(JSON.stringify(Pedido, null, 2));
+      //console.log("Antes de enviar el pedido")
+      //console.log(clienteId)
+      //console.log(JSON.stringify(Pedido, null, 2));
       const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/cliente/${clienteId}`,{
       method : 'POST',
       headers : {
@@ -65,21 +66,23 @@ const Pedidos = ({navigation}) => {
 
           const errorData = await response.json();
           if (response.status === 500 && errorData.message === 'Este cliente ya existe') {
-            Alert.alert('No se encontro el usuario. Por favor, use otro.');
+            Alert.alert('Error del Sistema','No se encontro el usuario. Por favor, use otro.');
             return false
           } else {
-            Alert.alert('Ha ocurrido un error al procesar su solicitud.');
+            Alert.alert('Error en Envio de Orden','Ha ocurrido un error al procesar su solicitud.');
             return false
           }
         } else {
-            Alert.alert('Se ha enviado el pedido con Exito');
+            Alert.alert('Envio de orden','Se ha enviado el pedido con Exito');
             console.log('si jalo')
             return true
         }
 
       }catch(error){
-          Alert.alert("Hubo un error fatal en el sistema")
+          Alert.alert('Error del Servidor',"Hubo un error fatal en el sistema")
       }
+
+      checkIfIsExpired()
 
     }
 
@@ -90,14 +93,14 @@ const Pedidos = ({navigation}) => {
 
 
     const postearDefinitivamente = (productos) => {
-       postOrder();
+      postOrder();
       eliminarProductoaDespuesdePostear(productos);
     }
 
     const disableButtonSend = () => {
       const date = new Date();
       date.setHours(date.getHours() - 6)
-      console.log(date.getHours())
+      //console.log(date.getHours())
 
       if(date.getHours() < 18 || date.getHours() > 23){
          return true;

@@ -52,12 +52,12 @@ const Loggin = () => {
           const token = responseToken.substring(tokenStart,tokenEnd)
           const clienteId = data[responseToken];
 
-          console.log("JWT TOEKN" , token)
+         // console.log("JWT TOEKN" , token)
 
-          console.log('Si jalo, OMG',data)
+          //console.log('Si jalo, OMG',data)
           
           Alert.alert('Se ha iniciado sesion con exito');
-          console.log("Aignacion del email", clienteId)
+          //console.log("Aignacion del email", clienteId)
           
           login(token) //Guarda el token en el contexto global
           storeClienteId(clienteId);

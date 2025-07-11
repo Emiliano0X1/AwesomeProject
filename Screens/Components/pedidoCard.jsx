@@ -17,7 +17,13 @@ const PedidoCard = () => {
 
     const navigation = useNavigation();
 
-    
+    const checkIfIsExpired = () => {
+      if(isExpired()){
+            Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
+            navigation.navigate('welcome')
+        }
+    }
+  
     console.log("Hola soy la pantalla Estatus",clienteId)
     
     const fetchPedidos = async() => {
@@ -33,23 +39,19 @@ const PedidoCard = () => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
-
-          if(isExpired()){
-            Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
-            navigation.navigate('welcome')
-          }
-
           const data = await response.json();    
           setPedidos(data);
           console.log("Pedidos Data", data)
         } catch(err){
-          Alert.alert('Ocurrio un error en el sistema, por favor intenta refrescar la aplicacion')
+          Alert.alert('Error','Ocurrio un error en el sistema, por favor intenta refrescar la aplicacion')
         }
+
+        checkIfIsExpired();
       }
     
       useEffect(() => {
         if(jwtToken && typeof jwtToken === "string"){  
-          fetchPedidos();
+          fetchPedidos(); 
         }
       },[jwtToken]);
 

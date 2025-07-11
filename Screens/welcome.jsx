@@ -22,9 +22,9 @@ const Welcome = () => {
   }
 
   const checkExpired = () => {
-    if(!isExpired()){
-      Alert.alert("Sesion Guardada", "Siga disfrutando CaffetoApp")
-      navigation.navigate('Main')
+      if(!isExpired()){
+        Alert.alert("Sesion Guardada", "Siga disfrutando CaffetoApp")
+        navigation.navigate('Main')
     }
   }
 

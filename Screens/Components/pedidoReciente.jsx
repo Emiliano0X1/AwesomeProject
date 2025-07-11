@@ -1,17 +1,27 @@
 import { useEffect, useState, useContext } from "react";
-import { StyleSheet, View,Dimensions } from "react-native";
+import { StyleSheet, View,Dimensions, Alert } from "react-native";
 import { Card, Text } from "react-native-paper";
 import Ioicons from 'react-native-vector-icons/Ionicons'
 import { OrderContext } from '../context';
 import { AuthContext } from "../authContext";
+import { useNavigation } from "@react-navigation/native";
 const {width , height} = Dimensions.get('screen');
 
 //Obtener Query del backend para calcular el tiempo de espera estimado
 
-export default function MoreRecentPedido({navigation}){
+export default function MoreRecentPedido(){
+
+    const navigation = useNavigation() 
 
     const[ pedido , setPedido] = useState(null);
-    const {clienteId, jwtToken} = useContext(AuthContext);
+    const {clienteId, jwtToken, isExpired} = useContext(AuthContext);
+
+    const checkIfIsExpired = () => {
+        if(isExpired()){
+            Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
+            navigation.navigate('welcome')
+        }
+    }
 
     const fetchPedido = async () => {
         try{
@@ -32,13 +42,14 @@ export default function MoreRecentPedido({navigation}){
             console.log("No funciona el fetch", error)
         }
 
+        checkIfIsExpired();
     } 
 
     useEffect(() => {
-        if(jwtToken && clienteId){
+        if(jwtToken && typeof jwtToken === 'string'){
             fetchPedido()
         }
-    },[])
+    },[jwtToken])
 
     const handleNavigationStatus = () => {
         navigation.navigate('Estatus')

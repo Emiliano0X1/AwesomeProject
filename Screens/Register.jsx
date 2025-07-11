@@ -22,30 +22,30 @@ const Register = () => {
     }
 
     else if(email == null || email === ''){
-      throw new Error('No existe el nombre');
+      throw new Error('No existe el email');
     }
 
     else if(phoneNumber == null || phoneNumber === ''){
-      throw new Error('No existe el nombre');
+      throw new Error('No existe el numero telefonico');
     }
 
     else if(password == null || password === ''){
-      throw new Error('No existe el nombre');
+      throw new Error('No existe la contraseña');
     }
 
     else if(location == null || location === ''){
-      throw new Error('No existe el nombre');
+      throw new Error('No existe la locación');
     }
 
     else{
-      console.log('antes del posteo del json')
+      //console.log('antes del posteo del json')
       postClienteFinal();
-      console.log('despues del posteo')
+      //console.log('despues del posteo')
       navigation.navigate('welcome');
     }
     
   } catch (error){
-      Alert.alert("Ingrese los campos faltantes")
+      Alert.alert("Campos Faltantes","Ingrese los campos faltantes")
   }
 
 }
@@ -73,24 +73,23 @@ const Register = () => {
         if (!response.ok) {
           const errorData = await response.json();
           if (response.status === 500 && errorData.message === 'Este cliente ya existe') {
-            Alert.alert('El email ya está registrado. Por favor, use otro.');
+            Alert.alert('Esta cuenta ya existe','El email ya está registrado. Por favor, use otro.');
           } else {
-            Alert.alert('Ha ocurrido un error al procesar su solicitud.');
+            Alert.alert('Error en el servidor','Ha ocurrido un error al procesar su solicitud.');
           }
         } else {
           // Procesar respuesta exitosa
           const data = await response.json();
-          console.log('Si jalo, OMG',data)
-          Alert.alert('La cuenta se ha creado con exito.');
+          //console.log('Si jalo, OMG',data)
+          Alert.alert('Creación de Cuenta','La cuenta se ha creado con exito.');
           // Manejar datos recibidos
         }
       } catch (error) {
         // Manejar errores de red
-       console.log('Error de red. Por favor, intente de nuevo más tarde.');
+       Alert.alert('Error de red' ,'Por favor, intente de nuevo más tarde.');
       }
     };
 
-  
 
   return (
   

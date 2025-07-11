@@ -25,7 +25,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
     const fecthProductos = async () => {
         try {
-            console.log("antes de fechear productos");
+            //console.log("antes de fechear productos");
             const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/producto" ,  {
                 headers : {
                     Authorization : `Bearer ${jwtToken}`
@@ -43,7 +43,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
             const data = await response.json();
             setProductosMain(data); 
-            console.log("Productos:", data);
+            //console.log("Productos:", data);
     
             if (data && data.length > 0) {
                 fecthExtras(); 
@@ -56,7 +56,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     
     const fecthExtras = async () => {
         try {
-            console.log("antes de fechear extras");
+            //console.log("antes de fechear extras");
             const response = await fetch("https://cafettoapp-backend.onrender.com/api/v1/extra", {
                 headers : {Authorization : `Bearer ${jwtToken}`}
             });
@@ -67,7 +67,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
 
             const data = await response.json();
             setExtrasMain(data);
-            console.log("Extras:", data);
+            //console.log("Extras:", data);
         } catch (error) {
             console.error("Error al traer extras:", error);
         }
@@ -92,21 +92,21 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
         const extraItems = addExtra(extrasArray); // SE LLAMA a la funcion de addEtxra
         calculateTotal(newProdcuts); // se llama a la funcion para manteber actualizado el total
         
-          console.log('Extras del Producto' ,producto.extra)
-            console.log(producto)
-            console.log(extra)
+         // console.log('Extras del Producto' ,producto.extra)
+         //   console.log(producto)
+           // console.log(extra)
 
     };
 
     const addExtra = (extra) => { // Este es el constructor que se encarga de añadir los extras
-        console.log('Adding extra:', extra);
+       // console.log('Adding extra:', extra);
         const newExtras = [...extras,...extra].filter(e => e);  // Crea los extras y filtra los que estan indefinidos
         setExtras(newExtras); // los añade al state
         return newExtras;
     };
 
     const eliminarProducto = (index) => {
-        console.log('Lista de Productos antes de ser eliminados', productos);
+       // console.log('Lista de Productos antes de ser eliminados', productos);
 
         // Filtrar la lista de productos para excluir el producto a eliminar
         const nuevosProductos = productos.filter((_, i) => i !== index);
@@ -116,7 +116,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
         // Recalcular el total después de la eliminación
         calculateTotal(nuevosProductos);
 
-        console.log('Lista de Productos después de ser eliminados', nuevosProductos);
+        //console.log('Lista de Productos después de ser eliminados', nuevosProductos);
     };
 
     const calculateTotal = (productos) => { //Esta es la funcion que permite calcular el total del pedido
@@ -125,7 +125,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
                 const productoTotal = producto.price * producto.cantidad;
 
                 const extrasArray = Array.isArray(producto.extras) ? producto.extras.filter(Boolean) : [];
-                console.log('Extras del producto:', extrasArray);
+               // console.log('Extras del producto:', extrasArray);
 
                 if(Array.isArray(extrasArray) && extrasArray.length > 0){
                 // Sumar el precio de los extras asociados a ese producto
@@ -143,7 +143,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
               }
             }, 0);
 
-            console.log('Total de la Orden :', total);
+            //console.log('Total de la Orden :', total);
             setTotal(total); // Establecer el total en el estado
     };
 

@@ -17,6 +17,13 @@ export default function PedidoInfoCard(){
 
     const navigation = useNavigation();
 
+    const checkIfIsExpired = () => {
+        if(isExpired()){
+            Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
+            navigation.navigate('welcome')
+        }
+    }
+
     const fetchPedido = async () => {
         try{
             const response = await fetch(`https://cafettoapp-backend.onrender.com/api/v1/pedido/first/${clienteId}`, {
@@ -29,17 +36,14 @@ export default function PedidoInfoCard(){
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
-            if(isExpired()){
-                Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
-                navigation.navigate('welcome')
-            }
-
             const data = await response.json();
             setPedido(data)
             //console.log(data)
         } catch(error){
             console.log("No funciona el fetch", error)
         }
+
+        checkIfIsExpired();
     } 
 
     const calculateTimeOfReady =  () => {

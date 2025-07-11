@@ -38,7 +38,6 @@ const AuthProvider = ({children}) => {
     },[]);
 
 
-
     const login = async(token) => {
         AsyncStorage.setItem("jwtToken",token)
         setJwtToken(token)
@@ -49,16 +48,11 @@ const AuthProvider = ({children}) => {
         setClienteId(clienteId)
     }
 
-    const isExpired =() => {
-
+    const isExpired = () => {
         if(jwtToken){
             const decodedToken = jwtDecode(jwtToken);
             const now = Math.floor(Date.now() / 1000);
             const exp = decodedToken.exp
-
-            console.log(now)
-            console.log(exp)
-
             if(now > exp){
                 return true;
             }

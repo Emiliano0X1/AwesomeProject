@@ -50,7 +50,7 @@ const handlePedidoNavigation = () => {
 
         <View>
           <Text variant='headlineMedium' style = {{textAlign : 'center', fontFamily : 'BricolageGrotesque-Bold'}}>Pedido Más Reciente</Text>
-          <MoreRecentPedido navigation={navigation}></MoreRecentPedido>
+          <MoreRecentPedido></MoreRecentPedido>
         </View>
 
         <View>
@@ -58,7 +58,7 @@ const handlePedidoNavigation = () => {
           <View style = {styles.textContainer}>
             <Text variant='headlineMedium' style = {{textAlign : 'center', fontFamily : 'BricolageGrotesque-Bold'}}>Somos Caffeto</Text>
             <Text variant='bodyLarge' style = {{textAlign : 'center' , marginTop : 10 , width : width * 0.85, fontFamily : 'BricolageGrotesque-Regular'}} > 
-              Hola, somos Caffeto una cafeteria en donde no te puedes perder los magnificos sabores que tenemos para ti
+              Hola, somos Cafetto una cafeteria en donde no te puedes perder los magnificos sabores que tenemos para ti
               que esperas para ordenar.
             </Text>
           </View>

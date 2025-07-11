@@ -14,9 +14,9 @@ const FrappeExtra = ({navigation,route}) => {
   const cremas = extrasMain.filter(extra => extra.type === "Crema")
 
 
-  console.log(milks);
+  //console.log(milks);
 
-  console.log(cremas)
+  //console.log(cremas)
 
   //La eleccion de la leche
   const [size,setSize] = useState('');
@@ -56,7 +56,7 @@ const FrappeExtra = ({navigation,route}) => {
     navigation.navigate('Mi-Pedido');
 
     } catch (error) {
-      Alert.alert('Por favor seleccione las casillas faltantes o seleccione el tamaño')
+      Alert.alert('Seleccione Casillas Faltantes','Por favor seleccione las casillas faltantes o seleccione el tamaño')
     }
   };
 
@@ -83,8 +83,8 @@ const FrappeExtra = ({navigation,route}) => {
       producto.price = producto.gdePrice;
       producto.size = 'Grande';
     }
-    console.log("Precio del Producto" + producto.price);
-    console.log("Tamaño del Producto" + producto.size)
+    //console.log("Precio del Producto" + producto.price);
+    //console.log("Tamaño del Producto" + producto.size)
   }
 
   //El contador 
@@ -117,8 +117,8 @@ const FrappeExtra = ({navigation,route}) => {
 
   const añadirCrema = () => {
     
-    console.log('cremas:', cremas);
-    console.log('checked2:', checked2);
+    //console.log('cremas:', cremas);
+    //console.log('checked2:', checked2);
 
     const cream = cremas.find(creamm => creamm.value === checked2);
     return cream;
