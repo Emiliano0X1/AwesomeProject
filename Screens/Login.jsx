@@ -35,12 +35,11 @@ const Loggin = () => {
       });
 
         console.log('Response Status:', response.status);
-        if (!response.ok) {
-          const errorData = await response.json();
-          if (response.status === 500 && errorData.message === 'Este cliente ya existe') {
-            Alert.alert('No se encontro el usuario. Por favor, use otro.');
+        if (response.status !== 200) {
+          if (response.status === 403) {
+            Alert.alert('Credenciales incorrectas', 'El correo o la contraseña son incorrectas, por favor vuelva a intentarlo');
           } else {
-            Alert.alert('Ha ocurrido un error al procesar su solicitud.');
+            Alert.alert('Error del Servidor','Ha ocurrido un error al procesar su solicitud, vuelva a intentarlo');
           }
         } else {
 
@@ -56,7 +55,7 @@ const Loggin = () => {
 
           //console.log('Si jalo, OMG',data)
           
-          Alert.alert('Se ha iniciado sesion con exito');
+          Alert.alert('Inicio de Sesión','Se ha iniciado sesión con xito');
           //console.log("Aignacion del email", clienteId)
           
           login(token) //Guarda el token en el contexto global
@@ -65,7 +64,8 @@ const Loggin = () => {
           handlePress();
         }
       } catch(error){
-          Alert.alert("Hubo un error fatal en el sistema")
+          console.log(error)
+          Alert.alert('Error de Red',"Hubo un error fatal en el sistema")
       }
   };
 
@@ -150,7 +150,7 @@ const Loggin = () => {
   
     <View style={styles.container}>
         <View>
-          <Text style = {styles.title}>Bienvenido a CAFFETO, inicia sesión</Text>
+          <Text style = {styles.title}>Bienvenido a CAFETTO, inicia sesión</Text>
         </View>
 
             <View style = {styles.containerCards}>
@@ -253,6 +253,7 @@ const styles = StyleSheet.create({
 
    textError : {
     marginLeft : 18,
+    color : 'gray',
     fontFamily : 'BricolageGrotesque-Regular'
   },
 
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 10,
-    height: height * 0.35,
+    height: height * 0.4,
     width : width * 0.8,
     alignSelf : 'center'
   },
@@ -294,7 +295,7 @@ const styles = StyleSheet.create({
     marginTop : 60,
     width : '60%',
     height : 40,
-    marginLeft : 68,
+    marginLeft : 60,
   },
 
   buttonText : {

@@ -36,7 +36,7 @@ const styles = StyleSheet.create( {
 
   cardPedidoContainer : {
     justifyContent : 'center',
-    alignContent : 'center'
+    alignContent : 'center',
   },
 
   itemContainer : {

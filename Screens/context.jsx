@@ -74,7 +74,7 @@ const OrderProvider = ({children}) => { // Un provider sirve para poder sincroni
     };
     
     useEffect(() => {
-        if(jwtToken && typeof jwtToken === "string"){
+        if(jwtToken && typeof jwtToken === "string" && (!isExpired())){
             fecthProductos();
         }
     }, [jwtToken]);

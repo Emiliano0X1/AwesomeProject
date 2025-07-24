@@ -55,7 +55,7 @@ const Register = () => {
 
 
   const postClienteFinal = async (data) => {
-
+    const dataWithRole = {...data,role : 'USER'}
     console.log('Datos enviados:', data); 
 
     try {
@@ -65,14 +65,14 @@ const Register = () => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(dataWithRole),
+
         });
 
         console.log('Response Status:', response.status);
 
         if (!response.ok) {
-          const errorData = await response.json();
-          if (response.status === 500 && errorData.message === 'Este cliente ya existe') {
+          if (response.status === 403) {
             Alert.alert('Esta cuenta ya existe','El email ya está registrado. Por favor, use otro.');
           } else {
             Alert.alert('Error en el servidor','Ha ocurrido un error al procesar su solicitud.');
@@ -103,7 +103,7 @@ const Register = () => {
                     control={control}
                     name = 'name'
                     rules = {{
-                      required : 'Ingrese su Nombre Completo',
+                      required : 'Ingrese su nombre completo',
                       minLength : {
                         value : 1,
                         message : 'Por favor ingrese su nombre'
@@ -112,7 +112,7 @@ const Register = () => {
                     render = {({field : {onChange,onBlur, value}}) => (
                        <>
                        <TextInput style = {styles.textInput}
-                        placeholder='Ingrese su Nombre Completo'
+                        placeholder='Ingrese su nombre completo'
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -127,10 +127,10 @@ const Register = () => {
                     control={control}
                     name = 'phoneNumber'
                     rules = {{
-                      required : 'Ingrese su Numero Telefonico (10 digitos)',
+                      required : 'Ingrese su número teléfonico (10 digitos)',
                       minLength : {
                         value : 10,
-                        message : 'Por favor ingrese un numero telefonico valido'
+                        message : 'Por favor ingrese un número teléfonico valido'
                       }
                     }}
                     
@@ -138,7 +138,7 @@ const Register = () => {
                     render = {({field : {onChange,onBlur, value}}) => (
                        <>
                        <TextInput style = {styles.textInput}
-                        placeholder='Ingrese su numero de telefono'
+                        placeholder='Ingrese su número de teléfono'
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -163,7 +163,7 @@ const Register = () => {
 
                         <>
                         <TextInput style = {styles.textInput} 
-                            placeholder='Ingrese su Ubicacion'
+                            placeholder='Ingrese su ubicación'
                             onBlur={onBlur}
                             onChangeText={onChange}
                             value={value}
@@ -193,7 +193,7 @@ const Register = () => {
 
                         <>
                         <TextInput style = {styles.textInput} 
-                            placeholder='Ingrese su Email'
+                            placeholder='Ingrese su email'
                             onBlur={onBlur}
                             onChangeText={onChange}
                             value={value}
@@ -224,7 +224,7 @@ const Register = () => {
 
                         <>
                         <TextInput style = {styles.textInput} 
-                            placeholder='Ingrese su Contraseña'
+                            placeholder='Ingrese su contraseña'
                             onBlur={onBlur}
                             onChangeText={onChange}
                             value={value}
@@ -266,11 +266,12 @@ const styles = StyleSheet.create({
 
   textError : {
     marginLeft : 18,
+    color: 'gray',
     fontFamily : 'BricolageGrotesque-Regular'
   },
 
   containerText : {
-    marginTop : 10,
+    padding : 10
   },
 
   content: {
@@ -287,25 +288,25 @@ const styles = StyleSheet.create({
   Card : {
     backgroundColor : 'white',
     marginTop : 10,
-    height: height * 0.54,
+    height: height * 0.58,
     width : width * 0.85,
   },
 
   button : {
     padding : 5,
     borderRadius : 5,
-    backgroundColor : 'white',
+    backgroundColor : 'black',
     borderColor : "white",
     alignItems : 'center',
     marginTop : 50,
     width : width * 0.45,
     height : 40,
-    marginLeft : 80,
+    marginLeft : 75,
   
   },
 
   buttonText : {
-    color : 'black',
+    color : 'white',
     fontFamily : 'BricolageGrotesque-SemiBold',
     fontSize : 18,
   },
@@ -325,8 +326,9 @@ const styles = StyleSheet.create({
   },
 
   textInput : {
-    marginTop : 15,
+    marginTop : 12,
     width : width * 0.75,
+    height : height * 0.058,
     backgroundColor: '#f5f5f5',
     marginLeft : 18,
     fontFamily : 'BricolageGrotesque-SemiBold'

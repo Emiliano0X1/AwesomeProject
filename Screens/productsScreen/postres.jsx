@@ -98,7 +98,7 @@ const Postres = ({navigation}) => {
 
           {Muffins.map((producto) => ( 
             <>
-            {producto.active === true ? (
+            {producto.active? (
           <TouchableOpacity
               key = {producto.id}
               onPress={() => agregarProductoFinal(producto)}

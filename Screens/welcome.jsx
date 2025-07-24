@@ -9,7 +9,7 @@ import { AuthContext } from './authContext';
 
 const Welcome = () => {
 
-  const {isExpired} = useContext(AuthContext)
+  const {isExpired, jwtToken} = useContext(AuthContext)
 
   const navigation = useNavigation();
 
@@ -20,7 +20,6 @@ const Welcome = () => {
   const handlePressRegister = () => {
     navigation.navigate('register');  // Navegar a la pantalla del tab navigator
   }
-
   const checkExpired = () => {
       if(!isExpired()){
         Alert.alert("Sesion Guardada", "Siga disfrutando CaffetoApp")
@@ -29,8 +28,10 @@ const Welcome = () => {
   }
 
   useEffect(() => {
-    checkExpired()
-  },[])
+    if(jwtToken && typeof jwtToken === 'string'){
+      checkExpired()
+    }
+  },[jwtToken])
 
   return (
   

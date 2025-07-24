@@ -4,7 +4,6 @@ import { Card, IconButton, TextInput} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderContext } from './context';
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import { AuthorizationStatus } from '@react-native-firebase/messaging';
 import { AuthContext } from './authContext';
 const {width ,height} = Dimensions.get('screen');
 
@@ -38,7 +37,7 @@ const Pedidos = ({navigation}) => {
 
   const checkIfIsExpired = () => {
     if(isExpired(jwtToken)){
-      Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
+      Alert.alert("Sesión Expirada", "Por favor vuelva a iniciar sesión")
       navigation.navigate('welcome')
     }
   }
@@ -192,12 +191,12 @@ const Pedidos = ({navigation}) => {
 
       <View style = {styles.buttonsContainer}>
 
-        <TouchableOpacity style = {styles.button} onPress={() => navigation.navigate('Menu')}>
-          <Text style = {styles.buttonText}>Volver al Menú</Text>
+        <TouchableOpacity style ={styles.button} onPress={postearDefinitivamente}>
+          <Text style = {styles.buttonText}>Enviar Pedido</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style ={styles.button} onPress={postearDefinitivamente} disabled = {disableButtonSend()}>
-          <Text style = {styles.buttonText}>Enviar Pedido</Text>
+        <TouchableOpacity style = {styles.button2} onPress={() => navigation.navigate('Menu')}>
+          <Text style = {styles.buttonText}>Volver al Menú</Text>
         </TouchableOpacity>
 
       </View>
@@ -280,11 +279,19 @@ const styles = StyleSheet.create( {
     fontFamily : 'BricolageGrotesque-Bold'
   },
   button : {
-    marginTop : 70,
+    marginTop : 20,
     backgroundColor: 'black',
-    width : 180,
-    height: 50,
-    borderRadius : 25,
+    width : width * 0.75,
+    height: height * 0.06,
+    borderRadius : 15,
+},
+
+button2 : {
+    marginTop : 20,
+    backgroundColor: '#393939',
+    width : width * 0.75,
+    height: height * 0.06,
+    borderRadius : 15,
 },
 
 buttonText : {
@@ -298,9 +305,10 @@ buttonText : {
 
 buttonsContainer : {
   marginTop : -10,
-  flexDirection : 'row',
+  flexDirection : 'column',
+  alignItems : 'center',
   alignSelf : 'left',
-  padding: 20,
+  padding: 10,
   justifyContent : 'space-evenly',
 },
 

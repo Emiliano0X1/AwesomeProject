@@ -19,7 +19,7 @@ export default function PedidoInfoCard(){
 
     const checkIfIsExpired = () => {
         if(isExpired()){
-            Alert.alert("Sesion Expirada", "Por favor vuelva a iniciar sesion")
+            Alert.alert("Sesión Expirada", "Por favor vuelva a iniciar sesión")
             navigation.navigate('welcome')
         }
     }

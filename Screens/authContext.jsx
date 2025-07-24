@@ -49,7 +49,7 @@ const AuthProvider = ({children}) => {
     }
 
     const isExpired = () => {
-        if(jwtToken){
+        if(jwtToken && typeof jwtToken === "string"){
             const decodedToken = jwtDecode(jwtToken);
             const now = Math.floor(Date.now() / 1000);
             const exp = decodedToken.exp
