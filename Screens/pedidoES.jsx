@@ -1,14 +1,15 @@
-import React, {useContext} from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert,Dimensions} from 'react-native';
+import React, {useContext, useState} from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Dimensions, ActivityIndicator} from 'react-native';
 import { Card, IconButton, TextInput} from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderContext } from './context';
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import { AuthContext } from './authContext';
+import { AuthContext } from './authContext';;
 const {width ,height} = Dimensions.get('screen');
 
 
 const Pedidos = ({navigation}) => {
+  const [isLoading, setIsLoading] = useState(false);
 
   const fechaActual = new Date();
   const fechaRenderizada = `${fechaActual.getFullYear()}-${(fechaActual.getMonth() + 1).toString().padStart(2, '0')}-${fechaActual.getDate().toString().padStart(2, '0')} ${fechaActual.getHours().toString().padStart(2, '0')}:${fechaActual.getMinutes().toString().padStart(2, '0')}:${fechaActual.getSeconds().toString().padStart(2, '0')}`;
@@ -43,7 +44,8 @@ const Pedidos = ({navigation}) => {
   }
 
   const postOrder = async() => {
-
+    checkIfIsExpired()
+    setIsLoading(true);
     try{
       //console.log("Antes de enviar el pedido")
       //console.log(clienteId)
@@ -66,40 +68,40 @@ const Pedidos = ({navigation}) => {
           const errorData = await response.json();
           if (response.status === 500 && errorData.message === 'Este cliente ya existe') {
             Alert.alert('Error del Sistema','No se encontro el usuario. Por favor, use otro.');
+            setIsLoading(false);
             return false
           } else {
             Alert.alert('Error en Envio de Orden','Ha ocurrido un error al procesar su solicitud.');
+            setIsLoading(false);
             return false
           }
         } else {
             Alert.alert('Envio de orden','Se ha enviado el pedido con Exito');
             console.log('si jalo')
+            setIsLoading(false);
             return true
         }
 
       }catch(error){
           Alert.alert('Error del Servidor',"Hubo un error fatal en el sistema")
+          setIsLoading(false);
+          return false
       }
 
-      checkIfIsExpired()
-
     }
 
-    
-    const eliminarProductoaDespuesdePostear = (productos) => {
+    const postearDefinitivamente = async () => {
+      const success = await postOrder();
+      if (success) {
         setProductos([]);
-    }
-
-
-    const postearDefinitivamente = (productos) => {
-      postOrder();
-      eliminarProductoaDespuesdePostear(productos);
+        navigation.navigate('Menu'); // Navegar al menú después de éxito
+      }
     }
 
     const disableButtonSend = () => {
       const date = new Date();
       date.setHours(date.getHours() - 6)
-      //console.log(date.getHours())
+      console.log(date.getHours())
 
       if(date.getHours() < 18 || date.getHours() > 23){
          return true;
@@ -191,8 +193,19 @@ const Pedidos = ({navigation}) => {
 
       <View style = {styles.buttonsContainer}>
 
-        <TouchableOpacity style ={styles.button} onPress={postearDefinitivamente}>
-          <Text style = {styles.buttonText}>Enviar Pedido</Text>
+        <TouchableOpacity 
+          style={[styles.button, (isLoading) && styles.buttonDisabled]} 
+          onPress={postearDefinitivamente}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="small" color="white" />
+              <Text style={styles.buttonText}>Enviando...</Text>
+            </View>
+          ) : (
+            <Text style={styles.buttonText}>Enviar Pedido</Text>
+          )}
         </TouchableOpacity>
 
         <TouchableOpacity style = {styles.button2} onPress={() => navigation.navigate('Menu')}>
@@ -301,6 +314,16 @@ buttonText : {
     alignSelf: 'center',
     marginTop : 10,
     fontFamily : 'BricolageGrotesque-SemiBold'
+},
+
+buttonDisabled: {
+  backgroundColor: '#ccc',
+},
+
+loadingContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
 },
 
 buttonsContainer : {
