@@ -1,4 +1,40 @@
 {
-  "name": "AwesomeProject",
-  "displayName": "AwesomeProject"
+  "expo": {
+    "name": "Cafetto",
+    "slug": "cafetto",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cafetto.cafettoapp",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.cafetto.cafettoapp"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5b0e2055-b6bd-45d6-8ee3-f839bd820966"
+      }
+    },
+    "plugins": [
+      "expo-build-properties",
+      "@react-native-firebase/app",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ]
+  }
 }
