@@ -9,6 +9,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.cafetto.cafettoapp",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "config": {
         "usesNonExemptEncryption": false
       },
@@ -17,7 +18,8 @@
       }
     },
     "android": {
-      "package": "com.cafetto.cafettoapp"
+      "package": "com.cafetto.cafettoapp",
+      "googleServicesFile": "./google-services.json"
     },
     "extra": {
       "eas": {
